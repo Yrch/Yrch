@@ -14,20 +14,11 @@ cd $CURRENT/doctrine-dbal && git pull
 # Doctrine common
 cd $CURRENT/doctrine-common && git pull
 
-# Doctrine migrations
-cd $CURRENT/doctrine-migrations && git pull
-
-# Doctrine MongoDB
-cd $CURRENT/doctrine-mongodb && git pull
-
-# Propel
-cd $CURRENT/propel && svn up
-
-# Phing
-cd $CURRENT/phing && svn up
-
 # Swiftmailer
 cd $CURRENT/swiftmailer && git pull
+
+# Swiftmailer
+cd $CURRENT/symfony && git pull
 
 # Twig
 cd $CURRENT/twig && git pull
