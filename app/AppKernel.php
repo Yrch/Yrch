@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
 
             // register your bundles
+            new Bundle\DoctrineUserBundle\DoctrineUserBundle(),
             new Application\YrchBundle\YrchBundle(),
         );
 

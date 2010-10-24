@@ -5,4 +5,5 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/routing http://www.symfony-project.org/schema/routing/routing-1.0.xsd">
 
     <import resource="YrchBundle/Resources/config/routing.xml" />
+    <import resource="DoctrineUserBundle/Resources/config/routing/session.xml"/>
 </routes>

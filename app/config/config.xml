@@ -7,6 +7,7 @@
     xmlns:twig="http://www.symfony-project.org/schema/dic/twig"
     xmlns:swift="http://www.symfony-project.org/schema/dic/swiftmailer"
     xmlns:zend="http://www.symfony-project.org/schema/dic/zend"
+    xmlns:doctrine_user="http://www.symfony-project.org/schema/dic/doctrine_user"
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd
                         http://www.symfony-project.org/schema/dic/symfony http://www.symfony-project.org/schema/dic/symfony/symfony-1.0.xsd
                         http://www.symfony-project.org/schema/dic/doctrine http://www.symfony-project.org/schema/dic/doctrine/doctrine-1.0.xsd
@@ -30,9 +31,7 @@
     </app:config>
 
     <!-- Twig Configuration -->
-    <!--
-    <twig:config auto_reload="true" />
-    -->
+    <twig:config />
 
     <!-- Swiftmailer Configuration -->
     <!--
@@ -44,4 +43,9 @@
         username="xxxxxxxx"
         password="xxxxxxxx" />
     -->
+
+    <!-- DoctrineUserBundle Configuration -->
+
+    <doctrine_user:config db_driver="orm" user_class="Application\YrchBundle\Entity\User" />
+
 </container>
