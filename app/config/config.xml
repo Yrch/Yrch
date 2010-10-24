@@ -30,6 +30,9 @@
         //-->
     </app:config>
 
+    <!-- Doctrine Configuration -->
+    <doctrine:orm />
+
     <!-- Twig Configuration -->
     <twig:config />
 
@@ -45,7 +48,6 @@
     -->
 
     <!-- DoctrineUserBundle Configuration -->
-
     <doctrine_user:config db_driver="orm" user_class="Application\YrchBundle\Entity\User" />
 
 </container>
