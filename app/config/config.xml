@@ -29,6 +29,9 @@
         //-->
     </app:config>
 
+		<!-- Doctrine Configuration -->
+		<doctrine:orm />
+
     <!-- Twig Configuration -->
     <!--
     <twig:config auto_reload="true" />
