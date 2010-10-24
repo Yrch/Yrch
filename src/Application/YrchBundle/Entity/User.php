@@ -7,7 +7,6 @@ use Bundle\DoctrineUserBundle\Entity\User as BaseUser;
 /**
  * Application\YrchBundle\Entity\User
  *
- * @Table(name="user")
  * @Entity
  */
 class User extends BaseUser
@@ -15,9 +14,9 @@ class User extends BaseUser
     /**
      * @var integer $id
      *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @orm:Column(name="id", type="integer")
+     * @orm:Id
+     * @orm:GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
@@ -25,7 +24,7 @@ class User extends BaseUser
      *
      * @var string
      *
-     * @Column(name="username", type="string(255)")
+     * @orm:Column(name="username", type="string(255)")
      */
     protected $username;
 
