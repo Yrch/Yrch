@@ -14,6 +14,10 @@
                         http://www.symfony-project.org/schema/dic/twig http://www.symfony-project.org/schema/dic/twig/twig-1.0.xsd
                         http://www.symfony-project.org/schema/dic/swiftmailer http://www.symfony-project.org/schema/dic/swiftmailer/swiftmailer-1.0.xsd">
 
+    <imports>
+        <import resource="database.xml" />
+    </imports>
+
     <app:config csrf-secret="xxxxxxxxxx" charset="UTF-8" error-handler="null">
         <app:router resource="%kernel.root_dir%/config/routing.xml" />
         <app:validation enabled="true" annotations="true" />
@@ -28,12 +32,6 @@
     <!-- Twig Configuration -->
     <!--
     <twig:config auto_reload="true" />
-    -->
-
-    <!-- Doctrine Configuration -->
-    <!--
-    <doctrine:dbal dbname="xxxxxxxx" user="xxxxxxxx" password="" />
-    <doctrine:orm />
     -->
 
     <!-- Swiftmailer Configuration -->

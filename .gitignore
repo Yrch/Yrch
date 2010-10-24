@@ -1,3 +1,4 @@
 /src/vendor/
 /app/cache/*
 /app/logs/*
+/app/config/database.xml
