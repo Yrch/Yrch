@@ -7,9 +7,15 @@ use Bundle\DoctrineUserBundle\Entity\User as BaseUser;
 /**
  * Application\YrchBundle\Entity\User
  *
- * @orm:Entity
+ * @orm:Entity(repositoryClass="Bundle\DoctrineUserBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {
-    
+    /**
+     *
+     * @orm:Column(name="nick", type="string", length=255)
+     * 
+     * @var string 
+     */
+    protected $nick;
 }
