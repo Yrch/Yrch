@@ -31,6 +31,11 @@ abstract class User
     protected $username;
 
     /**
+     * @var string
+     */
+    protected $usernameLower;
+
+    /**
      * @validation:Validation({
      *      @validation:Email(),
      *      @validation:NotBlank(),
@@ -153,6 +158,17 @@ abstract class User
     public function setUsername($username)
     {
         $this->username = $username;
+        $this->usernameLower = static::strtolower($username);
+    }
+
+    /**
+     * Get the username in lowercase used in search and sort queries
+     *
+     * @return string
+     **/
+    public function getUsernameLower()
+    {
+        return $this->usernameLower;
     }
 
     /**
@@ -171,7 +187,7 @@ abstract class User
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = static::strtolower($email);
     }
 
     /**
@@ -343,8 +359,8 @@ abstract class User
     }
 
     /**
-     * Get groups granted to the user 
-     * 
+     * Get groups granted to the user
+     *
      * @return Collection
      */
     public function getGroups()
@@ -405,8 +421,8 @@ abstract class User
     }
 
     /**
-     * Get permissions granted to the user 
-     * 
+     * Get permissions granted to the user
+     *
      * @return Collection
      */
     public function getPermissions()
@@ -430,7 +446,7 @@ abstract class User
     }
 
     /**
-     * Get all permissions, including user groups permissions 
+     * Get all permissions, including user groups permissions
      *
      * @return ArrayCollection
      */
@@ -446,7 +462,7 @@ abstract class User
     }
 
     /**
-     * Get all permission names, including user groups permissions 
+     * Get all permission names, including user groups permissions
      *
      * @return array
      */
@@ -498,14 +514,19 @@ abstract class User
     }
 
     /**
-     * Tell if the the given user is this user 
+     * Tell if the the given user is this user
      * Useful when not hydrating all fields.
-     * 
-     * @param User $user 
+     *
+     * @param User $user
      * @return boolean
      */
     public function is(User $user = null)
     {
         return null !== $user && $this->getUsername() === $user->getUsername();
+    }
+
+    public static function strtolower($string)
+    {
+        return extension_loaded('mbstring') ? mb_strtolower($string) : strtolower($string);
     }
 }

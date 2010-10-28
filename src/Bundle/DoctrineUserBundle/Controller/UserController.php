@@ -24,7 +24,7 @@ class UserController extends Controller
      **/
     public function listAction()
     {
-        $users = $this['doctrine_user.user_repository']->findAll();
+        $users = $this['doctrine_user.repository.user']->findAll();
 
         return $this->render('DoctrineUserBundle:User:list.'.$this->getRenderer(), array('users' => $users));
     }
@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function showAction($username)
     {
-        $user = $this->findUser($username);
+        $user = $this->findUser('username', $username);
 
         return $this->render('DoctrineUserBundle:User:show.'.$this->getRenderer(), array('user' => $user));
     }
@@ -44,7 +44,7 @@ class UserController extends Controller
      */
     public function editAction($username)
     {
-        $user = $this->findUser($username);
+        $user = $this->findUser('username', $username);
         $form = $this->createForm($user);
 
         return $this->render('DoctrineUserBundle:User:edit.'.$this->getRenderer(), array(
@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function updateAction($username)
     {
-        $user = $this->findUser($username);
+        $user = $this->findUser('username', $username);
         $form = $this->createForm($user);
 
         if ($data = $this['request']->request->get($form->getName())) {
@@ -131,14 +131,7 @@ class UserController extends Controller
         }
 
         $email = $this['session']->get('doctrine_user_send_confirmation_email/email');
-        if (!$email) {
-            throw new NotFoundHttpException(sprintf('The email "%s" does not exist', $email));
-        }
-
-        $user = $this['doctrine_user.user_repository']->findOneByEmail($email);
-        if (!$user) {
-            throw new NotFoundHttpException(sprintf('The email "%s" does not exist', $email));
-        }
+        $user = $this->findUser('email', $email);
 
         $message = $this->getConfirmationEmailMessage($user);
         $this['mailer']->send($message);
@@ -172,14 +165,7 @@ class UserController extends Controller
     public function checkConfirmationEmailAction()
     {
         $email = $this['session']->get('doctrine_user_send_confirmation_email/email');
-        if (!$email) {
-            throw new NotFoundHttpException(sprintf('The email "%s" does not exist', $email));
-        }
-
-        $user = $this['doctrine_user.user_repository']->findOneByEmail($email);
-        if (!$user) {
-            throw new NotFoundHttpException(sprintf('The user "%s" does not exist', $email));
-        }
+        $user = $this->findUser('email', $email);
 
         return $this->render('DoctrineUserBundle:User:checkConfirmationEmail.'.$this->getRenderer(), array(
             'user' => $user,
@@ -192,11 +178,7 @@ class UserController extends Controller
      */
     public function confirmAction($token)
     {
-        $user = $this['doctrine_user.user_repository']->findOneByConfirmationToken($token);
-        if (!$user) {
-            throw new NotFoundHttpException(sprintf('No user to confirm with token "%s"', $token));
-        }
-
+        $user = $this->findUser('confirmationToken', $token);
         $user->setConfirmationToken(null);
         $user->setIsActive(true);
 
@@ -225,12 +207,9 @@ class UserController extends Controller
      */
     public function deleteAction($username)
     {
-        $user = $this->findUser($username);
-        if (!$user) {
-            throw new NotFoundHttpException(sprintf('Must be logged in to change your password'));
-        }
+        $user = $this->findUser('username', $username);
 
-        $objectManager = $this['doctrine_user.user_repository']->getObjectManager();
+        $objectManager = $this['doctrine_user.repository.user']->getObjectManager();
         $objectManager->remove($user);
         $objectManager->flush();
         $this['session']->setFlash('doctrine_user_user_delete/success', true);
@@ -269,7 +248,7 @@ class UserController extends Controller
         $form->bind($this['request']->request->get($form->getName()));
         if($form->isValid()) {
             $user->setPassword($form->getNewPassword());
-            $this['doctrine_user.user_repository']->getObjectManager()->flush();
+            $this['doctrine_user.repository.user']->getObjectManager()->flush();
             $userUrl = $this->generateUrl('doctrine_user_user_show', array('username' => $user->getUsername()));
             return $this->redirect($userUrl);
         }
@@ -280,20 +259,21 @@ class UserController extends Controller
     }
 
     /**
-     * Find a user by its username
+     * Find a user by a specific property
      *
-     * @param string $username
+     * @param srring $key property name
+     * @param mixed $value property value
      * @throw NotFoundException if user does not exist
      * @return User
      */
-    protected function findUser($username)
+    protected function findUser($key, $value)
     {
-        if (empty($username)) {
-            throw new NotFoundHttpException(sprintf('The user "%s" does not exist', $username));
+        if (!empty($value)) {
+            $user = $this['doctrine_user.repository.user']->{'findOneBy'.ucfirst($key)}($value);
         }
-        $user = $this['doctrine_user.user_repository']->findOneByUsername($username);
-        if (!$user) {
-            throw new NotFoundHttpException(sprintf('The user "%s" does not exist', $username));
+
+        if (empty($user)) {
+            throw new NotFoundHttpException(sprintf('The user with "%s" does not exist for value "%s"', $key, $value));
         }
 
         return $user;
@@ -307,7 +287,7 @@ class UserController extends Controller
      **/
     public function saveUser(User $user)
     {
-        $objectManager = $this['doctrine_user.user_repository']->getObjectManager();
+        $objectManager = $this['doctrine_user.repository.user']->getObjectManager();
         $objectManager->persist($user);
         $objectManager->flush();
     }
@@ -320,9 +300,9 @@ class UserController extends Controller
      */
     protected function createForm($object = null)
     {
-        $form = $this['doctrine_user.user_form'];
+        $form = $this['doctrine_user.form.user'];
         if (null === $object) {
-            $userClass = $this['doctrine_user.user_repository']->getObjectClass();
+            $userClass = $this['doctrine_user.repository.user']->getObjectClass();
             $object = new $userClass();
         }
 
@@ -333,8 +313,8 @@ class UserController extends Controller
 
     protected function createChangePasswordForm(User $user)
     {
-        $form = $this['doctrine_user.change_password_form.class'];
-        $form->setData($user);
+        $form = $this['doctrine_user.form.change_password'];
+        $form->setData(new ChangePassword($user));
 
         return $form;
     }

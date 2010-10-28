@@ -28,7 +28,7 @@ class SessionController extends Controller
      */
     public function newAction()
     {
-        $form = $this['doctrine_user.session_form'];
+        $form = $this['doctrine_user.form.session'];
 
         if ($this['request']->server->has('HTTP_REFERER')) {
             $this['session']->set('DoctrineUserBundle/referer', $this['request']->server->get('HTTP_REFERER'));
@@ -46,9 +46,9 @@ class SessionController extends Controller
      */
     public function createAction()
     {
-        $form = $this['doctrine_user.session_form'];
+        $form = $this['doctrine_user.form.session'];
         $data = $this['request']->request->get($form->getName());
-        $user = $this['doctrine_user.user_repository']->findOneByUsernameOrEmail($data['usernameOrEmail']);
+        $user = $this['doctrine_user.repository.user']->findOneByUsernameOrEmail($data['usernameOrEmail']);
 
         if ($user && $user->getIsActive() && $user->checkPassword($data['password'])) {
             $event = new Event($this, 'doctrine_user.user_can_login_filter', array());
@@ -86,12 +86,7 @@ class SessionController extends Controller
 
     protected function storeRememberMeCookie(User $user, Response $response, $rememberMe)
     {
-        if ($rememberMe) {
-            $rememberMeCookieValue = $user->getRememberMeToken();
-        } else {
-            $rememberMeCookieValue = null;
-        }
-
+        $rememberMeCookieValue = $rememberMe ?$user->getRememberMeToken() : null;
         $rememberMeCookieName = $this['doctrine_user.auth']->getOption('remember_me_cookie_name');
         $rememberMeLifetime = $this['doctrine_user.auth']->getOption('remember_me_lifetime');
         $response->headers->setCookie($rememberMeCookieName, $rememberMeCookieValue, null, time() + $rememberMeLifetime);
