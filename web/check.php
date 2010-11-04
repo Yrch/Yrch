@@ -68,14 +68,13 @@ check(!ini_get('magic_quotes_gpc'), 'Checking that php.ini has magic_quotes_gpc 
 check(!ini_get('register_globals'), 'Checking that php.ini has register_globals set to off', 'Set register_globals to off in php.ini', false);
 check(!ini_get('session.auto_start'), 'Checking that php.ini has session.auto_start set to off', 'Set session.auto_start to off in php.ini', false);
 
-echo_title("Optional checks (Propel/Doctrine)");
+echo_title("Optional checks (Doctrine)");
 
-check(class_exists('PDO'), 'Checking that PDO is installed', 'Install PDO (mandatory for Propel and Doctrine)', false);
+check(class_exists('PDO'), 'Checking that PDO is installed', 'Install PDO (mandatory for Doctrine)', false);
 if (class_exists('PDO')) {
     $drivers = PDO::getAvailableDrivers();
-    check(count($drivers), 'Checking that PDO has some drivers installed: '.implode(', ', $drivers), 'Install PDO drivers (mandatory for Propel and Doctrine)');
+    check(count($drivers), 'Checking that PDO has some drivers installed: '.implode(', ', $drivers), 'Install PDO drivers (mandatory for Doctrine)');
 }
-check(class_exists('XSLTProcessor'), 'Checking that XSL module is installed', 'Install the XSL module (recommended for Propel)', false);
 
 if (!is_cli()) {
   echo '</body></html>';
