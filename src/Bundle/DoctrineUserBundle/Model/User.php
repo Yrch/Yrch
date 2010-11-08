@@ -22,9 +22,9 @@ abstract class User
 
     /**
      * @validation:Validation({
-     *      @validation:NotBlank(),
-     *      @validation:MinLength(limit=2),
-     *      @validation:MaxLength(limit=255)
+     *      @validation:NotBlank(message="Please enter a username", groups="Registration"),
+     *      @validation:MinLength(limit=2, message="The username is too short", groups="Registration"),
+     *      @validation:MaxLength(limit=255, message="The username is too long", groups="Registration")
      * })
      * @var string
      */
@@ -37,9 +37,9 @@ abstract class User
 
     /**
      * @validation:Validation({
-     *      @validation:Email(),
-     *      @validation:NotBlank(),
-     *      @validation:MaxLength(limit=255)
+     *      @validation:Email(message="This is not a valid email", groups="Registration"),
+     *      @validation:NotBlank(message="Please enter an email", groups="Registration"),
+     *      @validation:MaxLength(limit=255, message="The email is too long", groups="Registration")
      * })
      * @var string
      */
@@ -59,51 +59,41 @@ abstract class User
 
     /**
      * @validation:Validation({
-     *      @validation:NotBlank(),
-     *      @validation:MinLength(limit=2),
-     *      @validation:MaxLength(limit=255)
+     *      @validation:NotBlank(message="Please enter a password", groups="Registration"),
+     *      @validation:MinLength(limit=2, message="The password is too short", groups="Registration"),
+     *      @validation:MaxLength(limit=255, message="The password is too long", groups="Registration")
      * })
      * @var string
      */
     protected $password;
 
+    /**
+     * @var string
+     */
     protected $passwordHash;
 
     /**
-     * @validation:Validation({
-     *      @validation:NotBlank(),
-     *      @validation:MinLength(limit=2),
-     *      @validation:MaxLength(limit=31)
-     * })
      * @var string
      */
     protected $algorithm;
 
     /**
-     * @validation:Validation({
-     *      @validation:NotBlank(),
-     *      @validation:MinLength(limit=2),
-     *      @validation:MaxLength(limit=255)
-     * })
      * @var string
      */
     protected $salt;
 
     /**
      * @var \DateTime
-     * @validation:DateTime()
      */
     protected $createdAt;
 
     /**
      * @var \DateTime
-     * @validation:DateTime()
      */
     protected $updatedAt;
 
     /**
      * @var \DateTime
-     * @validation:DateTime()
      */
     protected $lastLogin;
 
