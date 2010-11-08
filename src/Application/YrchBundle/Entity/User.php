@@ -20,6 +20,12 @@ class User extends BaseUser
      */
     protected $nick;
 
+    public function  __construct()
+    {
+        parent::__construct();
+        $this->nick='Meriadoc';
+    }
+
     /**
      * Set nick
      *
