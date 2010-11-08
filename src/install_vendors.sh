@@ -32,3 +32,6 @@ git clone git://github.com/fabpot/Twig.git twig
 
 # Zend Framework
 git clone git://github.com/zendframework/zf2.git zend
+
+# DoctrineExtensions
+git clone git://github.com/l3pp4rd/DoctrineExtensions.git doctrine-extensions
