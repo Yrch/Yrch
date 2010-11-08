@@ -5,7 +5,7 @@
     xmlns:app="http://www.symfony-project.org/schema/dic/symfony"
     xmlns:doctrine="http://www.symfony-project.org/schema/dic/doctrine"
     xmlns:twig="http://www.symfony-project.org/schema/dic/twig"
-    xmlns:swift="http://www.symfony-project.org/schema/dic/swiftmailer"
+    xmlns:swiftmailer="http://www.symfony-project.org/schema/dic/swiftmailer"
     xmlns:zend="http://www.symfony-project.org/schema/dic/zend"
     xmlns:doctrine_user="http://www.symfony-project.org/schema/dic/doctrine_user"
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd
@@ -16,7 +16,7 @@
                         http://www.symfony-project.org/schema/dic/swiftmailer http://www.symfony-project.org/schema/dic/swiftmailer/swiftmailer-1.0.xsd">
 
     <imports>
-        <import resource="database.xml" />
+        <import resource="user_config.xml" />
     </imports>
 
     <app:config csrf-secret="xxxxxxxxxx" charset="UTF-8" error-handler="null">
@@ -34,22 +34,12 @@
     <!-- Twig Configuration -->
     <twig:config />
 
-    <!-- Swiftmailer Configuration -->
-    <!--
-    <swiftmailer:config
-        transport="smtp"
-        encryption="ssl"
-        auth_mode="login"
-        host="smtp.gmail.com"
-        username="xxxxxxxx"
-        password="xxxxxxxx" />
-    -->
-
     <!-- DoctrineUserBundle Configuration -->
     <doctrine_user:config db_driver="orm">
         <doctrine_user:class>
             <doctrine_user:model user="Application\YrchBundle\Entity\User" />
         </doctrine_user:class>
+        <doctrine_user:confirmation_email enabled="true" />
     </doctrine_user:config>
 
 </container>
