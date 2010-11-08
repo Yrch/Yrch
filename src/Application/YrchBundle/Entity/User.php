@@ -19,4 +19,24 @@ class User extends BaseUser
      * @var string 
      */
     protected $nick;
+
+    /**
+     * Set nick
+     *
+     * @param string $nick
+     */
+    public function setNick($nick)
+    {
+        $this->nick = $nick;
+    }
+
+    /**
+     * Get nick
+     *
+     * @return string $nick
+     */
+    public function getNick()
+    {
+        return $this->nick;
+    }
 }
