@@ -219,21 +219,29 @@ class Site
     }
 
     /**
-     * Set selection
-     *
-     * @param boolean $selection
+     * Add to selection
      */
-    public function setSelection($selection)
+    public function addToSelection()
     {
-        $this->selection = $selection;
+        $this->selection = true;
     }
 
     /**
-     * Get selection
+     * Remove from selection
      *
-     * @return boolean $selection
+     * @param boolean $selection
      */
-    public function getSelection()
+    public function removeFromSelection()
+    {
+        $this->selection = false;
+    }
+
+    /**
+     * Is in selection ?
+     *
+     * @return boolean
+     */
+    public function isSelectioned()
     {
         return $this->selection;
     }
