@@ -7,7 +7,7 @@ namespace Application\YrchBundle\Entity;
  *
  * @orm:Table(name="site")
  * @orm:Entity()
- * @orm:@TranslationEntity(class="Application\YrchBundle\Entity\SiteTranslation")
+ * @TranslationEntity(class="Application\YrchBundle\Entity\SiteTranslation")
  */
 class Site
 {
@@ -32,14 +32,14 @@ class Site
      * @var string $title
      *
      * @orm:Column(name="title", type="string", length=255)
-     * @orm:Translatable
+     * @Translatable
      */
     private $title;
 
     /**
      * @var string $locale
      *
-     * @orm:Locale
+     * @Locale
      */
     private $locale;
 
@@ -47,7 +47,7 @@ class Site
      * @var string $description
      *
      * @orm:Column(name="description", type="text")
-     * @orm:Translatable
+     * @Translatable
      */
     private $description;
 
