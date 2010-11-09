@@ -3,54 +3,54 @@
 namespace Application\YrchBundle\Entity;
 
 /**
- * @Table(name="site_translations", indexes={
- *      @index(name="site_translation_idx", columns={"locale", "entity", "foreign_key", "field"})
+ * @orm:Table(name="site_translations", indexes={
+ *      @orm:index(name="site_translation_idx", columns={"locale", "entity", "foreign_key", "field"})
  * })
- * @Entity(repositoryClass="DoctrineExtensions\Translatable\Repository\TranslationRepository")
+ * @orm:Entity(repositoryClass="DoctrineExtensions\Translatable\Repository\TranslationRepository")
  */
 class SiteTranslation
 {
     /**
      * @var integer $id
      *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="IDENTITY")
+     * @orm:Column(name="id", type="integer")
+     * @orm:Id
+     * @orm:GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string $locale
      *
-     * @Column(name="locale", type="string", length=8)
+     * @orm:Column(name="locale", type="string", length=8)
      */
     private $locale;
 
     /**
      * @var string $entity
      *
-     * @Column(name="entity", type="string", length=255)
+     * @orm:Column(name="entity", type="string", length=255)
      */
     private $entity;
 
     /**
      * @var string $field
      *
-     * @Column(name="field", type="string", length=32)
+     * @orm:Column(name="field", type="string", length=32)
      */
     private $field;
 
     /**
      * @var string $foreignKey
      *
-     * @Column(name="foreign_key", type="string", length="64")
+     * @orm:Column(name="foreign_key", type="string", length="64")
      */
     private $foreignKey;
 
     /**
      * @var text $content
      *
-     * @Column(name="content", type="text", nullable=true)
+     * @orm:Column(name="content", type="text", nullable=true)
      */
     private $content;
 }
