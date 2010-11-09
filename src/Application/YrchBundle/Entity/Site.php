@@ -2,8 +2,6 @@
 
 namespace Application\YrchBundle\Entity;
 
-use DoctrineExtensions\Translatable\Translatable;
-
 /**
  * Application\YrchBundle\Entity\Site
  *
@@ -11,7 +9,7 @@ use DoctrineExtensions\Translatable\Translatable;
  * @orm:Entity()
  * @orm:@TranslationEntity(class="Application\YrchBundle\Entity\SiteTranslation")
  */
-class Site implements Translatable
+class Site
 {
 
     /**
