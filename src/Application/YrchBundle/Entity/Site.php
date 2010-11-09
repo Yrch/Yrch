@@ -100,6 +100,16 @@ class Site implements Translatable
      */
     private $owner;
 
+    public function  __construct()
+    {
+        $this->status = 'pending';
+        $this->leech = false;
+        $this->selection = false;
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+        $this->notes = '';
+    }
+
     /**
      * Get id
      *
