@@ -9,14 +9,4 @@ use DoctrineExtensions\Translatable\TranslationListener;
 
 class YrchBundle extends Bundle
 {
-    public function boot()
-    {
-        $em = $this->container->get('doctrine.orm.entity_manager');
-        $eventManager = $em->getEventManager();
-        $translatableListener = new TranslationListener();
-        //$translatableListener->setTranslatableLocale($this->container->get('session.default_locale'));
-        $translatableListener->setTranslatableLocale('fr');
-        $eventManager->addEventSubscriber($translatableListener);
-    }
-
 }
