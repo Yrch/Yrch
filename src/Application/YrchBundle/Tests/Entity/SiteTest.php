@@ -53,15 +53,16 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($site->isSelectioned());
     }
 
-    /**
-     * @todo Implement testLeech().
-     */
     public function testLeech()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $site = new Site();
+        $this->assertFalse($site->isLeech());
+
+        $site->setLeech(true);
+        $this->assertTrue($site->isLeech());
+
+        $site->setLeech(false);
+        $this->assertFalse($site->isLeech());
     }
 
     public function testStatus()
@@ -78,10 +79,11 @@ class SiteTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotes()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $site = new Site();
+        $this->assertEquals('', $site->getNotes());
+
+        $site->setNotes('This is a test');
+        $this->assertEquals('This is a test', $site->getNotes());
     }
     
     public function testOwner()
