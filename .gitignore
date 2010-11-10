@@ -2,3 +2,4 @@
 /app/cache/*
 /app/logs/*
 /app/config/user_config.xml
+/app/phpunit.xml
