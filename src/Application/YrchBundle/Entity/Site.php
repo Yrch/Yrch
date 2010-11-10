@@ -2,6 +2,8 @@
 
 namespace Application\YrchBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Application\YrchBundle\Entity\Site
  *
@@ -96,9 +98,23 @@ class Site
     private $notes;
 
     /**
+     * @var User $owner
+     *
      * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\User", inversedBy="sites")
      */
     private $owner;
+
+    /**
+     * @var ArrayCollection $categories
+     *
+     * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site")
+     * @orm:JoinTable(name="site_category",
+     *      joinColumns={@orm:JoinColumn(name="site_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="category_id", referencedColumnName="id")}
+     *      )
+     * @orm:OrderBy({"lft" = "ASC"})
+     */
+    private $categories;
 
     public function  __construct()
     {
@@ -106,6 +122,7 @@ class Site
         $this->leech = false;
         $this->selection = false;
         $this->notes = '';
+        $this->categories = new ArrayCollection();
     }
 
     /**
@@ -304,6 +321,36 @@ class Site
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * Add category
+     *
+     * @param Category $category
+     */
+    public function addCategory(Category $category)
+    {
+        $this->categories[] = $category;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param Category $category
+     */
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return Collection $categories
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 
     public function setTranslatableLocale($locale)
