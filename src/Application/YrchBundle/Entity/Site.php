@@ -110,7 +110,7 @@ class Site
      * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site")
      * @orm:JoinTable(name="site_category",
      *      joinColumns={@orm:JoinColumn(name="site_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="category_id", referencedColumnName="id")}
+     *      inverseJoinColumns={@orm:JoinColumn(name="category_id", referencedColumnName="id")}
      *      )
      * @orm:OrderBy({"lft" = "ASC"})
      */
