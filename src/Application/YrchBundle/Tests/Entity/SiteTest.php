@@ -4,6 +4,8 @@ namespace Application\YrchBundle\Tests\Entity;
 
 use Application\YrchBundle\Entity\Site;
 use Application\YrchBundle\Entity\User;
+use Application\YrchBundle\Entity\Category;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Test class for Site
@@ -87,6 +89,19 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $user = new User();
         $site->setOwner($user);
         $this->assertEquals($user, $site->getOwner());
+    }
+
+    public function testCategories()
+    {
+        $site = new Site();
+        $this->assertEquals(new ArrayCollection(), $site->getCategories());
+
+        $category = new Category();
+        $site->addCategory($category);
+        $this->assertContains($category, $site->getCategories());
+
+        $site->removeCategory($category);
+        $this->assertNotContains($category, $site->getCategories());
     }
 
     public function testSetTranslatableLocale()
