@@ -61,6 +61,7 @@ class User extends BaseUser
      */
     public function addSite(Site $site)
     {
+        $site->setOwner($this);
         $this->sites[] = $site;
     }
 
