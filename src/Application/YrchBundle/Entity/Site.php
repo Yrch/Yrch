@@ -257,11 +257,11 @@ class Site
     }
 
     /**
-     * Get leech
+     * is leech ?
      *
-     * @return boolean $leech
+     * @return boolean 
      */
-    public function getLeech()
+    public function isLeech()
     {
         return $this->leech;
     }
