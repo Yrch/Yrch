@@ -26,7 +26,8 @@ class Category implements Node
     /**
      * @var string
      *
-     * @orm:Column(name="title", type="string", length=64)
+     * @orm:Column(name="title", type="string", length=255)
+     * @Translatable
      */
     private $title;
 
