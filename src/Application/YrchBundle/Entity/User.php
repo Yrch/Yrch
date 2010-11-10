@@ -3,6 +3,8 @@
 namespace Application\YrchBundle\Entity;
 
 use Bundle\DoctrineUserBundle\Entity\User as BaseUser;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Application\YrchBundle\Entity\User
@@ -20,10 +22,16 @@ class User extends BaseUser
      */
     protected $nick;
 
+    /**
+     * @orm:OneToMany(targetEntity="Application\YrchBundle\Entity\Site", mappedBy="owner")
+     */
+    private $sites;
+
     public function  __construct()
     {
         parent::__construct();
-        $this->nick='Meriadoc';
+        $this->sites = new ArrayCollection();
+        $this->nick = 'Meriadoc';
     }
 
     /**
@@ -44,5 +52,25 @@ class User extends BaseUser
     public function getNick()
     {
         return $this->nick;
+    }
+
+    /**
+     * Add site
+     *
+     * @param Site $site
+     */
+    public function addSite(Site $site)
+    {
+        $this->sites[] = $site;
+    }
+
+    /**
+     * Get sites
+     *
+     * @return Collection $sites
+     */
+    public function getSites()
+    {
+        return $this->sites;
     }
 }
