@@ -52,16 +52,18 @@ class Site
     private $description;
 
     /**
-     * @var string $createdAt
+     * @var datetime $createdAt
      *
      * @orm:Column(name="created_at", type="datetime")
+     * @Timestampable:OnCreate
      */
     private $createdAt;
 
     /**
-     * @var string $updatedAt
+     * @var datetime $updatedAt
      *
      * @orm:Column(name="updated_at", type="datetime")
+     * @Timestampable:OnUpdate
      */
     private $updatedAt;
 
@@ -103,8 +105,6 @@ class Site
         $this->status = 'pending';
         $this->leech = false;
         $this->selection = false;
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
         $this->notes = '';
     }
 
@@ -179,16 +179,6 @@ class Site
     }
 
     /**
-     * Set createdAt
-     *
-     * @param datetime $createdAt
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
      * Get createdAt
      *
      * @return datetime $createdAt
@@ -196,16 +186,6 @@ class Site
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param datetime $updatedAt
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
     }
 
     /**
