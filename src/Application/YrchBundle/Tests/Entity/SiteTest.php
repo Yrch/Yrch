@@ -19,26 +19,22 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('http://example.org', $site->getUrl());
     }
 
-    /**
-     * @todo Implement testTitle().
-     */
     public function testTitle()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $site = new Site();
+        $this->assertNull($site->getTitle());
+
+        $site->setTitle('test title');
+        $this->assertEquals('test title', $site->getTitle());
     }
 
-    /**
-     * @todo Implement testDescription().
-     */
     public function testDescription()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $site = new Site();
+        $this->assertNull($site->getDescription());
+
+        $site->setDescription('test description');
+        $this->assertEquals('test description', $site->getDescription());
     }
     
     public function testSelection()
@@ -74,9 +70,6 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('ok', $site->getStatus());
     }
 
-    /**
-     * @todo Implement testNotes().
-     */
     public function testNotes()
     {
         $site = new Site();
@@ -96,15 +89,11 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($user, $site->getOwner());
     }
 
-    /**
-     * @todo Implement testSetTranslatableLocale().
-     */
     public function testSetTranslatableLocale()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $site = new Site();
+        $site->setTranslatableLocale('de');
+        $this->assertAttributeEquals('de', 'locale', $site);
     }
 
 }
