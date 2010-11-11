@@ -15,12 +15,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 class User extends BaseUser
 {
     /**
+     * @var string
      *
      * @orm:Column(name="nick", type="string", length=255)
-     * 
-     * @var string 
      */
     protected $nick;
+
+    /**
+     * @var boolean
+     *
+     * @orm:Column(name="is_locked", type="boolean")
+     */
+    protected $is_locked;
 
     /**
      * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site", mappedBy="owner")
@@ -31,7 +37,8 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->sites = new ArrayCollection();
-        $this->nick = 'Meriadoc';
+        $this->nick = 'Meriadoc'; // Remove this line when the form will pass the value
+        $this->is_locked = false;
     }
 
     /**
@@ -52,6 +59,31 @@ class User extends BaseUser
     public function getNick()
     {
         return $this->nick;
+    }
+
+    /**
+     * Lock the user
+     */
+    public function lock()
+    {
+        $this->is_locked = true;
+    }
+
+    /**
+     * Unlock the user
+     */
+    public function unlock()
+    {
+        $this->is_locked = false;
+    }
+
+    /**
+     * implements AdvancedAccountInterface
+     * @return boolean true if the account is NOT locked
+     */
+    public function isAccountNonLocked()
+    {
+        return !$this->is_locked;
     }
 
     /**
