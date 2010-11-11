@@ -349,9 +349,9 @@ class Site
      */
     public function addOwner(User $user)
     {
-        if (!$this->owners->contains($user)){
+        if (!$this->getOwners()->contains($user)){
             $user->addSite($this);
-            $this->owners[] = $user;
+            $this->getOwners()->add($user);
         }
     }
 
@@ -362,11 +362,11 @@ class Site
      */
     public function removeOwner(User $user)
     {
-        if ($this->owners->contains($user)){
-            if ($this->owners->count() == 1){
+        if ($this->getOwners()->contains($user)){
+            if ($this->getOwners()->count() == 1){
                 throw new \RuntimeException('A site must have at least one owner');
             }
-            $this->owners->removeElement($user);
+            $this->getOwners()->removeElement($user);
         }
     }
 
@@ -387,7 +387,9 @@ class Site
      */
     public function addCategory(Category $category)
     {
-        $this->categories[] = $category;
+        if (!$this->getCategories()->contains($category)){
+            $this->getCategories()->add($category);
+        }
     }
 
     /**
@@ -397,7 +399,7 @@ class Site
      */
     public function removeCategory(Category $category)
     {
-        $this->categories->removeElement($category);
+        $this->getCategories()->removeElement($category);
     }
 
     /**

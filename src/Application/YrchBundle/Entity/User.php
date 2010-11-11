@@ -103,8 +103,8 @@ class User extends BaseUser
      */
     public function addSite(Site $site)
     {
-        if (!$this->sites->contains($site)){
-            $this->sites[] = $site;
+        if (!$this->getSites()->contains($site)){
+            $this->getSites()->add($site);
         }
     }
 
