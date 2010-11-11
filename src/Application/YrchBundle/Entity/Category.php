@@ -21,7 +21,7 @@ class Category implements Node
      * @orm:Id
      * @orm:GeneratedValue
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -29,28 +29,28 @@ class Category implements Node
      * @orm:Column(name="title", type="string", length=255)
      * @Translatable
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string $locale
      *
      * @Locale
      */
-    private $locale;
+    protected $locale;
 
     /**
      * @var integer
      *
      * @orm:Column(name="lft", type="integer")
      */
-    private $lft;
+    protected $lft;
 
     /**
      * @var integer
      *
      * @orm:Column(name="rgt", type="integer")
      */
-    private $rgt;
+    protected $rgt;
 
     /**
      * @var Category
@@ -58,7 +58,7 @@ class Category implements Node
      * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\Category", inversedBy="children")
      * @JoinColumn(name="parent_id", referencedColumnName="id")
      */
-    private $parent;
+    protected $parent;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
@@ -66,7 +66,7 @@ class Category implements Node
      * @orm:OneToMany(targetEntity="Application\YrchBundle\Entity\Category", mappedBy="parent")
      * @orm:OrderBy({"lft" = "ASC"})
      */
-    private $children;
+    protected $children;
 
     /**
      * @return integer

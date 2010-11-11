@@ -21,21 +21,21 @@ class Review
      * @orm:Id
      * @orm:GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var integer $score
      *
      * @orm:Column(name="score", type="integer", nullable="true")
      */
-    private $score;
+    protected $score;
 
     /**
      * @var string $locale
      *
      * @Locale
      */
-    private $locale;
+    protected $locale;
 
     /**
      * @var string $text
@@ -43,7 +43,7 @@ class Review
      * @orm:Column(name="text", type="text")
      * @Translatable
      */
-    private $text;
+    protected $text;
 
     /**
      * @var datetime $createdAt
@@ -51,7 +51,7 @@ class Review
      * @orm:Column(name="created_at", type="datetime")
      * @Timestampable:OnCreate
      */
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @var datetime $updatedAt
@@ -59,28 +59,28 @@ class Review
      * @orm:Column(name="updated_at", type="datetime")
      * @Timestampable:OnUpdate
      */
-    private $updatedAt;
+    protected $updatedAt;
 
     /**
      * @var string $status
      *
      * @orm:Column(name="status", type="string", length=100)
      */
-    private $status;
+    protected $status;
 
     /**
      * @var User $owner
      *
      * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\User", inversedBy="reviews")
      */
-    private $owner;
+    protected $owner;
 
     /**
      * @var Site $site
      *
      * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\Site", inversedBy="reviews")
      */
-    private $site;
+    protected $site;
 
     public function  __construct()
     {

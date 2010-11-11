@@ -33,14 +33,14 @@ class User extends BaseUser
      *
      * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site", mappedBy="owners")
      */
-    private $sites;
+    protected $sites;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
      * @orm:OneToMany(targetEntity="Application\YrchBundle\Entity\Review", mappedBy="owner")
      */
-    private $reviews;
+    protected $reviews;
 
     public function  __construct()
     {

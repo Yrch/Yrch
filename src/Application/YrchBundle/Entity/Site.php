@@ -21,14 +21,14 @@ class Site
      * @orm:Id
      * @orm:GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $url
      *
      * @orm:Column(name="url", type="string", length=255)
      */
-    private $url;
+    protected $url;
 
     /**
      * @var string $title
@@ -36,14 +36,14 @@ class Site
      * @orm:Column(name="title", type="string", length=255)
      * @Translatable
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string $locale
      *
      * @Locale
      */
-    private $locale;
+    protected $locale;
 
     /**
      * @var string $description
@@ -51,7 +51,7 @@ class Site
      * @orm:Column(name="description", type="text")
      * @Translatable
      */
-    private $description;
+    protected $description;
 
     /**
      * @var datetime $createdAt
@@ -59,7 +59,7 @@ class Site
      * @orm:Column(name="created_at", type="datetime")
      * @Timestampable:OnCreate
      */
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @var datetime $updatedAt
@@ -67,42 +67,42 @@ class Site
      * @orm:Column(name="updated_at", type="datetime")
      * @Timestampable:OnUpdate
      */
-    private $updatedAt;
+    protected $updatedAt;
 
     /**
      * @var string $selection
      *
      * @orm:Column(name="selection", type="boolean")
      */
-    private $selection;
+    protected $selection;
 
     /**
      * @var string $leech
      *
      * @orm:Column(name="leech", type="boolean")
      */
-    private $leech;
+    protected $leech;
 
     /**
      * @var string $status
      *
      * @orm:Column(name="status", type="string", length=100)
      */
-    private $status;
+    protected $status;
 
     /**
      * @var string $notes
      *
      * @orm:Column(name="notes", type="text")
      */
-    private $notes;
+    protected $notes;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
      * @orm:OneToMany(targetEntity="Application\YrchBundle\Entity\Review", mappedBy="site")
      */
-    private $reviews;
+    protected $reviews;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection $owners
@@ -113,7 +113,7 @@ class Site
      *      inverseJoinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")}
      *      )
      */
-    private $owners;
+    protected $owners;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection $categories
@@ -125,7 +125,7 @@ class Site
      *      )
      * @orm:OrderBy({"lft" = "ASC"})
      */
-    private $categories;
+    protected $categories;
 
     public function  __construct()
     {
