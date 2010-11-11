@@ -81,14 +81,32 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('This is a test', $site->getNotes());
     }
     
-    public function testOwner()
+    public function testOwners()
     {
         $site = new Site();
-        $this->assertNull($site->getOwner());
+        $this->assertEquals(new ArrayCollection(), $site->getOwners());
 
         $user = new User();
-        $site->setOwner($user);
-        $this->assertEquals($user, $site->getOwner());
+        $site->addOwner($user);
+        $this->assertContains($user, $site->getOwners());
+
+        $user2 = new User();
+        $site->addOwner($user2);
+        $this->assertEquals(2, $site->getOwners()->count());
+
+        $site->removeOwner($user);
+        $this->assertNotContains($user, $site->getOwners());
+    }
+
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testOwnersException()
+    {
+        $site = new Site();
+        $user = new User();
+        $site->addOwner($user);
+        $site->removeOwner($user);
     }
 
     public function testCategories()

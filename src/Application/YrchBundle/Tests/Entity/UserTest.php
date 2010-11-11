@@ -27,7 +27,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         $site = new Site();
         $user->addSite($site);
-        $this->assertEquals($user, $site->getOwner());
         $this->assertContains($site, $user->getSites());
     }
 }

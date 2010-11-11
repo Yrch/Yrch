@@ -23,7 +23,7 @@ class User extends BaseUser
     protected $nick;
 
     /**
-     * @orm:OneToMany(targetEntity="Application\YrchBundle\Entity\Site", mappedBy="owner")
+     * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site", mappedBy="owner")
      */
     private $sites;
 
@@ -61,8 +61,9 @@ class User extends BaseUser
      */
     public function addSite(Site $site)
     {
-        $site->setOwner($this);
-        $this->sites[] = $site;
+        if (!$this->sites->contains($site)){
+            $this->sites[] = $site;
+        }
     }
 
     /**

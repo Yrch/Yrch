@@ -98,14 +98,18 @@ class Site
     private $notes;
 
     /**
-     * @var User $owner
+     * @var \Doctrine\Common\Collections\ArrayCollection $owners
      *
-     * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\User", inversedBy="sites")
+     * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\User", inversedBy="sites")
+     * @orm:JoinTable(name="user_site",
+     *      joinColumns={@orm:JoinColumn(name="site_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")}
+     *      )
      */
-    private $owner;
+    private $owners;
 
     /**
-     * @var ArrayCollection $categories
+     * @var \Doctrine\Common\Collections\ArrayCollection $categories
      *
      * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site")
      * @orm:JoinTable(name="site_category",
@@ -123,6 +127,7 @@ class Site
         $this->selection = false;
         $this->notes = '';
         $this->categories = new ArrayCollection();
+        $this->owners = new ArrayCollection();
     }
 
     /**
@@ -304,23 +309,41 @@ class Site
     }
 
     /**
-     * Set owner
+     * Add an owner
      *
      * @param User $user
      */
-    public function setOwner(User $user)
+    public function addOwner(User $user)
     {
-        $this->owner = $user;
+        if (!$this->owners->contains($user)){
+            $user->addSite($this);
+            $this->owners[] = $user;
+        }
     }
 
     /**
-     * Get owner
+     * Add an owner
      *
-     * @return User $owner
+     * @param User $user
      */
-    public function getOwner()
+    public function removeOwner(User $user)
     {
-        return $this->owner;
+        if ($this->owners->contains($user)){
+            if ($this->owners->count() == 1){
+                throw new \RuntimeException('A site must have at least one owner');
+            }
+            $this->owners->removeElement($user);
+        }
+    }
+
+    /**
+     * Get owners
+     *
+     * @return ArrayCollection $owners
+     */
+    public function getOwners()
+    {
+        return $this->owners;
     }
 
     /**
