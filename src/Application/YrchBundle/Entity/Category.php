@@ -2,7 +2,6 @@
 
 namespace Application\YrchBundle\Entity;
 
-use DoctrineExtensions\Tree\Node;
 use DoctrineExtensions\Tree\Configuration;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -12,10 +11,10 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @orm:Entity(repositoryClass="DoctrineExtensions\Tree\Repository\TreeNodeRepository")
  * @orm:Table(name="category")
  */
-class Category implements Node
+class Category
 {
     /**
-     * @var integer $id
+     * @var integer
      *
      * @orm:Column(name="id", type="integer")
      * @orm:Id
@@ -32,7 +31,7 @@ class Category implements Node
     protected $title;
 
     /**
-     * @var string $locale
+     * @var string
      *
      * @Locale
      */
@@ -42,6 +41,7 @@ class Category implements Node
      * @var integer
      *
      * @orm:Column(name="lft", type="integer")
+     * @Tree:Left
      */
     protected $lft;
 
@@ -49,6 +49,7 @@ class Category implements Node
      * @var integer
      *
      * @orm:Column(name="rgt", type="integer")
+     * @Tree:Right
      */
     protected $rgt;
 
@@ -56,7 +57,7 @@ class Category implements Node
      * @var Category
      *
      * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\Category", inversedBy="children")
-     * @JoinColumn(name="parent_id", referencedColumnName="id")
+     * @Tree:Ancestor
      */
     protected $parent;
 
@@ -115,18 +116,6 @@ class Category implements Node
     public function getParent()
     {
         return $this->parent;
-    }
-
-    /**
-     * Node interface method which must return
-     * tree configuration, see this class
-     * for options available. It mainly covers
-     * parent, left, right field names
-     * of your tree
-     */
-    public function getTreeConfiguration()
-    {
-        return new Configuration(); // standard
     }
 
     /**
