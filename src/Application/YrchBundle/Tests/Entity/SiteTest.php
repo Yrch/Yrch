@@ -5,6 +5,7 @@ namespace Application\YrchBundle\Tests\Entity;
 use Application\YrchBundle\Entity\Site;
 use Application\YrchBundle\Entity\User;
 use Application\YrchBundle\Entity\Category;
+use Application\YrchBundle\Entity\Review;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -96,6 +97,17 @@ class SiteTest extends \PHPUnit_Framework_TestCase
 
         $site->removeOwner($user);
         $this->assertNotContains($user, $site->getOwners());
+    }
+
+    public function testReviews()
+    {
+        $site = new Site();
+        $this->assertEquals(new ArrayCollection(), $site->getReviews());
+
+        $review = new Review();
+        $site->addReview($review);
+        $this->assertEquals($site, $review->getSite());
+        $this->assertContains($review, $site->getReviews());
     }
 
     /**

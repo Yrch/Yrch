@@ -4,6 +4,7 @@ namespace Application\YrchBundle\Tests\Entity;
 
 use Application\YrchBundle\Entity\User;
 use Application\YrchBundle\Entity\Site;
+use Application\YrchBundle\Entity\Review;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -40,5 +41,16 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $site = new Site();
         $user->addSite($site);
         $this->assertContains($site, $user->getSites());
+    }
+
+    public function testReviews()
+    {
+        $user = new User();
+        $this->assertEquals(new ArrayCollection(), $user->getReviews());
+
+        $review = new Review();
+        $user->addReview($review);
+        $this->assertEquals($user, $review->getOwner());
+        $this->assertContains($review, $user->getReviews());
     }
 }
