@@ -12,7 +12,7 @@
          bootstrap="../src/autoload.php"
 >
   <testsuites>
-      <testsuite name="Project Test Suite">
+      <testsuite name="Yrch! Test Suite">
           <directory>../src/Application/*/Tests</directory>
       </testsuite>
   </testsuites>
