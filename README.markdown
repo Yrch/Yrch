@@ -34,7 +34,7 @@ LICENSE in the YRCH! distribution.
 Note that this will retrieve the development versions from Github. You can then
 update your vendors by running :
     cd src/
-    ./install_vendors.sh
+    ./update_vendors.sh
 
 ### Configure Yrch!
 
