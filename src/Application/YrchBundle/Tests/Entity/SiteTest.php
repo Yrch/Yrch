@@ -38,7 +38,7 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $site->setDescription('test description');
         $this->assertEquals('test description', $site->getDescription());
     }
-    
+
     public function testSelection()
     {
         $site = new Site();
@@ -80,7 +80,7 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $site->setNotes('This is a test');
         $this->assertEquals('This is a test', $site->getNotes());
     }
-    
+
     public function testOwners()
     {
         $site = new Site();
@@ -130,5 +130,3 @@ class SiteTest extends \PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

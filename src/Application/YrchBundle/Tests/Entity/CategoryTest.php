@@ -28,6 +28,11 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
         $category->setParent($parent);
         $this->assertEquals($parent, $category->getParent());
     }
-}
 
-?>
+    public function testSetTranslatableLocale()
+    {
+        $category = new Category();
+        $category->setTranslatableLocale('de');
+        $this->assertAttributeEquals('de', 'locale', $category);
+    }
+}

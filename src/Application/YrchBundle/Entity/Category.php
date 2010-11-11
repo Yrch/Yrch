@@ -129,6 +129,9 @@ class Category implements Node
         return new Configuration(); // standard
     }
 
+    /**
+     * @param string $locale
+     */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;

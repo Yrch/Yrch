@@ -134,6 +134,7 @@ class Site
      * Get id
      *
      * @return integer $id
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -204,6 +205,7 @@ class Site
      * Get createdAt
      *
      * @return datetime $createdAt
+     * @codeCoverageIgnore
      */
     public function getCreatedAt()
     {
@@ -214,6 +216,7 @@ class Site
      * Get updatedAt
      *
      * @return datetime $updatedAt
+     * @codeCoverageIgnore
      */
     public function getUpdatedAt()
     {
@@ -380,5 +383,4 @@ class Site
     {
         $this->locale = $locale;
     }
-
 }
