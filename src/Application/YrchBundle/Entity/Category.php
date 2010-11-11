@@ -32,6 +32,13 @@ class Category implements Node
     private $title;
 
     /**
+     * @var string $locale
+     *
+     * @Locale
+     */
+    private $locale;
+
+    /**
      * @var integer
      *
      * @orm:Column(name="lft", type="integer")
@@ -61,16 +68,30 @@ class Category implements Node
      */
     private $children;
 
+    /**
+     * @return integer
+     * @codeCoverageIgnore
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Set the title
+     *
+     * @param string $title
+     */
     public function setTitle($title)
     {
         $this->title = $title;
     }
 
+    /**
+     * Get the title
+     *
+     * @return string
+     */
     public function getTitle()
     {
         return $this->title;
@@ -106,5 +127,10 @@ class Category implements Node
     public function getTreeConfiguration()
     {
         return new Configuration(); // standard
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }
