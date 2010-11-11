@@ -20,6 +20,18 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test', $user->getNick());
     }
 
+    public function testLock()
+    {
+        $user = new User();
+        $this->assertTrue($user->isAccountNonLocked());
+
+        $user->lock();
+        $this->assertFalse($user->isAccountNonLocked());
+
+        $user->unlock();
+        $this->assertTrue($user->isAccountNonLocked());
+    }
+
     public function testSites()
     {
         $user = new User();
