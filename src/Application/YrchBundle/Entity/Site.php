@@ -98,6 +98,13 @@ class Site
     private $notes;
 
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     * @orm:OneToMany(targetEntity="Application\YrchBundle\Entity\Review", mappedBy="site")
+     */
+    private $reviews;
+
+    /**
      * @var \Doctrine\Common\Collections\ArrayCollection $owners
      *
      * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\User", inversedBy="sites")
@@ -126,6 +133,7 @@ class Site
         $this->leech = false;
         $this->selection = false;
         $this->notes = '';
+        $this->reviews = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->owners = new ArrayCollection();
     }
@@ -312,6 +320,29 @@ class Site
     }
 
     /**
+     * Add a review
+     *
+     * @param Review $review
+     */
+    public function addReview(Review $review)
+    {
+        if (!$this->getReviews()->contains($review)){
+            $review->setSite($this);
+            $this->getReviews()->add($review);
+        }
+    }
+
+    /**
+     * Get reviews
+     *
+     * @return Collection
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
      * Add an owner
      *
      * @param User $user
@@ -325,7 +356,7 @@ class Site
     }
 
     /**
-     * Add an owner
+     * Delete an owner
      *
      * @param User $user
      */

@@ -29,14 +29,24 @@ class User extends BaseUser
     protected $is_locked;
 
     /**
-     * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site", mappedBy="owner")
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site", mappedBy="owners")
      */
     private $sites;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     * @orm:OneToMany(targetEntity="Application\YrchBundle\Entity\Review", mappedBy="owner")
+     */
+    private $reviews;
 
     public function  __construct()
     {
         parent::__construct();
         $this->sites = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
         $this->nick = 'Meriadoc'; // Remove this line when the form will pass the value
         $this->is_locked = false;
     }
@@ -106,5 +116,28 @@ class User extends BaseUser
     public function getSites()
     {
         return $this->sites;
+    }
+
+    /**
+     * Add a review
+     *
+     * @param Review $review
+     */
+    public function addReview(Review $review)
+    {
+        if (!$this->getReviews()->contains($review)){
+            $review->setOwner($this);
+            $this->getReviews()->add($review);
+        }
+    }
+
+    /**
+     * Get reviews
+     *
+     * @return Collection
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
     }
 }
