@@ -51,6 +51,11 @@ class User extends BaseUser
         $this->is_locked = false;
     }
 
+    public function  __toString()
+    {
+        return (string) $this->getNick();
+    }
+
     /**
      * Set nick
      *
