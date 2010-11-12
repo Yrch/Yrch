@@ -42,6 +42,10 @@ update your vendors by running :
 - Create a database in utf8
 - Put your configuration in your app/config/user_config.xml file
     (database credentials, mailer credentials...)
+- Give write permissions to your Apache user on this directories (create them
+if they don't exist):
+    - app/cache/
+    - app/logs/
 
 ### Creating your database schema
 
