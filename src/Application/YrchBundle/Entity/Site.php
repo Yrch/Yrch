@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @orm:Table(name="site")
  * @orm:Entity()
- * @TranslationEntity(class="Application\YrchBundle\Entity\SiteTranslation")
+ * @Translatable:Entity(class="Application\YrchBundle\Entity\SiteTranslation")
  */
 class Site
 {
@@ -39,14 +39,14 @@ class Site
      *
      * @validation:NotBlank(message='Please enter the title')
      * @orm:Column(name="title", type="string", length=255)
-     * @Translatable
+     * @Translatable:Field
      */
     protected $title;
 
     /**
      * @var string $locale
      *
-     * @Locale
+     * @Translatable:Locale
      */
     protected $locale;
 
@@ -54,7 +54,7 @@ class Site
      * @var string $description
      *
      * @orm:Column(name="description", type="text")
-     * @Translatable
+     * @Translatable:Field
      */
     protected $description;
 

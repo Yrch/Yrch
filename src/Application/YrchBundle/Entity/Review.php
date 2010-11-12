@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @orm:Table(name="review")
  * @orm:Entity()
- * @TranslationEntity(class="Application\YrchBundle\Entity\ReviewTranslation")
+ * @Translatable:Entity(class="Application\YrchBundle\Entity\ReviewTranslation")
  */
 class Review
 {
@@ -34,7 +34,7 @@ class Review
     /**
      * @var string $locale
      *
-     * @Locale
+     * @Translatable:Locale
      */
     protected $locale;
 
@@ -43,7 +43,7 @@ class Review
      *
      * @validation:NotBlank(message='Please enter the text of the review')
      * @orm:Column(name="text", type="text")
-     * @Translatable
+     * @Translatable:Field
      */
     protected $text;
 
