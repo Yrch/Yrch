@@ -26,6 +26,10 @@ class Site
     /**
      * @var string $url
      *
+     * @validation:Validation({
+     *      @validation:Url(message='This is not a valid url'),
+     *      @validation:NotBlank(message='Please enter the url')
+     * })
      * @orm:Column(name="url", type="string", length=255)
      */
     protected $url;
@@ -33,6 +37,7 @@ class Site
     /**
      * @var string $title
      *
+     * @validation:NotBlank(message='Please enter the title')
      * @orm:Column(name="title", type="string", length=255)
      * @Translatable
      */
@@ -72,6 +77,7 @@ class Site
     /**
      * @var string $selection
      *
+     * @validation:AssertType(type="boolean")
      * @orm:Column(name="selection", type="boolean")
      */
     protected $selection;
@@ -79,6 +85,7 @@ class Site
     /**
      * @var string $leech
      *
+     * @validation:AssertType(type="boolean")
      * @orm:Column(name="leech", type="boolean")
      */
     protected $leech;

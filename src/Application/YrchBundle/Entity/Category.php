@@ -25,6 +25,7 @@ class Category
     /**
      * @var string
      *
+     * @validation:NotBlank(message='Please enter the title')
      * @orm:Column(name="title", type="string", length=255)
      * @Translatable
      */

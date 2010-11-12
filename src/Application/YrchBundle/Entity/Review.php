@@ -26,6 +26,7 @@ class Review
     /**
      * @var integer $score
      *
+     * @validation:Max(10)
      * @orm:Column(name="score", type="integer", nullable="true")
      */
     protected $score;
@@ -40,6 +41,7 @@ class Review
     /**
      * @var string $text
      *
+     * @validation:NotBlank(message='Please enter the text of the review')
      * @orm:Column(name="text", type="text")
      * @Translatable
      */
