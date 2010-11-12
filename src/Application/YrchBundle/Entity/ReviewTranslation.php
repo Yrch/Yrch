@@ -2,7 +2,7 @@
 
 namespace Application\YrchBundle\Entity;
 
-use Bundle\DoctrineExtensionsBundle\Entity\AbstractTranslationEntity;
+use Bundle\DoctrineExtensionsBundle\Entity\AbstractTranslation;
 
 /**
  * @orm:Table(name="review_translations", indexes={
@@ -10,6 +10,6 @@ use Bundle\DoctrineExtensionsBundle\Entity\AbstractTranslationEntity;
  * })
  * @orm:Entity(repositoryClass="DoctrineExtensions\Translatable\Repository\TranslationRepository")
  */
-class ReviewTranslation extends AbstractTranslationEntity
+class ReviewTranslation extends AbstractTranslation
 {
 }
