@@ -113,6 +113,12 @@ class User extends BaseUser
         $this->nick = 'Meriadoc'; // Remove this line when the form will pass the value
         $this->isLocked = false;
         $this->theme = 'default';
+        $this->contactAllowed = true;
+        $this->outlink = '_blank';
+        $this->sitesPerPage = 10;
+        $this->reviewsPerPage = 25;
+        $this->siteNotifications = true;
+        $this->reviewNotifications = true;
     }
 
     /**
