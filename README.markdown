@@ -7,6 +7,16 @@ will be released.**
 Yrch! is a project of yahoo-like hierachised websites categories written in PHP. 
 Yrch! is willing to be an international community portal that allow site(s) 
 owners to inform that community of news and changes on their own web site. 
+Yrch! is a project of the french society [Tolkiendil](http://www.tolkiendil.com).
+
+## Credits and acknowledgment
+
+Yrch! was originally created and developed by Guillaume Boddaert.
+
+Core Team :
+
+- Project manager : Pascal Burkhard ([Nenuial](https://github.com/Nenuial))
+- Lead developper : Christophe Coevoet ([Stof](https://github.com/stof))
 
 ## Licensing
 
