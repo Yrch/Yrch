@@ -39,7 +39,6 @@ class Site
      *
      * @validation:NotBlank(message='Please enter the name')
      * @orm:Column(name="name", type="string", length=255)
-     * @Translatable:Field
      */
     protected $name;
 
