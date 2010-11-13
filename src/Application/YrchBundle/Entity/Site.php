@@ -37,11 +37,11 @@ class Site
     /**
      * @var string $title
      *
-     * @validation:NotBlank(message='Please enter the title')
-     * @orm:Column(name="title", type="string", length=255)
+     * @validation:NotBlank(message='Please enter the name')
+     * @orm:Column(name="name", type="string", length=255)
      * @Translatable:Field
      */
-    protected $title;
+    protected $name;
 
     /**
      * @var string $locale
@@ -177,23 +177,23 @@ class Site
     }
 
     /**
-     * Set title
+     * Set name
      *
-     * @param string $title
+     * @param string $name
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
     }
 
     /**
-     * Get title
+     * Get name
      *
-     * @return string $title
+     * @return string $name
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**

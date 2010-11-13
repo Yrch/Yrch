@@ -10,13 +10,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class CategoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testTitle()
+    public function testName()
     {
         $category = new Category();
-        $this->assertNull($category->getTitle());
+        $this->assertNull($category->getName());
 
-        $category->setTitle('test');
-        $this->assertEquals('test', $category->getTitle());
+        $category->setName('test');
+        $this->assertEquals('test', $category->getName());
     }
 
     public function testSites()

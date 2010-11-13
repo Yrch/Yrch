@@ -22,13 +22,13 @@ class SiteTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('http://example.org', $site->getUrl());
     }
 
-    public function testTitle()
+    public function testName()
     {
         $site = new Site();
-        $this->assertNull($site->getTitle());
+        $this->assertNull($site->getName());
 
-        $site->setTitle('test title');
-        $this->assertEquals('test title', $site->getTitle());
+        $site->setName('test name');
+        $this->assertEquals('test name', $site->getName());
     }
 
     public function testDescription()
