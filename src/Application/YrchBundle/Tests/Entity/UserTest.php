@@ -33,81 +33,76 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($user->isAccountNonLocked());
     }
 
-    /**
-     * @todo Implement testPreferedLocale
-     */
     public function testPreferedLocale()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $user = new User();
+        $this->assertNull($user->getPreferedLocale());
+
+        $user->setPreferedLocale('en');
+        $this->assertEquals('en', $user->getPreferedLocale());
     }
 
-    /**
-     * @todo Implement testOutlink
-     */
+    public function testTheme()
+    {
+        $user = new User();
+        $this->assertEquals('default', $user->getTheme());
+
+        $user->setTheme('yrch');
+        $this->assertEquals('yrch', $user->getTheme());
+    }
+
     public function testOutlink()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $user = new User();
+        $this->assertEquals('_blank', $user->getOutlink());
+
+        $user->setOutlink('yrch_outlink');
+        $this->assertEquals('yrch_outlink', $user->getOutlink());
     }
 
-    /**
-     * @todo Implement testContactAllowed
-     */
     public function testContactAllowed()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $user = new User();
+        $this->assertTrue($user->isContactAllowed());
+
+        $user->setContactAllowed(false);
+        $this->assertFalse($user->isContactAllowed());
     }
 
-    /**
-     * @todo Implement testSitesPerPage
-     */
     public function testSitesPerPage()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $user = new User();
+        $this->assertEquals(10, $user->getSitesPerPage());
+
+        $user->setSitesPerPage(25);
+        $this->assertEquals(25, $user->getSitesPerPage());
     }
 
-    /**
-     * @todo Implement testReviewsPerPage
-     */
     public function testReviewsPerPage()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $user = new User();
+        $this->assertEquals(25, $user->getReviewsPerPage());
+
+        $user->setReviewsPerPage(10);
+        $this->assertEquals(10, $user->getReviewsPerPage());
     }
 
-    /**
-     * @todo Implement testSiteNotifications
-     */
     public function testSiteNotifications()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $user = new User();
+        $this->assertTrue($user->getSiteNotifications());
+
+        $user->setSiteNotifications(false);
+        $this->assertFalse($user->getSiteNotifications());
     }
 
-    /**
-     * @todo Implement testReviewNotifications
-     */
     public function testReviewNotifications()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $user = new User();
+        $this->assertTrue($user->getReviewNotifications());
+
+        $user->setReviewNotifications(false);
+        $this->assertFalse($user->getReviewNotifications());
     }
 
     public function testSites()
