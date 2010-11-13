@@ -226,4 +226,32 @@ class Review
     {
         $this->locale = $locale;
     }
+
+    /**
+     * Set the creation date.
+     *
+     * This is only used when you remove the TranslationListener to force the
+     * creation date. In other case I will be overwritten by the Translatable
+     * behavior.
+     *
+     * @param \DateTime $created_at
+     */
+    public function setCreatedAt(\DateTime $created_at)
+    {
+        $this->createdAt = $created_at;
+    }
+
+    /**
+     * Set the update date.
+     *
+     * This is only used when you remove the TranslationListener to force the
+     * creation date. In other case I will be overwritten by the Translatable
+     * behavior.
+     *
+     * @param \DateTime $updated_at
+     */
+    public function setUpdatedAt(\DateTime $updated_at)
+    {
+        $this->updatedAt = $updated_at;
+    }
 }
