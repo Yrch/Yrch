@@ -16,7 +16,7 @@ Yrch! was originally created and developed by Guillaume Boddaert.
 Core Team :
 
 - Project manager : Pascal Burkhard ([Nenuial](https://github.com/Nenuial))
-- Lead developper : Christophe Coevoet ([Stof](https://github.com/stof))
+- Lead developer : Christophe Coevoet ([Stof](https://github.com/stof))
 
 ## Licensing
 
