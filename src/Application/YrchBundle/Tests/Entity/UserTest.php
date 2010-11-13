@@ -33,6 +33,83 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($user->isAccountNonLocked());
     }
 
+    /**
+     * @todo Implement testPreferedLocale
+     */
+    public function testPreferedLocale()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @todo Implement testOutlink
+     */
+    public function testOutlink()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @todo Implement testContactAllowed
+     */
+    public function testContactAllowed()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @todo Implement testSitesPerPage
+     */
+    public function testSitesPerPage()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @todo Implement testReviewsPerPage
+     */
+    public function testReviewsPerPage()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @todo Implement testSiteNotifications
+     */
+    public function testSiteNotifications()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @todo Implement testReviewNotifications
+     */
+    public function testReviewNotifications()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
     public function testSites()
     {
         $user = new User();
