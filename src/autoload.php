@@ -11,7 +11,7 @@ $loader->registerNamespaces(array(
     'Symfony'                        => $vendorDir.'/symfony/src',
     'Application'                    => __DIR__,
     'Bundle'                         => __DIR__,
-    'DoctrineExtensions'             => $vendorDir.'/doctrine-extensions/lib',
+    'Gedmo'                          => $vendorDir.'/doctrine-extensions/lib',
     'Doctrine\\Common\\DataFixtures' => $vendorDir.'/doctrine-data-fixtures/lib',
     'Doctrine\\Common'               => $vendorDir.'/doctrine-common/lib',
     'Doctrine\\DBAL\\Migrations'     => $vendorDir.'/doctrine-migrations/lib',

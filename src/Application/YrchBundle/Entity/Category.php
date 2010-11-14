@@ -2,13 +2,12 @@
 
 namespace Application\YrchBundle\Entity;
 
-use DoctrineExtensions\Tree\Configuration;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Category
  *
- * @orm:Entity(repositoryClass="DoctrineExtensions\Tree\Repository\TreeNodeRepository")
+ * @orm:Entity(repositoryClass="Gedmo\Tree\Repository\TreeNodeRepository")
  * @orm:Table(name="category")
  */
 class Category
@@ -27,14 +26,14 @@ class Category
      *
      * @validation:NotBlank(message='Please enter the name')
      * @orm:Column(name="name", type="string", length=255)
-     * @Translatable:Field
+     * @gedmo:Translatable
      */
     protected $name;
 
     /**
      * @var string
      *
-     * @Translatable:Locale
+     * @gedmo:Locale
      */
     protected $locale;
 
@@ -42,7 +41,7 @@ class Category
      * @var integer
      *
      * @orm:Column(name="lft", type="integer")
-     * @Tree:Left
+     * @gedmo:TreeLeft
      */
     protected $lft;
 
@@ -50,7 +49,7 @@ class Category
      * @var integer
      *
      * @orm:Column(name="rgt", type="integer")
-     * @Tree:Right
+     * @gedmo:TreeRight
      */
     protected $rgt;
 
@@ -58,7 +57,7 @@ class Category
      * @var Category
      *
      * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\Category", inversedBy="children")
-     * @Tree:Ancestor
+     * @gedmo:TreeParent
      */
     protected $parent;
 

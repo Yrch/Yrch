@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @orm:Table(name="review")
  * @orm:Entity()
- * @Translatable:Entity(class="Application\YrchBundle\Entity\ReviewTranslation")
+ * @gedmo:TranslationEntity(class="Application\YrchBundle\Entity\ReviewTranslation")
  */
 class Review
 {
@@ -34,7 +34,7 @@ class Review
     /**
      * @var string $locale
      *
-     * @Translatable:Locale
+     * @gedmo:Locale
      */
     protected $locale;
 
@@ -43,7 +43,7 @@ class Review
      *
      * @validation:NotBlank(message='Please enter the text of the review')
      * @orm:Column(name="text", type="text")
-     * @Translatable:Field
+     * @gedmo:Translatable
      */
     protected $text;
 
@@ -51,7 +51,7 @@ class Review
      * @var datetime $createdAt
      *
      * @orm:Column(name="created_at", type="datetime")
-     * @Timestampable:OnCreate
+     * @gedmo:Timestampable(on="create")
      */
     protected $createdAt;
 
@@ -59,7 +59,7 @@ class Review
      * @var datetime $updatedAt
      *
      * @orm:Column(name="updated_at", type="datetime")
-     * @Timestampable:OnUpdate
+     * @gedmo:Timestampable(on="update")
      */
     protected $updatedAt;
 

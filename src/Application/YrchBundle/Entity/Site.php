@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @orm:Table(name="site")
  * @orm:Entity()
- * @Translatable:Entity(class="Application\YrchBundle\Entity\SiteTranslation")
+ * @gedmo:TranslationEntity(class="Application\YrchBundle\Entity\SiteTranslation")
  */
 class Site
 {
@@ -45,7 +45,7 @@ class Site
     /**
      * @var string $locale
      *
-     * @Translatable:Locale
+     * @gedmo:Locale
      */
     protected $locale;
 
@@ -53,7 +53,7 @@ class Site
      * @var string $description
      *
      * @orm:Column(name="description", type="text")
-     * @Translatable:Field
+     * @gedmo:Translatable
      */
     protected $description;
 
@@ -61,7 +61,7 @@ class Site
      * @var datetime $createdAt
      *
      * @orm:Column(name="created_at", type="datetime")
-     * @Timestampable:OnCreate
+     * @gedmo:Timestampable(on="create")
      */
     protected $createdAt;
 
@@ -69,7 +69,7 @@ class Site
      * @var datetime $updatedAt
      *
      * @orm:Column(name="updated_at", type="datetime")
-     * @Timestampable:OnUpdate
+     * @gedmo:Timestampable(on="update")
      */
     protected $updatedAt;
 
