@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Application\YrchBundle\Entity\Site
  *
  * @orm:Table(name="site")
- * @orm:Entity()
+ * @orm:Entity(repositoryClass="Application\YrchBundle\Repository\SiteRepository")
  * @gedmo:TranslationEntity(class="Application\YrchBundle\Entity\SiteTranslation")
  */
 class Site
