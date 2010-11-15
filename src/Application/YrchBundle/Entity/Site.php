@@ -7,78 +7,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Application\YrchBundle\Entity\Site
  *
- * @orm:Table(name="site")
  * @orm:Entity(repositoryClass="Application\YrchBundle\Repository\SiteRepository")
- * @gedmo:TranslationEntity(class="Application\YrchBundle\Entity\SiteTranslation")
  */
-class Site
+class Site extends AbstractSite
 {
-
-    /**
-     * @var integer $id
-     *
-     * @orm:Column(name="id", type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
     /**
      * @var integer
      *
      * @orm:Column(name="average_score", type="decimal", precision=3, scale=1, nullable="true")
      */
     protected $averageScore;
-
-    /**
-     * @var string $url
-     *
-     * @validation:Validation({
-     *      @validation:Url(message='This is not a valid url'),
-     *      @validation:NotBlank(message='Please enter the url')
-     * })
-     * @orm:Column(name="url", type="string", length=255)
-     */
-    protected $url;
-
-    /**
-     * @var string $title
-     *
-     * @validation:NotBlank(message='Please enter the name')
-     * @orm:Column(name="name", type="string", length=255)
-     */
-    protected $name;
-
-    /**
-     * @var string $locale
-     *
-     * @gedmo:Locale
-     */
-    protected $locale;
-
-    /**
-     * @var string $description
-     *
-     * @orm:Column(name="description", type="text")
-     * @gedmo:Translatable
-     */
-    protected $description;
-
-    /**
-     * @var datetime $createdAt
-     *
-     * @orm:Column(name="created_at", type="datetime")
-     * @gedmo:Timestampable(on="create")
-     */
-    protected $createdAt;
-
-    /**
-     * @var datetime $updatedAt
-     *
-     * @orm:Column(name="updated_at", type="datetime")
-     * @gedmo:Timestampable(on="update")
-     */
-    protected $updatedAt;
 
     /**
      * @var string $selection
@@ -118,6 +56,13 @@ class Site
     protected $reviews;
 
     /**
+     * @var Application\YrchBundle\Entity\User
+     * 
+     * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\User")
+     */
+    protected $superOwner;
+
+    /**
      * @var \Doctrine\Common\Collections\ArrayCollection $owners
      *
      * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\User", inversedBy="sites")
@@ -129,37 +74,22 @@ class Site
     protected $owners;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection $categories
+     * @var Application\YrchBundle\Entity\SiteTemp $siteTemp
      *
-     * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site")
-     * @orm:JoinTable(name="site_category",
-     *      joinColumns={@orm:JoinColumn(name="site_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@orm:JoinColumn(name="category_id", referencedColumnName="id")}
-     *      )
-     * @orm:OrderBy({"lft" = "ASC"})
+     * @orm:OneToOne(targetEntity="Application\YrchBundle\Entity\SiteTemp")
+     * @orm:JoinColumn(name="site_temp_id", referencedColumnName="id")
      */
-    protected $categories;
+    protected $siteTemp;
 
     public function  __construct()
     {
+        parent::__construct();
         $this->status = 'pending';
         $this->leech = false;
         $this->selection = false;
         $this->notes = '';
         $this->reviews = new ArrayCollection();
-        $this->categories = new ArrayCollection();
         $this->owners = new ArrayCollection();
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer $id
-     * @codeCoverageIgnore
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -180,88 +110,6 @@ class Site
     public function setAverageScore($averageScore)
     {
         $this->averageScore = $averageScore;
-    }
-
-    /**
-     * Set url
-     *
-     * @param string $url
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string $url
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string $name
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string $description
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return datetime $createdAt
-     * @codeCoverageIgnore
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return datetime $updatedAt
-     * @codeCoverageIgnore
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**
@@ -376,6 +224,27 @@ class Site
     }
 
     /**
+     * Set Super Owner
+     *
+     * @param User $user
+     */
+    public function setSuperOwner(User $user)
+    {
+        $this->superOwner = $user;
+        $this->addOwner($user);
+    }
+
+    /**
+     * Get Super Owner
+     *
+     * @return User
+     */
+    public function getSuperOwner()
+    {
+        return $this->superOwner;
+    }
+
+    /**
      * Add an owner
      *
      * @param User $user
@@ -395,9 +264,12 @@ class Site
      */
     public function removeOwner(User $user)
     {
-        if ($this->getOwners()->contains($user)){
+        if ($this->isOwner($user)){
+            if ($this->getSuperOwner() == $user){
+                throw new \InvalidArgumentException('You cannot remove the super owner from the owners list');
+            }
             if ($this->getOwners()->count() == 1){
-                throw new \RuntimeException('A site must have at least one owner');
+                throw new \InvalidArgumentException('A site must have at least one owner');
             }
             $this->getOwners()->removeElement($user);
         }
@@ -414,67 +286,38 @@ class Site
     }
 
     /**
-     * Add category
+     * Return true if the given user is an owner
      *
-     * @param Category $category
+     * @param User $user
+     * @return boolean 
      */
-    public function addCategory(Category $category)
+    public function isOwner(User $user)
     {
-        if (!$this->getCategories()->contains($category)){
-            $this->getCategories()->add($category);
-        }
+        return $this->getOwners()->contains($user);
     }
 
     /**
-     * Remove category
+     * Set temporary site
      *
-     * @param Category $category
+     * @param SiteTemp site_temp
      */
-    public function removeCategory(Category $category)
+    public function setSiteTemp(SiteTemp $site_temp)
     {
-        $this->getCategories()->removeElement($category);
+        $this->siteTemp = $site_temp;
     }
 
     /**
-     * Get categories
+     * Get temporary site
      *
-     * @return Collection $categories
+     * @return SiteTemp
      */
-    public function getCategories()
+    public function getSiteTemp()
     {
-        return $this->categories;
+        return $this->siteTemp;
     }
 
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }
-
-    /**
-     * Set the creation date.
-     *
-     * This is only used when you remove the TranslationListener to force the
-     * creation date. In other case I will be overwritten by the Translatable
-     * behavior.
-     *
-     * @param \DateTime $created_at
-     */
-    public function setCreatedAt(\DateTime $created_at)
-    {
-        $this->createdAt = $created_at;
-    }
-
-    /**
-     * Set the update date.
-     *
-     * This is only used when you remove the TranslationListener to force the
-     * creation date. In other case I will be overwritten by the Translatable
-     * behavior.
-     *
-     * @param \DateTime $updated_at
-     */
-    public function setUpdatedAt(\DateTime $updated_at)
-    {
-        $this->updatedAt = $updated_at;
     }
 }
