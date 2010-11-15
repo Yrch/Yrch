@@ -26,7 +26,7 @@ class Site
     /**
      * @var integer
      *
-     * @orm:Column(name="average_score", type="integer", nullable="true")
+     * @orm:Column(name="average_score", type="decimal", precision=3, scale=1, nullable="true")
      */
     protected $averageScore;
 
@@ -165,7 +165,7 @@ class Site
     /**
      * Get the average score
      *
-     * @return integer
+     * @return double
      */
     public function getAverageScore()
     {
@@ -175,7 +175,7 @@ class Site
     /**
      * Set the average score
      *
-     * @param integer|null $averageScore
+     * @param double|null $averageScore
      */
     public function setAverageScore($averageScore)
     {
