@@ -7,7 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Application\YrchBundle\Entity\Review
  *
- * @orm:Table(name="review")
+ * @orm:Table(name="review", indexes={
+ *      @orm:index(name="review_relations_idx", columns={"site_id", "owner_id", "status"})
+ * })
  * @orm:Entity()
  * @gedmo:TranslationEntity(class="Application\YrchBundle\Entity\ReviewTranslation")
  */
