@@ -24,6 +24,13 @@ class Site
     protected $id;
 
     /**
+     * @var integer
+     *
+     * @orm:Column(name="average_score", type="integer", nullable="true")
+     */
+    protected $averageScore;
+
+    /**
      * @var string $url
      *
      * @validation:Validation({
@@ -153,6 +160,26 @@ class Site
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get the average score
+     *
+     * @return integer
+     */
+    public function getAverageScore()
+    {
+        return $this->averageScore;
+    }
+
+    /**
+     * Set the average score
+     *
+     * @param integer|null $averageScore
+     */
+    public function setAverageScore($averageScore)
+    {
+        $this->averageScore = $averageScore;
     }
 
     /**
