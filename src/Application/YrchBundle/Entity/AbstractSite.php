@@ -7,12 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Application\YrchBundle\Entity\AbstractSite
  *
- * @orm:Table(name="site")
- * @orm:Entity(repositoryClass="Application\YrchBundle\Repository\SiteRepository")
- * @orm:InheritanceType("SINGLE_TABLE")
- * @orm:DiscriminatorColumn(name="discr", type="string")
- * @orm:DiscriminatorMap({"site" = "Site", "temp" = "SiteTemp"})
- * @gedmo:TranslationEntity(class="Application\YrchBundle\Entity\SiteTranslation")
+ * @MappedSuperclass
  */
 abstract class AbstractSite
 {
@@ -79,7 +74,7 @@ abstract class AbstractSite
      * @var \Doctrine\Common\Collections\ArrayCollection $categories
      *
      * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Category")
-     * @orm:JoinTable(name="site_category",
+     * @orm:JoinTable(
      *      joinColumns={@orm:JoinColumn(name="site_id", referencedColumnName="id")},
      *      inverseJoinColumns={@orm:JoinColumn(name="category_id", referencedColumnName="id")}
      *      )
