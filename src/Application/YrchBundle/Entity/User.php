@@ -101,6 +101,17 @@ class User extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
+     * @orm:ManyToMany(targetEntity="Application\YrchBundle\Entity\Site")
+     * @orm:JoinTable(name="user_favorites",
+     *      joinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@orm:JoinColumn(name="site_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $favorites;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
      * @orm:OneToMany(targetEntity="Application\YrchBundle\Entity\Review", mappedBy="owner")
      */
     protected $reviews;
@@ -109,6 +120,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->sites = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->nick = 'Meriadoc'; // Remove this line when the form will pass the value
         $this->isLocked = false;
@@ -353,6 +365,39 @@ class User extends BaseUser
     public function getSites()
     {
         return $this->sites;
+    }
+
+    /**
+     * Add a favorite site
+     *
+     * @param Site $site
+     */
+    public function addFavorite(Site $site)
+    {
+        if (!$this->getFavorites()->contains($site)){
+            $this->getFavorites()->add($site);
+        }
+    }
+
+    /**
+     * Whether the gievn is a favorite site
+     *
+     * @param Site $site
+     * @return boolean
+     */
+    public function isFavorite(Site $site)
+    {
+        return $this->getFavorites()->contains($site);
+    }
+
+    /**
+     * Get favorites
+     *
+     * @return Collection $favorites
+     */
+    public function getFavorites()
+    {
+        return $this->favorites;
     }
 
     /**
