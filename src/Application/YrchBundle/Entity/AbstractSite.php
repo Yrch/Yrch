@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Application\YrchBundle\Entity\AbstractSite
  *
- * @MappedSuperclass
+ * @orm:MappedSuperclass
  */
 abstract class AbstractSite
 {
