@@ -27,7 +27,7 @@ abstract class AbstractSite
      *      @validation:Url(message='This is not a valid url'),
      *      @validation:NotBlank(message='Please enter the url')
      * })
-     * @orm:Column(name="url", type="string", length=255)
+     * @orm:Column(name="url", type="string", length=255, unique="true")
      */
     protected $url;
 
