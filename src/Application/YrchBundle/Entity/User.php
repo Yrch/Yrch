@@ -17,7 +17,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @validation:NotBlank(message='Please enter your nick')
+     * @validation:NotBlank(message="Please enter your nick")
      * @orm:Column(name="nick", type="string", length=255)
      */
     protected $nick;

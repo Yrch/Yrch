@@ -24,8 +24,8 @@ abstract class AbstractSite
      * @var string $url
      *
      * @validation:Validation({
-     *      @validation:Url(message='This is not a valid url'),
-     *      @validation:NotBlank(message='Please enter the url')
+     *      @validation:NotBlank(message="Please enter the url"),
+     *      @validation:Url(message="This is not a valid url")
      * })
      * @orm:Column(name="url", type="string", length=255, unique="true")
      */
@@ -34,7 +34,7 @@ abstract class AbstractSite
     /**
      * @var string $title
      *
-     * @validation:NotBlank(message='Please enter the name')
+     * @validation:NotBlank(message="Please enter the name")
      * @orm:Column(name="name", type="string", length=255)
      */
     protected $name;

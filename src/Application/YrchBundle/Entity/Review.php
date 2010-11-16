@@ -43,7 +43,7 @@ class Review
     /**
      * @var string $text
      *
-     * @validation:NotBlank(message='Please enter the text of the review')
+     * @validation:NotBlank(message="Please enter the text of the review")
      * @orm:Column(name="text", type="text")
      * @gedmo:Translatable
      */

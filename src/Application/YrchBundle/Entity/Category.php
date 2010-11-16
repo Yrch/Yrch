@@ -24,7 +24,7 @@ class Category
     /**
      * @var string
      *
-     * @validation:NotBlank(message='Please enter the name')
+     * @validation:NotBlank(message="Please enter the name")
      * @orm:Column(name="name", type="string", length=255)
      * @gedmo:Translatable
      */
