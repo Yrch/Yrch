@@ -90,7 +90,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testSiteNotifications()
     {
         $user = new User();
-        $this->assertTrue($user->getSiteNotifications());
+        $this->assertTrue($user->getSiteNotifications(), 'Site notifications are enabled by default');
 
         $user->setSiteNotifications(false);
         $this->assertFalse($user->getSiteNotifications());
@@ -99,7 +99,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testReviewNotifications()
     {
         $user = new User();
-        $this->assertTrue($user->getReviewNotifications());
+        $this->assertTrue($user->getReviewNotifications(), 'Review notifications are enabled by default');
 
         $user->setReviewNotifications(false);
         $this->assertFalse($user->getReviewNotifications());
@@ -108,17 +108,29 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function testSites()
     {
         $user = new User();
-        $this->assertEquals(new ArrayCollection(), $user->getSites());
+        $this->assertEquals(new ArrayCollection(), $user->getSites(), 'A new user has no site');
 
         $site = new Site();
         $user->addSite($site);
         $this->assertContains($site, $user->getSites());
     }
 
+    public function testFavorites()
+    {
+        $user = new User();
+        $this->assertEquals(new ArrayCollection(), $user->getFavorites(), 'A new user has no favorite');
+
+        $site = new Site();
+        $user->addFavorite($site);
+        $this->assertContains($site, $user->getFavorites());
+
+        $this->assertTrue($user->isFavorite($site));
+    }
+
     public function testReviews()
     {
         $user = new User();
-        $this->assertEquals(new ArrayCollection(), $user->getReviews());
+        $this->assertEquals(new ArrayCollection(), $user->getReviews(), 'A new user has no review');
 
         $review = new Review();
         $user->addReview($review);
