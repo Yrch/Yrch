@@ -12,129 +12,126 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class UserTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var User
+     */
+    private $user;
+
+    public function  setUp()
+    {
+        $this->user = new User();
+    }
+
     public function testNick()
     {
-        $user = new User();
-        $this->assertNull($user->getNick());
+        $this->assertNull($this->user->getNick());
 
-        $user->setNick('test');
-        $this->assertEquals('test', $user->getNick());
+        $this->user->setNick('test');
+        $this->assertEquals('test', $this->user->getNick());
     }
 
     public function testLock()
     {
-        $user = new User();
-        $this->assertTrue($user->isAccountNonLocked());
+        $this->assertTrue($this->user->isAccountNonLocked());
 
-        $user->lock();
-        $this->assertFalse($user->isAccountNonLocked());
+        $this->user->lock();
+        $this->assertFalse($this->user->isAccountNonLocked());
 
-        $user->unlock();
-        $this->assertTrue($user->isAccountNonLocked());
+        $this->user->unlock();
+        $this->assertTrue($this->user->isAccountNonLocked());
     }
 
     public function testPreferedLocale()
     {
-        $user = new User();
-        $this->assertNull($user->getPreferedLocale());
+        $this->assertNull($this->user->getPreferedLocale());
 
-        $user->setPreferedLocale('en');
-        $this->assertEquals('en', $user->getPreferedLocale());
+        $this->user->setPreferedLocale('en');
+        $this->assertEquals('en', $this->user->getPreferedLocale());
     }
 
     public function testTheme()
     {
-        $user = new User();
-        $this->assertEquals('default', $user->getTheme());
+        $this->assertEquals('default', $this->user->getTheme());
 
-        $user->setTheme('yrch');
-        $this->assertEquals('yrch', $user->getTheme());
+        $this->user->setTheme('yrch');
+        $this->assertEquals('yrch', $this->user->getTheme());
     }
 
     public function testOutlink()
     {
-        $user = new User();
-        $this->assertEquals('_blank', $user->getOutlink());
+        $this->assertEquals('_blank', $this->user->getOutlink());
 
-        $user->setOutlink('yrch_outlink');
-        $this->assertEquals('yrch_outlink', $user->getOutlink());
+        $this->user->setOutlink('yrch_outlink');
+        $this->assertEquals('yrch_outlink', $this->user->getOutlink());
     }
 
     public function testContactAllowed()
     {
-        $user = new User();
-        $this->assertTrue($user->isContactAllowed());
+        $this->assertTrue($this->user->isContactAllowed());
 
-        $user->setContactAllowed(false);
-        $this->assertFalse($user->isContactAllowed());
+        $this->user->setContactAllowed(false);
+        $this->assertFalse($this->user->isContactAllowed());
     }
 
     public function testSitesPerPage()
     {
-        $user = new User();
-        $this->assertEquals(10, $user->getSitesPerPage());
+        $this->assertEquals(10, $this->user->getSitesPerPage());
 
-        $user->setSitesPerPage(25);
-        $this->assertEquals(25, $user->getSitesPerPage());
+        $this->user->setSitesPerPage(25);
+        $this->assertEquals(25, $this->user->getSitesPerPage());
     }
 
     public function testReviewsPerPage()
     {
-        $user = new User();
-        $this->assertEquals(25, $user->getReviewsPerPage());
+        $this->assertEquals(25, $this->user->getReviewsPerPage());
 
-        $user->setReviewsPerPage(10);
-        $this->assertEquals(10, $user->getReviewsPerPage());
+        $this->user->setReviewsPerPage(10);
+        $this->assertEquals(10, $this->user->getReviewsPerPage());
     }
 
     public function testSiteNotifications()
     {
-        $user = new User();
-        $this->assertTrue($user->getSiteNotifications(), 'Site notifications are enabled by default');
+        $this->assertTrue($this->user->getSiteNotifications(), 'Site notifications are enabled by default');
 
-        $user->setSiteNotifications(false);
-        $this->assertFalse($user->getSiteNotifications());
+        $this->user->setSiteNotifications(false);
+        $this->assertFalse($this->user->getSiteNotifications());
     }
 
     public function testReviewNotifications()
     {
-        $user = new User();
-        $this->assertTrue($user->getReviewNotifications(), 'Review notifications are enabled by default');
+        $this->assertTrue($this->user->getReviewNotifications(), 'Review notifications are enabled by default');
 
-        $user->setReviewNotifications(false);
-        $this->assertFalse($user->getReviewNotifications());
+        $this->user->setReviewNotifications(false);
+        $this->assertFalse($this->user->getReviewNotifications());
     }
 
     public function testSites()
     {
-        $user = new User();
-        $this->assertEquals(new ArrayCollection(), $user->getSites(), 'A new user has no site');
+        $this->assertEquals(new ArrayCollection(), $this->user->getSites(), 'A new user has no site');
 
         $site = new Site();
-        $user->addSite($site);
-        $this->assertContains($site, $user->getSites());
+        $this->user->addSite($site);
+        $this->assertContains($site, $this->user->getSites());
     }
 
     public function testFavorites()
     {
-        $user = new User();
-        $this->assertEquals(new ArrayCollection(), $user->getFavorites(), 'A new user has no favorite');
+        $this->assertEquals(new ArrayCollection(), $this->user->getFavorites(), 'A new user has no favorite');
 
         $site = new Site();
-        $user->addFavorite($site);
-        $this->assertContains($site, $user->getFavorites());
+        $this->user->addFavorite($site);
+        $this->assertContains($site, $this->user->getFavorites());
 
-        $this->assertTrue($user->isFavorite($site));
+        $this->assertTrue($this->user->isFavorite($site));
     }
 
     public function testReviews()
     {
-        $user = new User();
-        $this->assertEquals(new ArrayCollection(), $user->getReviews(), 'A new user has no review');
+        $this->assertEquals(new ArrayCollection(), $this->user->getReviews(), 'A new user has no review');
 
         $review = new Review();
-        $user->addReview($review);
-        $this->assertEquals($user, $review->getOwner());
-        $this->assertContains($review, $user->getReviews());
+        $this->user->addReview($review);
+        $this->assertEquals($this->user, $review->getOwner());
+        $this->assertContains($review, $this->user->getReviews());
     }
 }

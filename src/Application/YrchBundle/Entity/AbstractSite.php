@@ -162,7 +162,6 @@ abstract class AbstractSite
      * Get createdAt
      *
      * @return datetime $createdAt
-     * @codeCoverageIgnore
      */
     public function getCreatedAt()
     {
@@ -173,7 +172,6 @@ abstract class AbstractSite
      * Get updatedAt
      *
      * @return datetime $updatedAt
-     * @codeCoverageIgnore
      */
     public function getUpdatedAt()
     {

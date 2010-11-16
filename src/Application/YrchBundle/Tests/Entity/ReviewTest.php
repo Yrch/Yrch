@@ -12,61 +12,83 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class ReviewTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Review
+     */
+    private $review;
+
+    public function  setUp()
+    {
+        $this->review = new Review();
+    }
+
     public function testScore()
     {
-        $review = new Review();
-        $this->assertNull($review->getScore());
+        $this->assertNull($this->review->getScore());
 
-        $review->setScore(5);
-        $this->assertEquals(5, $review->getScore());
+        $this->review->setScore(5);
+        $this->assertEquals(5, $this->review->getScore());
 
-        $review->setScore(null);
-        $this->assertNull($review->getScore());
+        $this->review->setScore(null);
+        $this->assertNull($this->review->getScore());
     }
 
     public function testText()
     {
-        $review = new Review();
-        $this->assertNull($review->getText());
+        $this->assertNull($this->review->getText());
 
-        $review->setText('test title');
-        $this->assertEquals('test title', $review->getText());
+        $this->review->setText('test title');
+        $this->assertEquals('test title', $this->review->getText());
     }
 
     public function testStatus()
     {
-        $review = new Review();
-        $this->assertEquals('pending', $review->getStatus());
+        $this->assertEquals('pending', $this->review->getStatus());
 
-        $review->setStatus('ok');
-        $this->assertEquals('ok', $review->getStatus());
+        $this->review->setStatus('ok');
+        $this->assertEquals('ok', $this->review->getStatus());
     }
 
     public function testOwner()
     {
-        $review = new Review();
-        $this->assertNull($review->getOwner());
+        $this->assertNull($this->review->getOwner());
 
         $user = new User();
-        $review->setOwner($user);
-        $this->assertEquals($user, $review->getOwner());
+        $this->review->setOwner($user);
+        $this->assertEquals($user, $this->review->getOwner());
     }
 
     public function testSite()
     {
-        $review = new Review();
-        $this->assertNull($review->getSite());
+        $this->assertNull($this->review->getSite());
 
         $site = new Site();
-        $review->setSite($site);
-        $this->assertEquals($site, $review->getSite());
+        $this->review->setSite($site);
+        $this->assertEquals($site, $this->review->getSite());
     }
 
     public function testSetTranslatableLocale()
     {
-        $review = new Review();
-        $review->setTranslatableLocale('de');
-        $this->assertAttributeEquals('de', 'locale', $review);
+        $this->review->setTranslatableLocale('de');
+        $this->assertAttributeEquals('de', 'locale', $this->review);
+    }
+
+    public function testCreatedAt()
+    {
+        $this->assertNull($this->review->getCreatedAt());
+
+        $now = new \DateTime("now");
+        $this->review->setCreatedAt($now);
+        $this->assertEquals($now, $this->review->getCreatedAt());
+    }
+
+    public function testUpdatedAt()
+    {
+        $this->assertNull($this->review->getUpdatedAt());
+
+        $now = new \DateTime("now");
+        $this->review->setUpdatedAt($now);
+        $this->assertEquals($now, $this->review->getUpdatedAt());
     }
 
 }

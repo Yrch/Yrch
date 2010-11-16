@@ -6,6 +6,7 @@ use Application\YrchBundle\Entity\Site;
 use Application\YrchBundle\Entity\User;
 use Application\YrchBundle\Entity\Category;
 use Application\YrchBundle\Entity\Review;
+use Application\YrchBundle\Entity\SiteTemp;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -13,112 +14,96 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class SiteTest extends \PHPUnit_Framework_TestCase
 {
-    public function testUrl()
-    {
-        $site = new Site();
-        $this->assertNull($site->getUrl());
+    /**
+     * @var Site
+     */
+    private $site;
 
-        $site->setUrl('http://example.org');
-        $this->assertEquals('http://example.org', $site->getUrl());
+    public function  setUp()
+    {
+        $this->site = new Site();
     }
 
-    public function testName()
+    public function testAverageScore()
     {
-        $site = new Site();
-        $this->assertNull($site->getName());
+        $this->assertNull($this->site->getAverageScore());
 
-        $site->setName('test name');
-        $this->assertEquals('test name', $site->getName());
-    }
-
-    public function testDescription()
-    {
-        $site = new Site();
-        $this->assertNull($site->getDescription());
-
-        $site->setDescription('test description');
-        $this->assertEquals('test description', $site->getDescription());
+        $this->site->setAverageScore(5);
+        $this->assertEquals(5, $this->site->getAverageScore());
     }
 
     public function testSelection()
     {
-        $site = new Site();
-        $this->assertFalse($site->isSelectioned());
+        $this->assertFalse($this->site->isSelectioned());
 
-        $site->addToSelection();
-        $this->assertTrue($site->isSelectioned());
+        $this->site->addToSelection();
+        $this->assertTrue($this->site->isSelectioned());
 
-        $site->removeFromSelection();
-        $this->assertFalse($site->isSelectioned());
+        $this->site->removeFromSelection();
+        $this->assertFalse($this->site->isSelectioned());
     }
 
     public function testLeech()
     {
-        $site = new Site();
-        $this->assertFalse($site->isLeech());
+        $this->assertFalse($this->site->isLeech());
 
-        $site->setLeech(true);
-        $this->assertTrue($site->isLeech());
+        $this->site->setLeech(true);
+        $this->assertTrue($this->site->isLeech());
 
-        $site->setLeech(false);
-        $this->assertFalse($site->isLeech());
+        $this->site->setLeech(false);
+        $this->assertFalse($this->site->isLeech());
     }
 
     public function testStatus()
     {
-        $site = new Site();
-        $this->assertEquals('pending', $site->getStatus());
+        $this->assertEquals('pending', $this->site->getStatus());
 
-        $site->setStatus('ok');
-        $this->assertEquals('ok', $site->getStatus());
+        $this->site->setStatus('ok');
+        $this->assertEquals('ok', $this->site->getStatus());
     }
 
     public function testNotes()
     {
-        $site = new Site();
-        $this->assertEquals('', $site->getNotes());
+        $this->assertEquals('', $this->site->getNotes());
 
-        $site->setNotes('This is a test');
-        $this->assertEquals('This is a test', $site->getNotes());
+        $this->site->setNotes('This is a test');
+        $this->assertEquals('This is a test', $this->site->getNotes());
     }
 
     public function testReviews()
     {
-        $site = new Site();
-        $this->assertEquals(new ArrayCollection(), $site->getReviews());
+        $this->assertEquals(new ArrayCollection(), $this->site->getReviews());
 
         $review = new Review();
-        $site->addReview($review);
-        $this->assertEquals($site, $review->getSite());
-        $this->assertContains($review, $site->getReviews());
+        $this->site->addReview($review);
+        $this->assertEquals($this->site, $review->getSite());
+        $this->assertContains($review, $this->site->getReviews());
     }
 
     public function testSuperOwner()
     {
-        $site = new Site();
-        $this->assertNull($site->getSuperOwner());
+        $this->assertNull($this->site->getSuperOwner());
 
         $user = new User();
-        $site->setSuperOwner($user);
-        $this->assertEquals($user, $site->getSuperOwner());
-        $this->assertContains($user, $site->getOwners());
+        $this->site->setSuperOwner($user);
+        $this->assertEquals($user, $this->site->getSuperOwner());
+        $this->assertContains($user, $this->site->getOwners());
     }
 
     public function testOwners()
     {
-        $site = new Site();
-        $this->assertEquals(new ArrayCollection(), $site->getOwners());
+        $this->assertEquals(new ArrayCollection(), $this->site->getOwners());
 
         $user = new User();
-        $site->addOwner($user);
-        $this->assertContains($user, $site->getOwners());
+        $this->site->addOwner($user);
+        $this->assertContains($user, $this->site->getOwners());
 
         $user2 = new User();
-        $site->setSuperOwner($user2);
-        $this->assertEquals(2, $site->getOwners()->count());
+        $this->site->setSuperOwner($user2);
+        $this->assertEquals(2, $this->site->getOwners()->count());
 
-        $site->removeOwner($user);
-        $this->assertNotContains($user, $site->getOwners());
+        $this->site->removeOwner($user);
+        $this->assertNotContains($user, $this->site->getOwners());
     }
 
     /**
@@ -126,10 +111,9 @@ class SiteTest extends \PHPUnit_Framework_TestCase
      */
     public function testSuperOwnerException()
     {
-        $site = new Site();
         $user = new User();
-        $site->setSuperOwner($user);
-        $site->removeOwner($user);
+        $this->site->setSuperOwner($user);
+        $this->site->removeOwner($user);
     }
 
     /**
@@ -137,30 +121,24 @@ class SiteTest extends \PHPUnit_Framework_TestCase
      */
     public function testOwnersException()
     {
-        $site = new Site();
         $user = new User();
-        $site->addOwner($user);
-        $site->removeOwner($user);
+        $this->site->addOwner($user);
+        $this->site->removeOwner($user);
     }
 
-    public function testCategories()
+    public function testSiteTemp()
     {
-        $site = new Site();
-        $this->assertEquals(new ArrayCollection(), $site->getCategories());
+        $this->assertNull($this->site->getSiteTemp());
 
-        $category = new Category();
-        $site->addCategory($category);
-        $this->assertContains($category, $site->getCategories());
-
-        $site->removeCategory($category);
-        $this->assertNotContains($category, $site->getCategories());
+        $temp = new SiteTemp();
+        $this->site->setSiteTemp($temp);
+        $this->assertEquals($temp, $this->site->getSiteTemp());
     }
 
     public function testSetTranslatableLocale()
     {
-        $site = new Site();
-        $site->setTranslatableLocale('de');
-        $this->assertAttributeEquals('de', 'locale', $site);
+        $this->site->setTranslatableLocale('de');
+        $this->assertAttributeEquals('de', 'locale', $this->site);
     }
 
 }

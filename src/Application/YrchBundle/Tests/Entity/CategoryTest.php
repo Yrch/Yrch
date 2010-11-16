@@ -10,29 +10,36 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class CategoryTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Category
+     */
+    private $category;
+
+    public function  setUp()
+    {
+        $this->category = new Category();
+    }
+
     public function testName()
     {
-        $category = new Category();
-        $this->assertNull($category->getName());
+        $this->assertNull($this->category->getName());
 
-        $category->setName('test');
-        $this->assertEquals('test', $category->getName());
+        $this->category->setName('test');
+        $this->assertEquals('test', $this->category->getName());
     }
 
     public function testSites()
     {
-        $category = new Category();
-        $this->assertNull($category->getParent());
+        $this->assertNull($this->category->getParent());
 
         $parent = new Category();
-        $category->setParent($parent);
-        $this->assertEquals($parent, $category->getParent());
+        $this->category->setParent($parent);
+        $this->assertEquals($parent, $this->category->getParent());
     }
 
     public function testSetTranslatableLocale()
     {
-        $category = new Category();
-        $category->setTranslatableLocale('de');
-        $this->assertAttributeEquals('de', 'locale', $category);
+        $this->category->setTranslatableLocale('de');
+        $this->assertAttributeEquals('de', 'locale', $this->category);
     }
 }
