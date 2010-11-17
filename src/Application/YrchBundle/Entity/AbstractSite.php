@@ -56,7 +56,7 @@ abstract class AbstractSite
     protected $description;
 
     /**
-     * @var datetime $createdAt
+     * @var \DateTime $createdAt
      *
      * @orm:Column(name="created_at", type="datetime")
      * @gedmo:Timestampable(on="create")
@@ -64,7 +64,7 @@ abstract class AbstractSite
     protected $createdAt;
 
     /**
-     * @var datetime $updatedAt
+     * @var \DateTime $updatedAt
      *
      * @orm:Column(name="updated_at", type="datetime")
      * @gedmo:Timestampable(on="update")
@@ -186,7 +186,7 @@ abstract class AbstractSite
     /**
      * Get createdAt
      *
-     * @return datetime $createdAt
+     * @return \DateTime $createdAt
      */
     public function getCreatedAt()
     {
@@ -196,7 +196,7 @@ abstract class AbstractSite
     /**
      * Get updatedAt
      *
-     * @return datetime $updatedAt
+     * @return \DateTime $updatedAt
      */
     public function getUpdatedAt()
     {
