@@ -83,4 +83,38 @@ class AbstractSiteTest extends \PHPUnit_Framework_TestCase
         $this->site->setUpdatedAt($now);
         $this->assertEquals($now, $this->site->getUpdatedAt());
     }
+
+    public function testLanguages()
+    {
+        $this->assertEquals(array (), $this->site->getLanguages());
+
+        $this->site->setLanguages(array ('fr', 'en'));
+        $this->assertEquals(array ('fr', 'en'), $this->site->getLanguages());
+
+        $this->site->populateStrings();
+        $this->assertAttributeEquals('fr|en', 'stored_languages', $this->site);
+
+        $this->site->setLanguages(array ());
+        $this->assertEmpty($this->site->getLanguages());
+
+        $this->site->populateArrays();
+        $this->assertEquals(array ('fr', 'en'), $this->site->getLanguages());
+    }
+
+    public function testCountries()
+    {
+        $this->assertEquals(array (), $this->site->getCountries());
+
+        $this->site->setCountries(array ('FR', 'US'));
+        $this->assertEquals(array ('FR', 'US'), $this->site->getCountries());
+
+        $this->site->populateStrings();
+        $this->assertAttributeEquals('FR|US', 'stored_countries', $this->site);
+
+        $this->site->setCountries(array ());
+        $this->assertEmpty($this->site->getCountries());
+        
+        $this->site->populateArrays();
+        $this->assertEquals(array ('FR', 'US'), $this->site->getCountries());
+    }
 }
