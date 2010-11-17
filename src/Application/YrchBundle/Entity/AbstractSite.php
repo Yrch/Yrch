@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Application\YrchBundle\Entity\AbstractSite
  *
  * @orm:MappedSuperclass
+ * @orm:HasLifecycleCallbacks
  */
 abstract class AbstractSite
 {
@@ -69,6 +70,30 @@ abstract class AbstractSite
      * @gedmo:Timestampable(on="update")
      */
     protected $updatedAt;
+
+    /**
+     * @var string
+     *
+     * @orm:Column(name="languages", type="string", length=255)
+     */
+    protected $stored_languages;
+
+    /**
+     * @var array
+     */
+    protected $languages = array ();
+
+    /**
+     * @var string
+     *
+     * @orm:Column(name="countries", type="string", length=255)
+     */
+    protected $stored_countries;
+
+    /**
+     * @var array
+     */
+    protected $countries = array ();
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection $categories
@@ -179,6 +204,46 @@ abstract class AbstractSite
     }
 
     /**
+     * Set languages
+     *
+     * @param array $languages
+     */
+    public function setLanguages(array $languages)
+    {
+        $this->languages = $languages;
+    }
+
+    /**
+     * Get languages
+     *
+     * @return array
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * Set coutries
+     *
+     * @param array $coutries
+     */
+    public function setCountries(array $countries)
+    {
+        $this->countries = $countries;
+    }
+
+    /**
+     * Get countries
+     *
+     * @return array
+     */
+    public function getCountries()
+    {
+        return $this->countries;
+    }
+
+    /**
      * Add category
      *
      * @param Category $category
@@ -241,5 +306,23 @@ abstract class AbstractSite
     public function setUpdatedAt(\DateTime $updated_at)
     {
         $this->updatedAt = $updated_at;
+    }
+
+    /**
+     * orm:PostLoad
+     */
+    public function populateArrays()
+    {
+        $this->languages = explode('|', $this->stored_languages);
+        $this->countries = explode('|', $this->stored_countries);
+    }
+
+    /**
+     * orm:PrePersist
+     */
+    public function populateStrings()
+    {
+        $this->stored_languages = implode('|', $this->languages);
+        $this->stored_countries = implode('|', $this->countries);
     }
 }
