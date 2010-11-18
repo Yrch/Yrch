@@ -1,0 +1,19 @@
+app.config:
+  session:
+    default_locale: en
+
+## Doctrine Configuration
+doctrine.dbal:
+  dbname: xxxxxxxx
+  user: xxxxxxxx
+  password: ~
+
+## Swiftmailer Configuration
+swiftmailer.config:
+  transport: smtp
+  encryption: ssl
+  auth_mode: login
+  host: smtp.gmail.com
+  username: xxxxxxxx
+  password: xxxxxxxx
+
