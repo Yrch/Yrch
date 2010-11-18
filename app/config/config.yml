@@ -20,4 +20,10 @@ twig.config:
 ## Doctrine Configuration
 doctrine.orm: ~
 
-
+doctrine_user.config:
+  db_driver: orm
+  class:
+    model:
+      user: Application\YrchBundle\Entity\User
+  confirmarion_email:
+    enabled: true
