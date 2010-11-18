@@ -1,7 +1,5 @@
 /src/vendor/
 /app/cache/*
 /app/logs/*
-/app/config/user_config.xml
 /app/config/user_config.yml
-/app/config/user_config_test.xml
 /app/phpunit.xml
