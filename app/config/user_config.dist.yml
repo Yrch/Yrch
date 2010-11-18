@@ -7,6 +7,7 @@ doctrine.dbal:
   dbname: xxxxxxxx
   user: xxxxxxxx
   password: ~
+  host: ~
 
 ## Swiftmailer Configuration
 swiftmailer.config:

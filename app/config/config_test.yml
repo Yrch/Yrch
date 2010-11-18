@@ -15,6 +15,9 @@ zend.config:
 
 doctrine.dbal:
   dbname: yrch_test
+  user: ~
+  password: ~
+  host: ~
 
 swiftmailer.config:
   delivery_strategy: none
