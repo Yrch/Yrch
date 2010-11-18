@@ -18,6 +18,12 @@ swiftmailer.config:
   username: xxxxxxxx
   password: xxxxxxxx
 
+## DoctrineUserBundle
 doctrine_user.config:
+  db_driver: orm
+  class:
+    model:
+      user: Application\YrchBundle\Entity\User
   confirmation_email:
+    enabled: true
     from_email: xxxxx@xxxxx.xx
