@@ -42,7 +42,9 @@ EOT
             $adminGroup = new $groupClass();
             $adminGroup->setName('Admin');
             $adminGroup->setDescription('Administrator');
-            $output->writeln(sprintf('Created group <comment>%s</comment>', $adminGroup->getName()));
+            if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
+                $output->writeln(sprintf('Created group <comment>%s</comment>', $adminGroup->getName()));
+            }
         }
         $adminGroup->addPermission($this->addPermission('admin', 'admin access', $output));
         $adminGroup->addPermission($this->addPermission('moderator', 'moderator access', $output));
@@ -53,7 +55,9 @@ EOT
             $moderatorGroup = new $groupClass();
             $moderatorGroup->setName('Moderator');
             $moderatorGroup->setDescription('Moderator');
-            $output->writeln(sprintf('Created group <comment>%s</comment>', $moderatorGroup->getName()));
+            if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
+                $output->writeln(sprintf('Created group <comment>%s</comment>', $moderatorGroup->getName()));
+            }
         }
         $moderatorGroup->addPermission($this->addPermission('moderator', 'moderator access', $output));
         $groupRepo->getObjectManager()->persist($moderatorGroup);
@@ -71,7 +75,9 @@ EOT
             $permission->setDescription($description);
             $permissionRepo->getObjectManager()->persist($permission);
             $permissionRepo->getObjectManager()->flush();
-            $output->writeln(sprintf('Created permission <comment>%s</comment>', $permission->getName()));
+            if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
+                $output->writeln(sprintf('Created permission <comment>%s</comment>', $permission->getName()));
+            }
         }
         return $permission;
     }
