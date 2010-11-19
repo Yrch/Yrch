@@ -38,6 +38,14 @@ class Category
     protected $locale;
 
     /**
+     * @var string $description
+     *
+     * @orm:Column(name="description", type="text")
+     * @gedmo:Translatable
+     */
+    protected $description;
+
+    /**
      * @var integer
      *
      * @orm:Column(name="lft", type="integer")
@@ -96,6 +104,26 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string $description
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
