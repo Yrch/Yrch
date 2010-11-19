@@ -309,7 +309,7 @@ abstract class AbstractSite
     }
 
     /**
-     * orm:PostLoad
+     * @orm:PostLoad
      */
     public function populateArrays()
     {
@@ -318,7 +318,7 @@ abstract class AbstractSite
     }
 
     /**
-     * orm:PrePersist
+     * @orm:PrePersist
      */
     public function populateStrings()
     {
