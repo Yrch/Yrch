@@ -3,13 +3,8 @@
 namespace Application\YrchBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\Output;
-use Bundle\DoctrineUserBundle\Entity\Group;
-use Bundle\DoctrineUserBundle\Entity\Permission;
 
 /**
  * GenerateGroupsCommand.
@@ -38,6 +33,7 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln('Generating permissions and groups');
         $groupRepo = $this->container->get('doctrine_user.repository.group');
         $groupClass = $groupRepo->getObjectClass();
         // Admin
