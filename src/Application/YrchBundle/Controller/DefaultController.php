@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('YrchBundle:Default:index.php');
+        return $this->render('YrchBundle:Main:index.twig');
     }
 }

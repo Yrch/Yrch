@@ -1,0 +1,46 @@
+/*
+From http://www.alistapart.com/articles/holygrail */
+
+/* --------------------------------------------------------
+   Structure de base de la page (mise en place des colonnes)
+   Largeurs courantes des colonnes (width, padding, fullwidth)
+   LC (categories)  : 200 10 220
+   CC (content)     : "fluide" 20 N/A
+   RC (right_bar)   : 150 10 270
+*/
+
+body {
+    min-width: 630px;      /* 2x LC width + RC width */
+}
+
+#container {
+    padding-left: 200px;   /* LC width */
+    padding-right: 150px;  /* RC width */
+}
+
+#container .column {
+    position: relative;
+    float: left;
+}
+
+#content {
+    padding: 10px 20px;    /* CC padding */
+    width: 100%;
+}
+
+#categories {
+    width: 200px;          /* LC width */
+    padding: 0 10px;       /* LC padding */
+    right: 200px;          /* LC width */
+    margin-left: -100%;
+}
+
+#right_bar {
+    width: 150px;          /* RC width */
+    padding: 0 10px;       /* RC padding */
+    margin-right: -150px;  /* RC width */
+}
+
+#footer {
+    clear: both;
+}
