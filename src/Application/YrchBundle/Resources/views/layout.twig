@@ -18,7 +18,9 @@
                 {% block content %}{% endblock %}
             </div>
             <div id="categories" class="column">
-                {% block categories %}{% endblock %}
+                {% block categories %}
+                    {% render "YrchBundle:Category:menu" %}
+                {% endblock %}
             </div>
             <div id="right_bar" class="column">
                 {% block right_bar %}{% endblock %}
