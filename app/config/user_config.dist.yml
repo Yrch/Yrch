@@ -27,3 +27,10 @@ doctrine_user.config:
   confirmation_email:
     enabled: true
     from_email: xxxxx@xxxxx.xx
+
+## YrchBundle configuration
+yrch.config:
+  special_user:
+    username: xxxxxx
+    nick: xxxxxx
+    email: xxxxx@xxxxx.xx
