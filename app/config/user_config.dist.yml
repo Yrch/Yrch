@@ -31,5 +31,6 @@ doctrine_user.config:
 ## YrchBundle configuration
 yrch.config:
   special_user:
-    username: yrchstaff
-    nick: Yrch! Staff
+    username: xxxxxx
+    nick: xxxxxx
+    email: xxxxx@xxxxx.xx
