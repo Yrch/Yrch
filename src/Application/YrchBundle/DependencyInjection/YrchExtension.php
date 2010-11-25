@@ -14,6 +14,7 @@ class YrchExtension extends Extension
         if (isset($config['special_user'])) {
             $container->setParameter('yrch.special_user.username', $config['special_user']['username']);
             $container->setParameter('yrch.special_user.nick', $config['special_user']['nick']);
+            $container->setParameter('yrch.special_user.email', $config['special_user']['email']);
         } else {
             throw new \InvalidArgumentException('You must provide the yrch.special_user configuration');
         }
