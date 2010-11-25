@@ -11,11 +11,13 @@ class CategoryController extends Controller
         $em = $this->container->get('doctrine.orm.entity_manager');
         $categoryRepo = $em->getRepository('Application\YrchBundle\Entity\Category');
         if (null === $id_category){
-            $categories = $categoryRepo->children(null, true);
+            $rootnodes = $categoryRepo->children(null, true);
+            $category = $rootnodes[0];
         } else {
             $category = $categoryRepo->find($id_category);
-            $categories = $categoryRepo->children($category, true);
         }
+        $categories = $categoryRepo->children($category, true);
+        $path = $categoryRepo->getPath($category);
         return $this->render('YrchBundle:Category:menu.twig', array ('categories' => $categories));
     }
 }
