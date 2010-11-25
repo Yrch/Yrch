@@ -48,6 +48,7 @@ class AbstractSiteTest extends \PHPUnit_Framework_TestCase
         $this->site->setDescription('test description');
         $this->assertEquals('test description', $this->site->getDescription());
     }
+
     public function testCategories()
     {
         $this->assertEquals(new ArrayCollection(), $this->site->getCategories());

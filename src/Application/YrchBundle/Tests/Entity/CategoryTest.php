@@ -28,6 +28,14 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test', $this->category->getName());
     }
 
+    public function testDescription()
+    {
+        $this->assertNull($this->category->getDescription());
+
+        $this->category->setDescription('test description');
+        $this->assertEquals('test description', $this->category->getDescription());
+    }
+
     public function testSites()
     {
         $this->assertNull($this->category->getParent());

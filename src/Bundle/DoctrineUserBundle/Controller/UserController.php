@@ -135,8 +135,9 @@ class UserController extends Controller
         $email = $this->get('session')->get('doctrine_user_send_confirmation_email/email');
         $user = $this->findUser('email', $email);
 
+        $mailer = $this->get('mailer');
         $message = $this->getConfirmationEmailMessage($user);
-        $this->get('mailer')->send($message);
+        $mailer->send($message);
 
         return $this->redirect($this->generateUrl('doctrine_user_user_check_confirmation_email'));
     }
@@ -149,7 +150,7 @@ class UserController extends Controller
             'user' => $user,
             'confirmationUrl' => $this->generateUrl('doctrine_user_user_confirm', array('token' => $user->getConfirmationToken()), true)
         ));
-        $renderedLines = explode("\n", $rendered);
+        $renderedLines = explode("\n", trim($rendered));
         $subject = $renderedLines[0];
         $body = implode("\n", array_slice($renderedLines, 1));
 
