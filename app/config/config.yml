@@ -2,16 +2,16 @@ imports:
   - { resource: user_config.yml }
 
 app.config:
-    charset: UTF-8
-    error_handler: null
-    csrf_secret: xxxxxxxxxx
-    router: { resource: "%kernel.root_dir%/config/routing.yml" }
-    validation: { enabled: true, annotations: true }
-    templating:
-        #assets_version: SomeVersionScheme
-    session:
-        default_locale: en
-        lifetime: 3600
+  charset: UTF-8
+  error_handler: null
+  csrf_secret: xxxxxxxxxx
+  router: { resource: "%kernel.root_dir%/config/routing.yml" }
+  validation: { enabled: true, annotations: true }
+  templating:
+    #assets_version: SomeVersionScheme
+  session:
+    auto_start: true
+    lifetime: 3600
 
 ## Twig Configuration
 twig.config:
