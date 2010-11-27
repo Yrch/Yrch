@@ -1,5 +1,4 @@
 {% block assets %}
-{% stylesheet 'bundles/yrch/css/main.css' %}
 {% endblock %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ _view.locale.locale }}">
@@ -15,7 +14,7 @@
             {% block header %}{% endblock %}
         </div>
         <div id="container">
-            {% block content %}{% endblock %}
+            {% block container %}{% endblock %}
         </div>
         <div id="footer">
             {% block footer %}{% endblock %}

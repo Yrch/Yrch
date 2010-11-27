@@ -1,17 +1,13 @@
-{% extends 'YrchBundle::layout.twig' %}
+{% extends 'YrchBundle::layout3Columns.twig' %}
 
 {% block content %}
-    <div id="content" class="column">
-        {% for site in sites %}
-            <p>{{ site.title }}</p>
-        {% endfor %}
-    </div>
-    <div id="categories" class="column">
-        {% include "YrchBundle:Category:menu.twig" with ['categories': category.children] %}
-    </div>
-    <div id="right_bar" class="column">
-        {% block right_bar %}{% endblock %}
-    </div>
+    {% for site in sites %}
+        <p>{{ site.title }}</p>
+    {% endfor %}
+{% endblock %}
+
+{% block categories %}
+    {% include "YrchBundle:Category:menu.twig" with ['categories': category.children] %}
 {% endblock %}
 
 {% block header %}
