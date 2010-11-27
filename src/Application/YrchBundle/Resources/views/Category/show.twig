@@ -1,0 +1,31 @@
+{% extends 'YrchBundle::layout.twig' %}
+
+{% block content %}
+    <div id="content" class="column">
+        {% for site in sites %}
+            <p>{{ site.title }}</p>
+        {% endfor %}
+    </div>
+    <div id="categories" class="column">
+        {% include "YrchBundle:Category:menu.twig" with ['categories': category.children] %}
+    </div>
+    <div id="right_bar" class="column">
+        {% block right_bar %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block header %}
+    {% parent %}
+    <div>
+        <div class="header">
+            <h1>{{ category.name }}</h1>
+        </div>
+        <div id="path">
+            <p>
+                {% for cat in path %}
+                    <a href="{% path "category_show" with ['id': category.id ] %}">{{ category.name }}</a> &gt;
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+{% endblock %}
