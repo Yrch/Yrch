@@ -2,5 +2,7 @@ homepage:
   pattern: /
   defaults: { _controller: YrchBundle:Default:index }
 
-
-
+category_show:
+  pattern: /category/:id
+  defaults: { _controller: YrchBundle:Category:show }
+  requirements: { id: "\d+" }

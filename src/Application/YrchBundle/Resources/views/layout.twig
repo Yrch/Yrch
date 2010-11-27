@@ -2,7 +2,7 @@
 {% stylesheet 'bundles/yrch/css/main.css' %}
 {% endblock %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ _view.locale.locale }}">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Yrch!{% endblock %}</title>
@@ -15,17 +15,7 @@
             {% block header %}{% endblock %}
         </div>
         <div id="container">
-            <div id="content" class="column">
-                {% block content %}{% endblock %}
-            </div>
-            <div id="categories" class="column">
-                {% block categories %}
-                    {% render "YrchBundle:Category:menu" %}
-                {% endblock %}
-            </div>
-            <div id="right_bar" class="column">
-                {% block right_bar %}{% endblock %}
-            </div>
+            {% block content %}{% endblock %}
         </div>
         <div id="footer">
             {% block footer %}{% endblock %}

@@ -1,5 +1,12 @@
-{% for category in categories %}
-    <div class="category">
-        <p>{{ category.name }}</p>
+<div>
+    <div class="header">
+        <h3>{% trans "Categories" %}</h3>
     </div>
-{% endfor %}
+    <div>
+        {% for category in categories %}
+            <div class="category">
+                <p><a href="{% path "category_show" with ['id': category.id ] %}">{{ category.name }}</a></p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

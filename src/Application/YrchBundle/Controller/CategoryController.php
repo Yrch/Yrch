@@ -20,4 +20,20 @@ class CategoryController extends Controller
         $path = $categoryRepo->getPath($category);
         return $this->render('YrchBundle:Category:menu.twig', array ('categories' => $categories));
     }
+
+    public function showAction($id = null)
+    {
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $categoryRepo = $em->getRepository('Application\YrchBundle\Entity\Category');
+        $siteRepo = $em->getRepository('Application\YrchBundle\Entity\Site');
+        if (null === $id){
+            $rootnodes = $categoryRepo->children(null, true);
+            $category = $rootnodes[0];
+        } else {
+            $category = $categoryRepo->find($id);
+        }
+        $sites = $siteRepo->findByCategory($category);
+        $path = $categoryRepo->getPath($category);
+        return $this->render('YrchBundle:Category:show.twig', array ('category' => $category, 'sites' => $sites, 'path' => $path));
+    }
 }
