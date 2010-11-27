@@ -13,6 +13,8 @@ use Application\YrchBundle\Entity\User;
  */
 class PopulateCommand extends Command
 {
+    protected $permissions = array ();
+
     /**
      * @see Command
      */
@@ -36,7 +38,16 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Populating database');
+        // Generating permissions
+        $output->writeln('Generating permissions');
+        $permissions = $this->container->get('doctrine_user.repository.permission')->findAll();
+        foreach ($permissions as $permission){
+            $this->permissions[$permission->getName()] = $permission;
+        }
+        $this->addPermission('admin', 'admin access', $output);
+        $this->addPermission('moderator', 'moderator access', $output);
+        // Generating groups
+        $output->writeln('Generating groups');
         $groupRepo = $this->container->get('doctrine_user.repository.group');
         $groupClass = $groupRepo->getObjectClass();
         // Admin
@@ -49,8 +60,8 @@ EOT
                 $output->writeln(sprintf('Created group <comment>%s</comment>', $adminGroup->getName()));
             }
         }
-        $adminGroup->addPermission($this->addPermission('admin', 'admin access', $output));
-        $adminGroup->addPermission($this->addPermission('moderator', 'moderator access', $output));
+        $adminGroup->addPermission($this->permissions['admin']);
+        $adminGroup->addPermission($this->permissions['moderator']);
         $groupRepo->getObjectManager()->persist($adminGroup);
         // Moderator
         $moderatorGroup = $groupRepo->findOneByName('Moderator');
@@ -62,9 +73,10 @@ EOT
                 $output->writeln(sprintf('Created group <comment>%s</comment>', $moderatorGroup->getName()));
             }
         }
-        $moderatorGroup->addPermission($this->addPermission('moderator', 'moderator access', $output));
+        $moderatorGroup->addPermission($this->permissions['moderator']);
         $groupRepo->getObjectManager()->persist($moderatorGroup);
         // Special user
+        $output->writeln('Generating special user');
         $userRepo = $this->container->get('doctrine_user.repository.user');
         if (null === $userRepo->findOneByUsername($this->container->getParameter('yrch.special_user.username'))){
             $specialUser = new User();
@@ -85,19 +97,17 @@ EOT
 
     protected function addPermission($name, $description, OutputInterface $output)
     {
-        $permissionRepo = $this->container->get('doctrine_user.repository.permission');
-        $permissionClass = $permissionRepo->getObjectClass();
-        $permission = $permissionRepo->findOneByName($name);
-        if ($permission === null){
+        if (!isset($this->permissions[$name])){
+            $permissionRepo = $this->container->get('doctrine_user.repository.permission');
+            $permissionClass = $permissionRepo->getObjectClass();
             $permission = new $permissionClass();
             $permission->setName($name);
             $permission->setDescription($description);
             $permissionRepo->getObjectManager()->persist($permission);
-            $permissionRepo->getObjectManager()->flush();
+            $this->permissions[$name] = $permission;
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
                 $output->writeln(sprintf('Created permission <comment>%s</comment>', $permission->getName()));
             }
         }
-        return $permission;
     }
 }
