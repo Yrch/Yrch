@@ -60,5 +60,7 @@ class SiteRepository extends EntityRepository
                     HAVING MAX(e.updatedAt)=r.updatedAt
                 )
             )";
+        $query = $this->_em->createQuery($dql);
+        $query->execute();
     }
 }
