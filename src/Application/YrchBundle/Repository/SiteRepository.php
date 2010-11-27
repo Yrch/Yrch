@@ -4,6 +4,7 @@ namespace Application\YrchBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Application\YrchBundle\Entity\Site;
+use Application\YrchBundle\Entity\Category;
 use Doctrine\ORM\Query;
 
 /**
@@ -11,6 +12,19 @@ use Doctrine\ORM\Query;
  */
 class SiteRepository extends EntityRepository
 {
+    public function findByCategory(Category $category)
+    {
+        $dql = "SELECT s
+            FROM Application\YrchBundle\Entity\Site s
+            WHERE s.status = :status
+            AND :category MEMBER OF s.categories
+            ORDER BY s.selection DESC, s.leech ASC, s.averageScore DESC, s.name ASC
+            ";
+        $query = $this->_em->createQuery($dql);
+        $query->setParameters(array ('status'=>'ok', 'category'=>$category));
+        return $query->getResult();
+    }
+
     /**
      * Update the average score of the given site
      *
