@@ -3,10 +3,12 @@
         <h3><a href="{#{% path "site_show" with ['id': site.id ] %}#}">{{ site.name }}</a></h3>
         <p>
             {% for language in sites.languages %}
-                {{ language }}
+                {{ _view.locale.getLanguageName(language) }}
             {% endfor %}
         </p>
         <p>{{ site.description }}</p>
-        <p>Ajouté le {{ site.createdAt }} / dernière modification le {{ site.updatedAt }}
+        {% set createdAt = site.createdAt|date("d/m/Y") %}
+        {% set updatedAt = site.updatedAt|date("d/m/Y") %}
+        <p>{% trans %}Added on {{ createdAt }} / Last modified on {{ updatedAt }}{% endtrans %}
     </div>
 {% endfor %}
