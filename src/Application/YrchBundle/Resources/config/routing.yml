@@ -1,6 +1,6 @@
 homepage:
   pattern: /
-  defaults: { _controller: YrchBundle:Default:index }
+  defaults: { _controller: YrchBundle:Category:show }
 
 category_show:
   pattern: /category/:id

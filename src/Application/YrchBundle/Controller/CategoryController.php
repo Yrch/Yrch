@@ -35,6 +35,7 @@ class CategoryController extends Controller
             $path = $categoryRepo->getPath($category);
         }
         $sites = $siteRepo->findByCategory($category);
-        return $this->render('YrchBundle:Category:show.twig', array ('category' => $category, 'sites' => $sites, 'path' => $path));
+        $id_root = $path[0]->getId();
+        return $this->render('YrchBundle:Category:show.twig', compact('category', 'sites', 'path', 'id_root'));
     }
 }
