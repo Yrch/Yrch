@@ -1,11 +1,11 @@
 {% form_theme form form.getOption('theme') %}
 <form action="{% path 'doctrine_user_user_update' %}" {{ form|render_enctype }} method="POST" class="doctrine_user_user_edit">
     <ul>
-        {% for field in form.getVisibleFieldsRecursively() %}
+        {% for field in form.getAllVisibleFields() %}
             {{ field|render }}
         {% endfor %}
         <li>
-            <input type="submit" value="{% trans 'Update user' from DoctrineUserBundle %}" />
+            <input type="submit" value="{% trans 'Update user' from 'DoctrineUserBundle' %}" />
         </li>
     </ul>
     {{ form|render_hidden }}

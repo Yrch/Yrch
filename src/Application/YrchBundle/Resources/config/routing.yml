@@ -1,6 +1,6 @@
 homepage:
-    pattern: /
-    defaults: { _controller: YrchBundle:Default:index }
+  pattern: /
+  defaults: { _controller: YrchBundle:Default:index }
 
 
 

@@ -1,11 +1,11 @@
 {% form_theme form form.getOption('theme') %}
 <form action="{% path 'doctrine_user_group_update' %}" {{ form|render_enctype }} method="POST" class="doctrine_user_group_edit">
     <ul>
-        {% for field in form.getVisibleFieldsRecursively() %}
+        {% for field in form.getAllVisibleFields() %}
             {{ field|render }}
         {% endfor %}
         <li>
-            <input type="submit" value="{% trans 'Update group' from DoctrineUserBundle %}" />
+            <input type="submit" value="{% trans 'Update group' from 'DoctrineUserBundle' %}" />
         </li>
     </ul>
     {{ form|render_hidden }}
