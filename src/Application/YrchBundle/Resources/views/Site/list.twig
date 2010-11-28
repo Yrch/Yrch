@@ -1,0 +1,12 @@
+{% for site in sites %}
+    <div class="site">
+        <h3><a href="{#{% path "site_show" with ['id': site.id ] %}#}">{{ site.name }}</a></h3>
+        <p>
+            {% for language in sites.languages %}
+                {{ language }}
+            {% endfor %}
+        </p>
+        <p>{{ site.description }}</p>
+        <p>Ajouté le {{ site.createdAt }} / dernière modification le {{ site.updatedAt }}
+    </div>
+{% endfor %}

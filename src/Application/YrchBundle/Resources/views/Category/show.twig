@@ -1,9 +1,7 @@
 {% extends 'YrchBundle::layout3Columns.twig' %}
 
 {% block content %}
-    {% for site in sites %}
-        <p>{{ site.title }}</p>
-    {% endfor %}
+    {% include "YrchBundle:Site:list.twig" with ['sites': sites] %}
 {% endblock %}
 
 {% block categories %}
