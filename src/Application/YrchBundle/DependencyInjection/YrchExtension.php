@@ -11,6 +11,9 @@ class YrchExtension extends Extension
 {
     public function configLoad(array $config, ContainerBuilder $container)
     {
+        $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
+        $loader->load('translation.xml');
+        
         if (isset($config['special_user'])) {
             $container->setParameter('yrch.special_user.username', $config['special_user']['username']);
             $container->setParameter('yrch.special_user.nick', $config['special_user']['nick']);
@@ -27,7 +30,7 @@ class YrchExtension extends Extension
      */
     public function getXsdValidationBasePath()
     {
-        return __DIR__.'/../Resources/config/schema';
+        return null;
     }
 
     public function getNamespace()
