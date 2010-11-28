@@ -29,11 +29,12 @@ class CategoryController extends Controller
         if (null === $id){
             $rootnodes = $categoryRepo->children(null, true);
             $category = $rootnodes[0];
+            $path = array ($category);
         } else {
             $category = $categoryRepo->find($id);
+            $path = $categoryRepo->getPath($category);
         }
         $sites = $siteRepo->findByCategory($category);
-        $path = $categoryRepo->getPath($category);
         return $this->render('YrchBundle:Category:show.twig', array ('category' => $category, 'sites' => $sites, 'path' => $path));
     }
 }
