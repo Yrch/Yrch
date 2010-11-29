@@ -147,6 +147,16 @@ class Category
     }
 
     /**
+     * Get children
+     *
+     * @return Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
      * @param string $locale
      */
     public function setTranslatableLocale($locale)
