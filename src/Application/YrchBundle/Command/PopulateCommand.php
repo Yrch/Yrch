@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\Output;
 use Application\YrchBundle\Entity\User;
+use Application\YrchBundle\Entity\Category;
 
 /**
  * GenerateGroupsCommand.
@@ -22,13 +23,15 @@ class PopulateCommand extends Command
     {
         $this
             ->setName('yrch:populate')
-            ->setDescription('Generate the groups and permissions and the special user.')
+            ->setDescription('Generate the groups and permissions, the special user and the root category.')
             ->setHelp(<<<EOT
-The <info>yrch:populate</info> command creates the groups,
-the permissions and the special user needed by Yrch!:
+The <info>yrch:populate</info> command creates the groups, the permissions,
+the special user and the root category needed by Yrch!:
 
   <info>php app/console yrch:populate</info>
 
+The root category will have the name <comment>Yrch!</comment> but you can then
+change it by editing the category in the admin part of the site.
 EOT
         );
     }
@@ -90,6 +93,20 @@ EOT
             $userRepo->getObjectManager()->persist($specialUser);
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
                 $output->writeln(sprintf('Created user <comment>%s</comment>', $specialUser->getNick()));
+            }
+        }
+        // Generating root category
+        $output->writeln('Generating the root category');
+        $categoryRepo = $this->container->get('doctrine.orm.entity_manager')
+                ->getRepository('Application\\YrchBundle\\Entity\\Category');
+        $rootnodes = $categoryRepo->children(null, true);
+        if (!$rootnodes){
+            $category = new Category();
+            $category->setName('Yrch!');
+            $category->setDescription('');
+            $categoryRepo->getEntityManager()->persist($category);
+            if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
+                $output->writeln(sprintf('Created category <comment>%s</comment>', $category->getName()));
             }
         }
         $groupRepo->getObjectManager()->flush();
