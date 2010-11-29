@@ -53,6 +53,7 @@ class YrchFixtures implements FixtureInterface
             $site = $this->createSite($i, $users[$i % 5]);
             $site->addCategory($categories[$i % 10]);
             $site->addCategory($categories[($i+2) % 7]);
+            $site->setStatus('ok');
             $sites[$i] = $site;
             $manager->persist($site);
         }
