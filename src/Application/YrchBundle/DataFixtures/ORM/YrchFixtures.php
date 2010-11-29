@@ -32,8 +32,8 @@ class YrchFixtures implements FixtureInterface
         $manager->flush();
         for ($index = 0; $index < count($categories); $index++) {
             $categories[$index]->setTranslatableLocale('fr');
-            $categories[$index]->setName('Catégorie '.$i);
-            $categories[$index]->setDescription('catégorie de test n°'.$i);
+            $categories[$index]->setName('Catégorie '.$index);
+            $categories[$index]->setDescription('catégorie de test n°'.$index);
             $manager->persist($categories[$index]);
         }
         $manager->flush();
