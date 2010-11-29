@@ -20,6 +20,7 @@
                     <a href="{% if category.id == id_root %}{% path "homepage" %}{% else %}{% path "category_show" with ['id': category.id ] %}{% endif %}">{{ category.name }}</a> &gt;
                 {% endfor %}
             </p>
+{% if category.description %}<p>{{ category.description }}</p>{% endif %}
         </div>
     </div>
 {% endblock %}
