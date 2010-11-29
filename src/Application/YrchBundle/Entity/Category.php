@@ -65,6 +65,7 @@ class Category
      * @var Category
      *
      * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\Category", inversedBy="children")
+     * @orm:JoinColumn(name="parent_id", referencedColumnName="id", onDelete="cascade")
      * @gedmo:TreeParent
      */
     protected $parent;
