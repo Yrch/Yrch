@@ -7,6 +7,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Application\YrchBundle\Entity\Category;
 use Application\YrchBundle\Entity\Site;
 use Application\YrchBundle\Entity\User;
+use Application\YrchBundle\Entity\Review;
 
 class YrchFixtures implements FixtureInterface
 {
@@ -56,6 +57,11 @@ class YrchFixtures implements FixtureInterface
             $site->setStatus('ok');
             $sites[$i] = $site;
             $manager->persist($site);
+        }
+        // Reviews
+        for ($i = 0; $i < 50; $i++) {
+            $review = $this->createReview($i, $users[$i % 5], $sites[($i+3) % 15]);
+            $manager->persist($review);
         }
         $manager->flush();
     }
@@ -112,5 +118,25 @@ class YrchFixtures implements FixtureInterface
         $site->setCountries(array('US', 'CA'));
         $site->setSuperOwner($superOwner);
         return $site;
+    }
+
+    /**
+     * Create a new review
+     *
+     * @param int $i
+     * @param User $owner
+     * @param Site $site
+     * @return Review
+     */
+    protected function createReview($i, User $owner, Site $site)
+    {
+        $review = new Review();
+        $review->setOwner($owner);
+        $review->setSite($site);
+        $review->setStatus('ok');
+        $review->setTranslatableLocale('fr');
+        $review->setText('test review number '.$i);
+        $review->setScore(rand(1, 10));
+        return $review;
     }
 }
