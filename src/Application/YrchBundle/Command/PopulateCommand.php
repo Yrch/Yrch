@@ -104,7 +104,7 @@ EOT
             $category = new Category();
             $category->setName('Yrch!');
             $category->setDescription('');
-            $categoryRepo->getEntityManager()->persist($category);
+            $this->container->get('doctrine.orm.entity_manager')->persist($category);
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
                 $output->writeln(sprintf('Created category <comment>%s</comment>', $category->getName()));
             }
