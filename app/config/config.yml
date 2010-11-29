@@ -18,4 +18,4 @@ twig.config:
 
 ## Doctrine Configuration
 doctrine.orm:
-  auto_generate_proxu_classes: true
+  auto_generate_proxy_classes: true
