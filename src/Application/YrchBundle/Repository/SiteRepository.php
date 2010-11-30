@@ -12,11 +12,12 @@ use Doctrine\ORM\Query;
 class SiteRepository extends EntityRepository
 {
     /**
-     * Update the average score of the given site
+     * Get the updated average score of the given site
      *
      * @param Site $site
+     * @return double
      */
-    public function updateAverageNote(Site $site)
+    public function getUpdatedAverageScore(Site $site)
     {
         $dql = "SELECT AVG(r.score)
             FROM Application\YrchBundle\Entity\Review r
@@ -32,9 +33,7 @@ class SiteRepository extends EntityRepository
         $query = $this->_em->createQuery($dql);
         $query->setParameters(array (1 => $site, 2 => $site));
         $average_score = $query->getResult(Query::HYDRATE_SINGLE_SCALAR);
-        $site->setAverageScore($average_score);
-        $this->_em->persist($site);
-        $this->_em->flush();
+        return $average_score;
     }
 
     /**
