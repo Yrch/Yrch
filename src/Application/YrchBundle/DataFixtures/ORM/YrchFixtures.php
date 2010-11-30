@@ -42,7 +42,6 @@ class YrchFixtures implements FixtureInterface
             $categories[$index]->setDescription('catégorie de test n°'.$index);
             $manager->persist($categories[$index]);
         }
-        $manager->flush();
         // Users
         for ($i = 0; $i < 5; $i++) {
             $user = $this->createUser($i);
