@@ -38,7 +38,7 @@ class LocaleHelper implements HelperInterface
      */
     public function getLanguageName($language)
     {
-        return Locale::getDisplayLanguage($language, $this->session->getLocale());
+        return \Locale::getDisplayLanguage($language, $this->session->getLocale());
     }
 
     /**
