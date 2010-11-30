@@ -2,18 +2,16 @@
 
 namespace Application\YrchBundle\Helper;
 
-use Symfony\Component\Templating\Helper\HelperInterface;
+use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\HttpFoundation\Session;
 
-class LocaleHelper implements HelperInterface
+class LocaleHelper extends Helper
 {
-
     /**
      * @var Session
      */
     protected $session;
     protected $languages;
-    protected $charset = 'UTF-8';
 
     public function __construct(Session $session)
     {
@@ -57,26 +55,6 @@ class LocaleHelper implements HelperInterface
     public function getName()
     {
         return 'locale';
-    }
-
-    /**
-     * Sets the default charset.
-     *
-     * @param string $charset The charset
-     */
-    function setCharset($charset)
-    {
-        $this->charset = $charset;
-    }
-
-    /**
-     * Gets the default charset.
-     *
-     * @return string The default charset
-     */
-    function getCharset()
-    {
-        return $this->charset;
     }
 }
 
