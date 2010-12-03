@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             // register your bundles
             new Bundle\DoctrineUserBundle\DoctrineUserBundle(),
             new Bundle\DoctrineExtensionsBundle\DoctrineExtensionsBundle(),
+            new Bundle\I18nRoutingBundle\I18nRoutingBundle(),
             new Application\YrchBundle\YrchBundle(),
         );
 
