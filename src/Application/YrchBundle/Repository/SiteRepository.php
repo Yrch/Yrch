@@ -14,8 +14,9 @@ class SiteRepository extends EntityRepository
 {
     public function findByCategory(Category $category)
     {
-        $dql = "SELECT s
+        $dql = "SELECT s, c
             FROM Application\YrchBundle\Entity\Site s
+            JOIN s.categories c
             WHERE s.status = :status
             AND :category MEMBER OF s.categories
             ORDER BY s.selection DESC, s.leech ASC, s.averageScore DESC, s.name ASC
