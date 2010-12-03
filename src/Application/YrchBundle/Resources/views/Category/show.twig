@@ -17,7 +17,7 @@
         <div id="path">
             <p>
                 {% for cat in path joined by " &gt; " %}
-                    <a href="{% if cat.id == id_root %}{% path "homepage" %}{% else %}{% path "category_show" with ['id': cat.id ] %}{% endif %}">{{ cat.name }}</a>
+                    <a href="{% if cat.id == id_root %}{% path "homepage" %}{% else %}{% path _view.locale.route("category_show") with ['id': cat.id ] %}{% endif %}">{{ cat.name }}</a>
                 {% endfor %}
             </p>
 {% if category.description %}<p>{{ category.description }}</p>{% endif %}

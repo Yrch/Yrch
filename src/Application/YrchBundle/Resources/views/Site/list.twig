@@ -1,6 +1,6 @@
 {% for site in sites %}
     <div class="site">
-        <h3><a href="{#{% path "site_show" with ['id': site.id ] %}#}">{{ site.name }}</a></h3>
+        <h3><a href="{#{% path _view.locale.route("site_show") with ['id': site.id ] %}#}">{{ site.name }}</a></h3>
         <p>
             {% for language in site.languages %}
                 {{ _view.locale.getLanguageName(language) }}

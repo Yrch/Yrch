@@ -5,7 +5,7 @@
     <div>
         {% for category in categories %}
             <div class="category">
-                <p><a href="{% path "category_show" with ['id': category.id ] %}">{{ category.name }}</a></p>
+                <p><a href="{% path _view.locale.route("category_show") with ['id': category.id ] %}">{{ category.name }}</a></p>
             </div>
         {% endfor %}
     </div>

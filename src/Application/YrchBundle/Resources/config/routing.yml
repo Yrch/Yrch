@@ -3,6 +3,6 @@ homepage:
   defaults: { _controller: YrchBundle:Category:show }
 
 category_show:
-  pattern: /category/:id
+  locales: { en: /category/:id, fr: /categorie/:id }
   defaults: { _controller: YrchBundle:Category:show }
   requirements: { id: "\d+" }
