@@ -10,8 +10,8 @@
 
 {% block header %}
     {% parent %}
-    <div>
-        <div class="header">
+    <div class="box">
+        <div class="box_head">
             <h1>{{ category.name }}</h1>
         </div>
         <div id="path">
@@ -20,7 +20,11 @@
                     <a href="{% if cat.id == id_root %}{% path "homepage" %}{% else %}{% path _view.locale.route("category_show") with ['id': cat.id ] %}{% endif %}">{{ cat.name }}</a>
                 {% endfor %}
             </p>
-{% if category.description %}<p>{{ category.description }}</p>{% endif %}
         </div>
+{% if category.description %}
+        <div class="description">
+            <p>{{ category.description }}</p>
+        </div>
+{% endif %}
     </div>
 {% endblock %}

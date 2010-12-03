@@ -1,5 +1,5 @@
-<div>
-    <div class="header">
+<div class="box">
+    <div class="box_head">
         <h3>{% trans "Categories" %}</h3>
     </div>
     <div>
@@ -7,6 +7,8 @@
             <div class="category">
                 <p><a href="{% path _view.locale.route("category_show") with ['id': category.id ] %}">{{ category.name }}</a></p>
             </div>
+        {% else %}
+            <p>{% trans %}No subcategories{% endtrans %}</p>
         {% endfor %}
     </div>
 </div>

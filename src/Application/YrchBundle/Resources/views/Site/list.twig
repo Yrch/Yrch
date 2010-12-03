@@ -6,9 +6,16 @@
                 {{ _view.locale.getLanguageName(language) }}
             {% endfor %}
         </p>
-        <p>{{ site.description }}</p>
+        <p class="description">{{ site.description }}</p>
+        <p>{% trans %}Categories{% endtrans %} :
+            {% for cat in site.categories joined by ' ' %}
+                <a href="{% path _view.locale.route("category_show") with ['id': cat.id ] %}" class="thin">{{ cat.name}}</a>
+            {% endfor %}
+        </p>
         {% set createdAt = site.createdAt|date("d/m/Y") %}
         {% set updatedAt = site.updatedAt|date("d/m/Y") %}
         <p>{% trans %}Added on {{ createdAt }} / Last modified on {{ updatedAt }}{% endtrans %}
     </div>
+{% else %}
+    <p>{% trans %}No sites found{% endtrans %}</p>
 {% endfor %}
