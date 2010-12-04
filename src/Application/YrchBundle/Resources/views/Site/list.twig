@@ -14,7 +14,7 @@
         </p>
         {% set createdAt = site.createdAt|date("d/m/Y") %}
         {% set updatedAt = site.updatedAt|date("d/m/Y") %}
-        <p>{% trans %}Added on {{ createdAt }} / Last modified on {{ updatedAt }}{% endtrans %}
+        <p>{% trans %}Added on {{ createdAt }} / Last modified on {{ updatedAt }}{% endtrans %}</p>
     </div>
 {% else %}
     <p>{% trans %}No sites found{% endtrans %}</p>
