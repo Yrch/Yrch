@@ -33,12 +33,20 @@ body {
     margin-bottom: 10px;
 }
 
+#sites li {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+    width: 33%;
+}
+
 .site {
     border-style: dotted;
     border-width: 1px;
     border-color: #370000;
     padding: 2px;
     margin-bottom: 10px;
+    margin-right: 10px;
 }
 
 .description {
