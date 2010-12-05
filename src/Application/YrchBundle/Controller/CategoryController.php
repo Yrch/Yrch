@@ -30,12 +30,15 @@ class CategoryController extends Controller
             $rootnodes = $categoryRepo->children(null, true);
             $category = $rootnodes[0];
             $path = array ($category);
+            $sites = $siteRepo->findSelectioned();
+            $title = $this->get('translator')->trans('Welcome');
         } else {
             $category = $categoryRepo->find($id);
             $path = $categoryRepo->getPath($category);
+            $sites = $siteRepo->findByCategory($category);
+            $title = $category->getName();
         }
-        $sites = $siteRepo->findByCategory($category);
         $id_root = $path[0]->getId();
-        return $this->render('YrchBundle:Category:show.twig', compact('category', 'sites', 'path', 'id_root'));
+        return $this->render('YrchBundle:Category:show.twig', compact('category', 'title', 'sites', 'path', 'id_root'));
     }
 }

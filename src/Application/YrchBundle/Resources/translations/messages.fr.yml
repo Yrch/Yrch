@@ -1,3 +1,4 @@
+Welcome: Bienvenue
 Category: Catégorie
 Categories: Catégories
 Added on {{ createdAt }} / Last modified on {{ updatedAt }}: Ajouté le {{ createdAt }} / dernière modification le {{ updatedAt }}

@@ -1,5 +1,9 @@
 {% extends 'YrchBundle::layout3Columns.twig' %}
 
+{% block title_content %}
+    {{ title }}
+{% endblock %}
+
 {% block content %}
     {% include "YrchBundle:Site:list.twig" with ['sites': sites] %}
 {% endblock %}
@@ -17,7 +21,7 @@
         <div id="path">
             <p>
                 {% for cat in path joined by " &gt; " %}
-                    <a href="{% if cat.id == id_root %}{% path "homepage" %}{% else %}{% path _view.locale.route("category_show") with ['id': cat.id ] %}{% endif %}">{{ cat.name }}</a>
+                    <a href="{% path _view.locale.route("category_show") with ['id': cat.id ] %}">{{ cat.name }}</a>
                 {% endfor %}
             </p>
         </div>
