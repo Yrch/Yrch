@@ -115,6 +115,9 @@ class YrchFixtures implements FixtureInterface
         $site->setDescription('test site number '.$i);
         $site->setLanguages(array('en', 'fr'));
         $site->setCountries(array('US', 'CA'));
+        if(!($i % 4)){
+            $site->addToSelection();
+        }
         $site->setSuperOwner($superOwner);
         return $site;
     }
