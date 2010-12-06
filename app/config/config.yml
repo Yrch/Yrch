@@ -23,3 +23,6 @@ doctrine.orm:
 ## I18nRoutingBundle
 i18n_routing.config:
   router: { resource: "%kernel.root_dir%/config/routing.yml" }
+
+## DoctrineExtensionsBundle
+doctrine_extensions.config: ~
