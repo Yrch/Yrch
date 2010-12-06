@@ -2,7 +2,7 @@
     <div class="box_head">
         <h3>{% trans "Categories" %}</h3>
     </div>
-    <div>
+    <div class="last">
         {% for category in categories %}
             <div class="category">
                 <p><a href="{% path _view.locale.route("category_show") with ['id': category.id ] %}">{{ category.name }}</a></p>
