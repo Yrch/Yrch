@@ -12,10 +12,12 @@ class LocaleHelper extends Helper
      */
     protected $session;
     protected $languages;
+    protected $availableLanguages;
 
-    public function __construct(Session $session)
+    public function __construct(Session $session, array $availableLanguages)
     {
         $this->session = $session;
+        $this->availableLanguages = $availableLanguages;
     }
 
     /**
@@ -50,6 +52,16 @@ class LocaleHelper extends Helper
             $this->languages = include __DIR__.'/../Resources/config/languages.php';
         }
         return $this->languages;
+    }
+
+    /**
+     * Return an array containing iso codes for languages supported by Yrch!
+     *
+     * @return array
+     */
+    public function getAvailableLanguages()
+    {
+        return $this->availableLanguages;
     }
 
     /**

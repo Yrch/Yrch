@@ -7,8 +7,8 @@
     <parameters>
         <parameter key="templating.helper.locale.class">Application\YrchBundle\Helper\LocaleHelper</parameter>
         <parameter key="yrch.languages" type="collection">
-            <parameter key="en">English</parameter>
-            <parameter key="fr">français</parameter>
+            <parameter key="en">en</parameter>
+            <parameter key="fr">fr</parameter>
         </parameter>
     </parameters>
 
@@ -16,6 +16,7 @@
         <service id="templating.helper.locale" class="%templating.helper.locale.class%">
             <tag name="templating.helper" alias="locale" />
             <argument type="service" id="session" />
+            <argument>%yrch.languages%</argument>
         </service>
     </services>
 </container>
