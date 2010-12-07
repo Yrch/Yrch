@@ -1,8 +1,12 @@
 homepage:
   pattern: /
+  defaults: { _controller: YrchBundle:Main:index }
+
+localized_homepage:
+  locales: { en: /en, fr: /fr}
   defaults: { _controller: YrchBundle:Category:show }
 
 category_show:
-  locales: { en: /category/:id, fr: /categorie/:id }
+  locales: { en: /en/category/:id, fr: /fr/categorie/:id }
   defaults: { _controller: YrchBundle:Category:show }
   requirements: { id: "\d+" }

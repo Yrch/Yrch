@@ -53,14 +53,18 @@ class LocaleHelper extends Helper
     }
 
     /**
-     * Get the name of the i18n route for the current locale
+     * Get the name of the i18n route for the given locale
      *
      * @param string $route The name of the route
+     * @param string $locale (optional) The used locale. The current locale will be used if not provided
      * @return string 
      */
-    public function getRoute($route)
+    public function getRoute($route, $locale = null)
     {
-        return $route.'_'.$this->getLocale();
+        if (null === $locale){
+            $locale = $this->getLocale();
+        }
+        return $route.'_'.$locale;
     }
 
     public function getName()
