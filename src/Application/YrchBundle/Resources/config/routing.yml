@@ -5,8 +5,14 @@ homepage:
 localized_homepage:
   locales: { en: /en, fr: /fr}
   defaults: { _controller: YrchBundle:Category:show }
+  requirements: { _method: "GET" }
 
 category_show:
   locales: { en: /en/category/:id, fr: /fr/categorie/:id }
   defaults: { _controller: YrchBundle:Category:show }
-  requirements: { id: "\d+" }
+  requirements: { id: "\d+", _method: "GET" }
+
+site_show:
+  locales: { en: /en/site/:id, fr: /fr/site/:id }
+  defaults: { _controller: YrchBundle:Site:show }
+  requirements: { id: "\d+", _method: "GET" }

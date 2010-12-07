@@ -2,7 +2,7 @@
 {% for site in sites %}
     <li>
         <div class="site">
-            <h3><a href="{#{% path _view.locale.route("site_show") with ['id': site.id ] %}#}">{{ site.name }}</a></h3>
+            <h3><a href="{% path _view.locale.route("site_show") with ['id': site.id ] %}">{{ site.name }}</a></h3>
             <p>
                 {% for language in site.languages %}
                     {{ _view.locale.getLanguageName(language) }}
@@ -11,7 +11,7 @@
             <p class="description">{{ site.description }}</p>
             <p>{% trans %}Categories{% endtrans %} :
                 {% for cat in site.categories joined by ' ' %}
-                    <a href="{% path _view.locale.route("category_show") with ['id': cat.id ] %}" class="thin">{{ cat.name}}</a>
+                    <a href="{% path _view.locale.route("category_show") with ['id': cat.id ] %}" class="thin">{{ cat.name }}</a>
                 {% endfor %}
             </p>
             {% set createdAt = site.createdAt|date("d/m/Y") %}

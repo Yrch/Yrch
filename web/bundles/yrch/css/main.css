@@ -68,6 +68,12 @@ body {
     font-style: italic;
 }
 
+.review_head > div {
+    float: left;
+    width: 33%;
+    background-color: #C4C4FF;
+}
+
 a {
     font-weight: bold;
     text-decoration: underline;
