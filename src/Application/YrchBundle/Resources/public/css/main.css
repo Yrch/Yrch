@@ -81,3 +81,41 @@ a.thin {
 a:hover {
     text-decoration: none;
 }
+
+#change_language {
+    position: relative;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    width: 8em;
+}
+
+#change_language ul {
+    -moz-box-shadow: 0 0 7px #CCCCCC;
+    -webkit-box-shadow: 0 0 7px #CCCCCC;
+    box-shadow: 0 0 7px #CCCCCC;
+    display: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    left: 0;
+    margin-top: 0.2em;
+    max-height: 600px;
+    overflow: auto;
+    position: absolute;
+    top: 1em;
+    width: 8em;
+    border: 1px solid #DDDDDD;
+}
+
+#change_language:hover ul {
+    display: block;
+}
+
+#change_language li {
+    list-style: none;
+}
+
+#change_language a {
+    display: block;
+    padding: 0.4em 0.5em;
+    text-decoration: none;
+    color: #370000;
+}

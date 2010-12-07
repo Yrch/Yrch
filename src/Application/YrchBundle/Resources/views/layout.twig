@@ -12,7 +12,18 @@
     </head>
     <body>
         <div id="header">
-            {% block header %}{% endblock %}
+            {% block header %}
+                <div>
+                    <div id="change_language">
+                        <span>{{ _view.locale.getLanguageName(_view.locale.locale) }}</span>
+                        <ul>
+                            {% for language in _view.locale.getAvailableLanguages %}
+                                <li><a href="{% path _view.locale.route(_view.route.current, language) with _view.route.parameters %}">{{ _view.locale.getLanguageName(language) }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endblock %}
         </div>
         <div id="container">
             {% block container %}{% endblock %}
