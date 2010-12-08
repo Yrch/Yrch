@@ -2,6 +2,9 @@
 {% for site in sites %}
     <li>
         <div class="site">
+            <div class="site_left">
+                <div class="note" style="background-color: {{ "#66BB47" }}{# TODO: add an helper to calculate it #}">{{ site.averageScore }}</div>
+            </div>
             <h3><a href="{% path _view.locale.route("site_show") with ['id': site.id ] %}">{{ site.name }}</a></h3>
             <p>
                 {% for language in site.languages %}
