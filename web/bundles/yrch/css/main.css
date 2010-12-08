@@ -76,9 +76,15 @@ body {
     width: 1.6em;
 }
 
-.note {
-    padding: 0.2em;
+.site_left > div {
     text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.note {
+    -moz-border-radius: 0.3em;
+    border-radius: 0.3em;
+    padding: 0 0.2em;
 }
 
 .description {
