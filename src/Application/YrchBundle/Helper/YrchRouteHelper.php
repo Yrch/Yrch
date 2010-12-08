@@ -5,7 +5,7 @@ namespace Application\YrchBundle\Helper;
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\HttpFoundation\Request;
 
-class RouteHelper extends Helper
+class YrchRouteHelper extends Helper
 {
     /**
      * @var Request
@@ -43,7 +43,7 @@ class RouteHelper extends Helper
 
     public function getName()
     {
-        return 'route';
+        return 'yrch_route';
     }
 }
 
