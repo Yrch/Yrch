@@ -1,0 +1,14 @@
+{% for review in reviews %}
+    <div class="review">
+        <div class="review_head">
+            <div class="review_score">{{ review.score }} / 10</div>
+            <div>{{ review.createdAt|date("d/m/Y\ H:i:s") }}</div>
+            <div>{{ review.owner }}</div>
+        </div>
+        <div class="review_text">
+            <p>{{ review.text }}</p>
+        </div>
+    </div>
+{% else %}
+    <p>{% trans %}No reviews found{% endtrans %}</p>
+{% endfor %}
