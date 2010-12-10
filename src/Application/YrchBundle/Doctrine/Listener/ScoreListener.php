@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\YrchBundle\Listener;
+namespace Application\YrchBundle\Doctrine\Listener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;

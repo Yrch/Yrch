@@ -3,7 +3,7 @@
 namespace Application\YrchBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Application\YrchBundle\Listener\ScoreListener;
+use Application\YrchBundle\Doctrine\Listener\ScoreListener;
 
 class YrchBundle extends Bundle
 {
