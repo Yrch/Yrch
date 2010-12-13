@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://www.symfony-project.org/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="templating.helper.yrch_route.class">Application\YrchBundle\Helper\YrchRouteHelper</parameter>
+    </parameters>
+
+    <services>
+        <service id="templating.helper.yrch_route" class="%templating.helper.yrch_route.class%">
+            <tag name="templating.helper" alias="yrch_route" />
+            <argument type="service" id="request" />
+        </service>
+    </services>
+</container>

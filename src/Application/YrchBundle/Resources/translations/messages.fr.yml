@@ -1,0 +1,9 @@
+Welcome: Bienvenue
+Category: Catégorie
+Categories: Catégories
+Added on {{ createdAt }} / Last modified on {{ updatedAt }}: Ajouté le {{ createdAt }} / dernière modification le {{ updatedAt }}
+No sites found: Aucun site trouvé
+No subcategories: Pas de sous-catégorie
+Score: Note
+Reviews: Revues
+No reviews found: Aucune revue trouvée

@@ -1,0 +1,34 @@
+{% extends 'YrchBundle::layout3Columns.twig' %}
+
+{% block title_content %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    {% include "YrchBundle:Site:list.twig" with ['sites': sites] %}
+{% endblock %}
+
+{% block categories %}
+    {% include "YrchBundle:Category:menu.twig" with ['categories': category.children] %}
+{% endblock %}
+
+{% block header %}
+    {% parent %}
+    <div class="box">
+        <div class="box_head">
+            <h1>{{ category.name }}</h1>
+        </div>
+        <div id="path"{% if not category.description %} class="last"{% endif %}>
+            <p>
+                {% for cat in path joined by " &gt; " %}
+                    <a href="{% path _view.locale.route("category_show") with ['id': cat.id ] %}">{{ cat.name }}</a>
+                {% endfor %}
+            </p>
+        </div>
+{% if category.description %}
+        <div class="description last">
+            <p>{{ category.description }}</p>
+        </div>
+{% endif %}
+    </div>
+{% endblock %}

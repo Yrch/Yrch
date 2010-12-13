@@ -1,5 +1,5 @@
 yrch:
-  resource: YrchBundle/Resources/config/routing.yml
+  resource: YrchBundle/Resources/config/routing/routing.yml
 
 doctrine_user_user:
   resource: DoctrineUserBundle/Resources/config/routing/user.xml

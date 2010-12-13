@@ -4,6 +4,7 @@ namespace Application\YrchBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Application\YrchBundle\Entity\Site;
+use Application\YrchBundle\Entity\Category;
 use Doctrine\ORM\Query;
 
 /**
@@ -11,6 +12,46 @@ use Doctrine\ORM\Query;
  */
 class SiteRepository extends EntityRepository
 {
+    /**
+     * Find the site in the given category with selectioned one first and leechers
+     * last and ordered by average score
+     *
+     * @param Category $category
+     * @return Doctrine\Common\Collections\ArrayCollection
+     */
+    public function findByCategory(Category $category)
+    {
+        $dql = "SELECT s, c
+            FROM Application\YrchBundle\Entity\Site s
+            JOIN s.categories c
+            WHERE s.status = :status
+            AND :category MEMBER OF s.categories
+            ORDER BY s.selection DESC, s.leech ASC, s.averageScore DESC, s.name ASC
+            ";
+        $query = $this->_em->createQuery($dql);
+        $query->setParameters(array ('status' => 'ok', 'category' => $category));
+        return $query->getResult();
+    }
+
+    /**
+     * Find all selectioned sites
+     *
+     * @return Doctrine\Common\Collections\ArrayCollection
+     */
+    public function findSelectioned()
+    {
+        $dql = "SELECT s, c
+            FROM Application\YrchBundle\Entity\Site s
+            JOIN s.categories c
+            WHERE s.status = :status
+            AND s.selection = :selection
+            ORDER BY s.selection DESC, s.leech ASC, s.averageScore DESC, s.name ASC
+            ";
+        $query = $this->_em->createQuery($dql);
+        $query->setParameters(array ('status' => 'ok', 'selection' => true));
+        return $query->getResult();
+    }
+
     /**
      * Get the updated average score of the given site
      *
@@ -37,6 +78,7 @@ class SiteRepository extends EntityRepository
     }
 
     /**
+     * @todo This dql query does not work. Must find a new one or use SQL.
      * Update the average score for all sites.
      *
      * Attention: this function must not be used too often as it uses more

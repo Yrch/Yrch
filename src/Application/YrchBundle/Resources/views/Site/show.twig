@@ -1,0 +1,39 @@
+{% extends 'YrchBundle::layout.twig' %}
+
+{% block title_content %}
+    {{ site.name }}
+{% endblock %}
+
+{% block container %}
+    <div class="box">
+        <div class="box_head">
+            <h1>{{ site.name }}</h1>
+        </div>
+        <div class="last">
+            <p><a href="{{ site.url }}" target="{{ outlink }}">{{ site.url }}</a></p>
+            <p>{% trans "Score" %} : {{ site.averageScore }} / 10</p>
+            <p>{% trans "Owners" %} :{# TODO: Try to use the User->is method #}
+                {% for user in site.owners joined by ' ' %}{% if site.superOwner == user %}<strong>{{ user }}</strong>{% else %}{{ user }}{% endif %}{% endfor %}
+            </p>
+            <p>
+                {% for language in site.languages %}
+                    {{ _view.locale.getLanguageName(language) }}
+                {% endfor %}
+            </p>
+            <p>Description: {{ site.description }}</p>
+            <p>{% trans %}Categories{% endtrans %} :
+                {% for cat in site.categories joined by ' ' %}
+                    <a href="{% path _view.locale.route("category_show") with ['id': cat.id ] %}" class="thin">{{ cat.name }}</a>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box_head">
+            <h1>{% trans "Reviews" %}</h1>
+        </div>
+        <div class="last">
+            {% include "YrchBundle:Review:list.twig" with ['reviews': site.reviews] %}
+        </div>
+    </div>
+{% endblock %}

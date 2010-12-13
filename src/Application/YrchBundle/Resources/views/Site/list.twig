@@ -1,0 +1,30 @@
+<ul id="sites">
+{% for site in sites %}
+    <li>
+        <div class="site">
+            <div class="site_left">
+                <div class="note" style="background-color: {{ "#66BB47" }}{# TODO: add an helper to calculate it #}">{{ site.averageScore }}</div>
+                {% if site.isSelectioned %}<div><img src="{% asset 'bundles/yrch/images/selection.gif' %}" alt="{% trans "Selection" %}" title="{% trans "Selection" %}" /></div>{% endif %}
+                {% if site.isLeech %}<div><img src="{% asset 'bundles/yrch/images/leecher.gif' %}" alt="{% trans "Leecher" %}" title="{% trans "Leecher" %}" /></div>{% endif %}
+            </div>
+            <h3><a href="{% path _view.locale.route("site_show") with ['id': site.id ] %}">{{ site.name }}</a></h3>
+            <p>
+                {% for language in site.languages %}
+                    {{ _view.locale.getLanguageName(language) }}
+                {% endfor %}
+            </p>
+            <p class="description">{{ site.description }}</p>
+            <p>{% trans %}Categories{% endtrans %} :
+                {% for cat in site.categories joined by ' ' %}
+                    <a href="{% path _view.locale.route("category_show") with ['id': cat.id ] %}" class="thin">{{ cat.name }}</a>
+                {% endfor %}
+            </p>
+            {% set createdAt = site.createdAt|date("d/m/Y") %}
+            {% set updatedAt = site.updatedAt|date("d/m/Y") %}
+            <p>{% trans %}Added on {{ createdAt }} / Last modified on {{ updatedAt }}{% endtrans %}</p>
+        </div>
+    </li>
+{% else %}
+    <li>{% trans %}No sites found{% endtrans %}</li>
+{% endfor %}
+</ul>

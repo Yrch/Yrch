@@ -1,0 +1,35 @@
+{% block assets %}
+    {% stylesheet 'bundles/yrch/css/main.css' %}
+{% endblock %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ _view.locale.locale }}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Yrch! - {% block title_content %}{% trans "Welcome" %}{% endblock %}{% endblock %}</title>
+        <link rel="shortcut icon" href="{% asset 'bundles/yrch/favicon.ico' %}" />
+        {% stylesheets %}
+        {% javascripts %}
+    </head>
+    <body>
+        <div id="header">
+            {% block header %}
+                <div>
+                    <div id="change_language">
+                        <span>{{ _view.locale.getLanguageName(_view.locale.locale) }}</span>
+                        <ul>
+                            {% for language in _view.locale.getAvailableLanguages %}
+                                <li><a href="{% path _view.locale.route(_view.yrch_route.current, language) with _view.yrch_route.parameters %}">{{ _view.locale.getLanguageName(language) }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+        <div id="container">
+            {% block container %}{% endblock %}
+        </div>
+        <div id="footer">
+            {% block footer %}{% endblock %}
+        </div>
+    </body>
+</html>
