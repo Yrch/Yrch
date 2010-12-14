@@ -23,7 +23,7 @@
             <p>Description: {{ site.description }}</p>
             <p>{% trans %}Categories{% endtrans %} :
                 {% for cat in site.categories joined by ' ' %}
-                    <a href="{% path _view.locale.route("category_show") with ['id': cat.id ] %}" class="thin">{{ cat.name }}</a>
+                    <a href="{% path _view.locale.route("category_show") with {'id': cat.id } %}" class="thin">{{ cat.name }}</a>
                 {% endfor %}
             </p>
         </div>
@@ -33,7 +33,7 @@
             <h1>{% trans "Reviews" %}</h1>
         </div>
         <div class="last">
-            {% include "YrchBundle:Review:list.twig" with ['reviews': site.reviews] %}
+            {% include "YrchBundle:Review:list.twig" with {'reviews': site.reviews} %}
         </div>
     </div>
 {% endblock %}

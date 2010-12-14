@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    {% include "YrchBundle:Site:list.twig" with ['sites': sites] %}
+    {% include "YrchBundle:Site:list.twig" with {'sites': sites} %}
 {% endblock %}
 
 {% block categories %}
-    {% include "YrchBundle:Category:menu.twig" with ['categories': category.children] %}
+    {% include "YrchBundle:Category:menu.twig" with {'categories': category.children} %}
 {% endblock %}
 
 {% block header %}
@@ -21,7 +21,7 @@
         <div id="path"{% if not category.description %} class="last"{% endif %}>
             <p>
                 {% for cat in path joined by " &gt; " %}
-                    <a href="{% path _view.locale.route("category_show") with ['id': cat.id ] %}">{{ cat.name }}</a>
+                    <a href="{% path _view.locale.route("category_show") with {'id': cat.id } %}">{{ cat.name }}</a>
                 {% endfor %}
             </p>
         </div>
