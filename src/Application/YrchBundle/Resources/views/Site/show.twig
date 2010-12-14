@@ -12,8 +12,8 @@
         <div class="last">
             <p><a href="{{ site.url }}" target="{{ outlink }}">{{ site.url }}</a></p>
             <p>{% trans "Score" %} : {{ site.averageScore }} / 10</p>
-            <p>{% trans "Owners" %} :{# TODO: Try to use the User->is method #}
-                {% for user in site.owners joined by ' ' %}{% if site.superOwner == user %}<strong>{{ user }}</strong>{% else %}{{ user }}{% endif %}{% endfor %}
+            <p>{% trans "Owners" %} :
+                {% for user in site.owners joined by ' ' %}{% if user.is(site.superOwner) %}<strong>{{ user }}</strong>{% else %}{{ user }}{% endif %}{% endfor %}
             </p>
             <p>
                 {% for language in site.languages %}
