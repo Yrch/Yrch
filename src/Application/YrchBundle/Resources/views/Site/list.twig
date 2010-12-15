@@ -13,7 +13,7 @@
                     {{ _view.locale.getLanguageName(language) }}
                 {% endfor %}
             </p>
-            <p class="description">{{ site.description }}</p>
+            <p class="description">{{ site.description|nl2br }}</p>
             <p>{% trans %}Categories{% endtrans %} :
                 {% for cat in site.categories joined by ' ' %}
                     <a href="{% path _view.locale.route("category_show") with {'id': cat.id } %}" class="thin">{{ cat.name }}</a>
