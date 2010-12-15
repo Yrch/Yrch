@@ -15,7 +15,13 @@ app.config:
   translator: { fallback: en }
 
 ## Twig Configuration
-twig.config:
+twig.config: ~
+
+services:
+  twig.extension.i18n:
+    class: Twig_Extensions_Extension_I18n
+    tags:
+      - { name: twig.extension }
 
 ## Doctrine Configuration
 doctrine.orm:

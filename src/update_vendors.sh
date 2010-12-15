@@ -23,6 +23,9 @@ cd $CURRENT/symfony && git pull
 # Twig
 cd $CURRENT/twig && git pull
 
+# Twig Extensions
+cd $CURRENT/twig-extensions && git pull
+
 # Zend Framework
 cd $CURRENT/zend && git pull
 
