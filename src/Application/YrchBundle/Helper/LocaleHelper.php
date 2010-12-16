@@ -11,7 +11,6 @@ class LocaleHelper extends Helper
      * @var Session
      */
     protected $session;
-    protected $languages;
     protected $availableLanguages;
 
     public function __construct(Session $session, array $availableLanguages)
@@ -39,19 +38,6 @@ class LocaleHelper extends Helper
     public function getLanguageName($language)
     {
         return \Locale::getDisplayLanguage($language, $this->session->getLocale());
-    }
-
-    /**
-     * Return an array containing iso codes for all languages ordered alphabetically
-     *
-     * @return array
-     */
-    public function getLanguages()
-    {
-        if (null === $this->languages){
-            $this->languages = include __DIR__.'/../Resources/config/languages.php';
-        }
-        return $this->languages;
     }
 
     /**
