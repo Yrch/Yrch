@@ -7,6 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Application\YrchBundle\Entity\Review
  *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
+ *
  * @orm:Table(name="review", indexes={
  *      @orm:index(name="review_relations_idx", columns={"site_id", "owner_id", "status"})
  * })

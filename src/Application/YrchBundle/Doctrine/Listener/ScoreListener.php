@@ -7,7 +7,11 @@ use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
- * This listener update the site average score when a review is inserted
+ * The ScoreListener updates the site average score when a review is inserted
+ *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  */
 class ScoreListener implements EventSubscriber
 {

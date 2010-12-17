@@ -9,6 +9,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Application\YrchBundle\Entity\User
  *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
+ *
  * @orm:Entity(repositoryClass="Bundle\DoctrineUserBundle\Entity\UserRepository")
  * @orm:Table(name="user")
  */

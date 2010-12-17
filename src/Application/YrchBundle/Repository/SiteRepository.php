@@ -9,6 +9,10 @@ use Doctrine\ORM\Query;
 
 /**
  * SiteRepository
+ *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  */
 class SiteRepository extends EntityRepository
 {

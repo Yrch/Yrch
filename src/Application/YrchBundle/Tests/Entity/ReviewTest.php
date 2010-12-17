@@ -9,6 +9,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Test class for Review
+ *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  */
 class ReviewTest extends \PHPUnit_Framework_TestCase
 {

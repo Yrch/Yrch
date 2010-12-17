@@ -5,6 +5,13 @@ namespace Application\YrchBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Application\YrchBundle\Doctrine\Listener\ScoreListener;
 
+/**
+ * Yrchbundle
+ *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
+ */
 class YrchBundle extends Bundle
 {
     public function boot()

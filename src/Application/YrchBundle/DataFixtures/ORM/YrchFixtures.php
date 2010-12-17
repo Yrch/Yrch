@@ -9,6 +9,13 @@ use Application\YrchBundle\Entity\Site;
 use Application\YrchBundle\Entity\User;
 use Application\YrchBundle\Entity\Review;
 
+/**
+ * YrchFixtures
+ *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
+ */
 class YrchFixtures implements FixtureInterface
 {
     public function load($manager)

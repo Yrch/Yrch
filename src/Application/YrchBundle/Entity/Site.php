@@ -7,6 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Application\YrchBundle\Entity\Site
  *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
+ *
  * @orm:Table(name="site")
  * @orm:Entity(repositoryClass="Application\YrchBundle\Repository\SiteRepository")
  * @gedmo:TranslationEntity(class="Application\YrchBundle\Entity\SiteTranslation")

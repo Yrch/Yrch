@@ -6,7 +6,11 @@ use Application\YrchBundle\Entity\Page;
 use Application\YrchBundle\Entity\User;
 
 /**
- * Test class for Page.
+ * Test class for Page
+ *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  */
 class PageTest extends \PHPUnit_Framework_TestCase
 {

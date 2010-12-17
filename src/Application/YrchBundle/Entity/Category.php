@@ -7,6 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Category
  *
+ * @author Christophe Coevoet
+ * @copyright (c) 2010, Tolkiendil, Association loi 1901
+ * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
+ *
  * @orm:Entity(repositoryClass="Gedmo\Tree\Repository\TreeNodeRepository")
  * @orm:Table(name="category")
  */
