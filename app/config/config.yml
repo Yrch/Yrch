@@ -18,10 +18,6 @@ app.config:
 twig.config: ~
 
 services:
-  twig.extension.i18n:
-    class: Twig_Extensions_Extension_I18n
-    tags:
-      - { name: twig.extension }
   twig.extension.text:
     class: Twig_Extensions_Extension_Text
     tags:
