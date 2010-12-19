@@ -32,4 +32,5 @@ i18n_routing.config:
   router: { resource: "%kernel.root_dir%/config/routing.yml" }
 
 ## DoctrineExtensionsBundle
-doctrine_extensions.config: ~
+doctrine_extensions.config:
+  default: ~
