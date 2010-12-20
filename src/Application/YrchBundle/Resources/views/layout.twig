@@ -18,7 +18,7 @@
                         <span>{{ _view.locale.getLanguageName(_view.locale.locale) }}</span>
                         <ul>
                             {% for language in _view.locale.getAvailableLanguages %}
-                                <li><a href="{% path _view.locale.route(_view.yrch_route.current, language) with _view.yrch_route.parameters %}">{{ _view.locale.getLanguageName(language) }}</a></li>
+                                <li><a href="{{ path(_view.locale.route(_view.yrch_route.current, language), _view.yrch_route.parameters) }}">{{ _view.locale.getLanguageName(language) }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

@@ -21,7 +21,7 @@
         <div id="path"{% if not category.description %} class="last"{% endif %}>
             <p>
                 {% for cat in path joined by " &gt; " %}
-                    <a href="{% path _view.locale.route("category_show") with {'id': cat.id } %}">{{ cat.name }}</a>
+                    <a href="{{ path(_view.locale.route("category_show"), {'id': cat.id }) }}">{{ cat.name }}</a>
                 {% endfor %}
             </p>
         </div>
