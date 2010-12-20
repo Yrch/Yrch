@@ -1,5 +1,5 @@
 **Attention: Yrch! 2.0 is still at the very beginning of its development and
-will not been released until Symfony2 stable release is available. If you want
+will not be released until Symfony2 stable release is available. If you want
 to set up your site now please use Yrch! 1.0 available on 
 [SourceForge](http://sourceforge.net/projects/yrch/) and migrate to v2.0 when it
 will be released.**
