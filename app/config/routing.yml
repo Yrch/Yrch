@@ -2,10 +2,10 @@ yrch:
   resource: YrchBundle/Resources/config/routing/routing.yml
 
 doctrine_user_user:
-  resource: DoctrineUserBundle/Resources/config/routing/user.xml
+  resource: FOS/UserBundle/Resources/config/routing/user.xml
   prefix: /user
 
 doctrine_user_session:
-  resource: DoctrineUserBundle/Resources/config/routing/session.xml
+  resource: FOS/UserBundle/Resources/config/routing/security.xml
   prefix: /session
 

@@ -2,7 +2,7 @@
 
 namespace Application\YrchBundle\Entity;
 
-use Bundle\DoctrineUserBundle\Entity\User as BaseUser;
+use Bundle\FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  *
- * @orm:Entity(repositoryClass="Bundle\DoctrineUserBundle\Entity\UserRepository")
+ * @orm:Entity(repositoryClass="Bundle\FOS\UserBundle\Entity\UserRepository")
  * @orm:Table(name="user")
  */
 class User extends BaseUser
@@ -25,14 +25,6 @@ class User extends BaseUser
      * @orm:Column(name="nick", type="string", length=255)
      */
     protected $nick;
-
-    /**
-     * @var boolean
-     *
-     * @validation:AssertType(type="boolean")
-     * @orm:Column(name="is_locked", type="boolean")
-     */
-    protected $isLocked;
 
     /**
      * @var string
@@ -127,7 +119,6 @@ class User extends BaseUser
         $this->favorites = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->nick = 'Meriadoc'; // Remove this line when the form will pass the value
-        $this->isLocked = false;
         $this->theme = 'default';
         $this->contactAllowed = true;
         $this->outlink = '_blank';
@@ -163,31 +154,6 @@ class User extends BaseUser
     public function getNick()
     {
         return $this->nick;
-    }
-
-    /**
-     * Lock the user
-     */
-    public function lock()
-    {
-        $this->isLocked = true;
-    }
-
-    /**
-     * Unlock the user
-     */
-    public function unlock()
-    {
-        $this->isLocked = false;
-    }
-
-    /**
-     * implements AdvancedAccountInterface
-     * @return boolean true if the account is NOT locked
-     */
-    public function isAccountNonLocked()
-    {
-        return !$this->isLocked;
     }
 
     /**

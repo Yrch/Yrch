@@ -24,7 +24,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
 
             // register your bundles
-            new Bundle\DoctrineUserBundle\DoctrineUserBundle(),
+            new Bundle\FOS\UserBundle\FOSUserBundle(),
             new Bundle\DoctrineExtensionsBundle\DoctrineExtensionsBundle(),
             new Bundle\I18nRoutingBundle\I18nRoutingBundle(),
             new Application\YrchBundle\YrchBundle(),
@@ -41,6 +41,7 @@ class AppKernel extends Kernel
     {
         return array(
             'Application'     => __DIR__.'/../src/Application',
+            'Bundle\\FOS' => __DIR__.'/../src/Bundle/FOS',
             'Bundle'          => __DIR__.'/../src/Bundle',
             'Symfony\\Bundle' => __DIR__.'/../src/vendor/symfony/src/Symfony/Bundle',
         );

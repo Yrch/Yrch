@@ -11,6 +11,7 @@ use Application\YrchBundle\Entity\Category;
 
 /**
  * PopulateCommand
+ * @todo Move this command to the new security params
  *
  * @author Christophe Coevoet
  * @copyright (c) 2010, Tolkiendil, Association loi 1901

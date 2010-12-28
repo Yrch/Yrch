@@ -1,9 +1,12 @@
 [submodule "DoctrineExtensionsBundle"]
 	path = src/Bundle/DoctrineExtensionsBundle
 	url = git://github.com/stof/DoctrineExtensionsBundle
-[submodule "DoctrineUserBundle"]
-	path = src/Bundle/DoctrineUserBundle
-	url = git://github.com/knplabs/DoctrineUserBundle.git
 [submodule "I18nRoutingBundle"]
 	path = src/Bundle/I18nRoutingBundle
 	url = git://github.com/francisbesset/I18nRoutingBundle
+[submodule "UserBundle"]
+	path = src/Bundle/FOS/UserBundle
+	url = git://github.com/FriendsOfSymfony/UserBundle.git
+[submodule "src/Bundle/FOS/UserBundle"]
+	path = src/Bundle/FOS/UserBundle
+	url = git://github.com/FriendsOfSymfony/UserBundle

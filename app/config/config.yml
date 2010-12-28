@@ -1,4 +1,5 @@
 imports:
+  - { resource: security.yml }
   - { resource: user_config.yml }
 
 app.config:
