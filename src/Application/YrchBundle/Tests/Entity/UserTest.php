@@ -34,17 +34,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test', $this->user->getNick());
     }
 
-    public function testLock()
-    {
-        $this->assertTrue($this->user->isAccountNonLocked());
-
-        $this->user->lock();
-        $this->assertFalse($this->user->isAccountNonLocked());
-
-        $this->user->unlock();
-        $this->assertTrue($this->user->isAccountNonLocked());
-    }
-
     public function testPreferedLocale()
     {
         $this->assertNull($this->user->getPreferedLocale());
