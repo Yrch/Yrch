@@ -27,6 +27,10 @@ services:
 ## Doctrine Configuration
 doctrine.orm:
   auto_generate_proxy_classes: true
+  mappings:
+    YrchBundle: ~
+    DoctrineExtensionsBundle: ~
+    UserBundle: ~
 
 ## I18nRoutingBundle
 i18n_routing.config:
