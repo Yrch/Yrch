@@ -7,7 +7,7 @@
                 {% if site.isSelectioned %}<div><img src="{% asset 'bundles/yrch/images/selection.gif' %}" alt="{% trans "Selection" %}" title="{% trans "Selection" %}" /></div>{% endif %}
                 {% if site.isLeech %}<div><img src="{% asset 'bundles/yrch/images/leecher.gif' %}" alt="{% trans "Leecher" %}" title="{% trans "Leecher" %}" /></div>{% endif %}
             </div>
-            <h3><a href="{% path(_view.locale.route("site_show"), {'id': site.id }) }}">{{ site.name }}</a></h3>
+            <h3><a href="{{ path(_view.locale.route("site_show"), {'id': site.id }) }}">{{ site.name }}</a></h3>
             <p>
                 {% for language in site.languages %}
                     {{ _view.locale.getLanguageName(language) }}
@@ -20,7 +20,7 @@
                 {% endfor %}
             </p>
             {% set createdAt = site.createdAt|date("d/m/Y") %}
-            {% set updatedAt = site.updatedAt|date("d/m/Y") %}
+            {#{% set updatedAt = site.updatedAt|date("d/m/Y") %}#}
             <p>{% trans %}Added on {{ createdAt }} / Last modified on {{ updatedAt }}{% endtrans %}</p>
         </div>
     </li>
