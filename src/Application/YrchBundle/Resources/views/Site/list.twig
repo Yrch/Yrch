@@ -15,7 +15,7 @@
             </p>
             <p class="description">{{ site.description|nl2br }}</p>
             <p>{% trans %}Categories{% endtrans %} :
-                {% for cat in site.categories joined by ' ' %}
+                {% for cat in site.categories %}
                     <a href="{{ path(_view.locale.route("category_show"), {'id': cat.id }) }}" class="thin">{{ cat.name }}</a>
                 {% endfor %}
             </p>

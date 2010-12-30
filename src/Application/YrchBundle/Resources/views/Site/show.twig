@@ -13,7 +13,7 @@
             <p><a href="{{ site.url }}" target="{{ outlink }}">{{ site.url }}</a></p>
             <p>{% trans "Score" %} : {{ site.averageScore }} / 10</p>
             <p>{% trans "Owners" %} :
-                {% for user in site.owners joined by ' ' %}{% if user.is(site.superOwner) %}<strong>{{ user }}</strong>{% else %}{{ user }}{% endif %}{% endfor %}
+                {% for user in site.owners %}{% if not loop.first %} {% endif %}{% if user.is(site.superOwner) %}<strong>{{ user }}</strong>{% else %}{{ user }}{% endif %}{% endfor %}
             </p>
             <p>
                 {% for language in site.languages %}
@@ -22,8 +22,8 @@
             </p>
             <p>Description: {{ site.description|nl2br }}</p>
             <p>{% trans %}Categories{% endtrans %} :
-                {% for cat in site.categories joined by ' ' %}
-                    <a href="{{ path(_view.locale.route("category_show"), {'id': cat.id }) }}" class="thin">{{ cat.name }}</a>
+                {% for cat in site.categories %}
+                    {% if not loop.first %} {% endif %}<a href="{{ path(_view.locale.route("category_show"), {'id': cat.id }) }}" class="thin">{{ cat.name }}</a>
                 {% endfor %}
             </p>
         </div>
