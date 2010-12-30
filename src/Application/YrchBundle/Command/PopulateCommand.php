@@ -46,17 +46,12 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // Generating permissions
-        $output->writeln('Generating permissions');
-        $permissions = $this->container->get('doctrine_user.repository.permission')->findAll();
-        foreach ($permissions as $permission){
-            $this->permissions[$permission->getName()] = $permission;
-        }
-        $this->addPermission('admin', 'admin access', $output);
-        $this->addPermission('moderator', 'moderator access', $output);
+        $listenerManager = $this->container->get('doctrine_extensions.listener_manager');
+        $listenerManager->addAllListeners($this->container->get('doctrine.orm.entity_manager'));
+        /*
         // Generating groups
         $output->writeln('Generating groups');
-        $groupRepo = $this->container->get('doctrine_user.repository.group');
+        $groupManager = $this->container->get('fos_user.group_manager');
         $groupClass = $groupRepo->getObjectClass();
         // Admin
         $adminGroup = $groupRepo->findOneByName('Admin');
@@ -99,7 +94,7 @@ EOT
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
                 $output->writeln(sprintf('Created user <comment>%s</comment>', $specialUser->getNick()));
             }
-        }
+        }*/
         // Generating root category
         $output->writeln('Generating the root category');
         $categoryRepo = $this->container->get('doctrine.orm.entity_manager')
@@ -114,7 +109,7 @@ EOT
                 $output->writeln(sprintf('Created category <comment>%s</comment>', $category->getName()));
             }
         }
-        $groupRepo->getObjectManager()->flush();
+        $this->container->get('doctrine.orm.entity_manager')->flush();
     }
 
     protected function addPermission($name, $description, OutputInterface $output)
