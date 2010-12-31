@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  *
- * @orm:Entity(repositoryClass="Bundle\FOS\UserBundle\Entity\UserRepository")
+ * @orm:Entity
  * @orm:Table(name="user")
  */
 class User extends BaseUser
@@ -115,6 +115,7 @@ class User extends BaseUser
     public function  __construct()
     {
         parent::__construct();
+        $this->algorithm = 'sha1';
         $this->sites = new ArrayCollection();
         $this->favorites = new ArrayCollection();
         $this->reviews = new ArrayCollection();
