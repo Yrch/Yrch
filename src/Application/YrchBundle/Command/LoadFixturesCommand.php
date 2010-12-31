@@ -42,6 +42,9 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $listenerManager = $this->container->get('doctrine_extensions.listener_manager');
+        $listenerManager->addAllListeners($this->container->get('doctrine.orm.entity_manager'));
+
         $purger = new ORMPurger($this->container->get('doctrine.orm.entity_manager'));
         $purger->purge();
 
