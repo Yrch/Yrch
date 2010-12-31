@@ -52,8 +52,7 @@ EOT
         // Admin
         $adminGroup = $groupManager->findGroupByName('Admin');
         if ($adminGroup === null){
-            $adminGroup = $groupManager->createGroup();
-            $adminGroup->setName('Admin');
+            $adminGroup = $groupManager->createGroup('Admin');
             $adminGroup->addRole('ROLE_ADMIN');
             $groupManager->updateGroup($adminGroup);
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
@@ -63,8 +62,7 @@ EOT
         // Moderator
         $moderatorGroup = $groupManager->findGroupByName('Moderator');
         if ($moderatorGroup === null){
-            $moderatorGroup = $groupManager->createGroup();
-            $moderatorGroup->setName('Moderator');
+            $moderatorGroup = $groupManager->createGroup('Moderator');
             $moderatorGroup->addRole('ROLE_MODERATOR');
             $groupManager->updateGroup($moderatorGroup);
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
