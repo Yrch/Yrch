@@ -6,12 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\Output;
-use Application\YrchBundle\Entity\User;
 use Application\YrchBundle\Entity\Category;
 
 /**
  * PopulateCommand
- * @todo Move this command to the new security params
  *
  * @author Christophe Coevoet
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
@@ -48,82 +46,61 @@ EOT
     {
         $listenerManager = $this->container->get('doctrine_extensions.listener_manager');
         $listenerManager->addAllListeners($this->container->get('doctrine.orm.entity_manager'));
-        /*
         // Generating groups
         $output->writeln('Generating groups');
         $groupManager = $this->container->get('fos_user.group_manager');
-        $groupClass = $groupRepo->getObjectClass();
         // Admin
-        $adminGroup = $groupRepo->findOneByName('Admin');
+        $adminGroup = $groupManager->findGroupByName('Admin');
         if ($adminGroup === null){
-            $adminGroup = new $groupClass();
+            $adminGroup = $groupManager->createGroup();
             $adminGroup->setName('Admin');
-            $adminGroup->setDescription('Administrator');
+            $adminGroup->addRole('ROLE_ADMIN');
+            $groupManager->updateGroup($adminGroup);
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
                 $output->writeln(sprintf('Created group <comment>%s</comment>', $adminGroup->getName()));
             }
         }
-        $adminGroup->addPermission($this->permissions['admin']);
-        $adminGroup->addPermission($this->permissions['moderator']);
-        $groupRepo->getObjectManager()->persist($adminGroup);
         // Moderator
-        $moderatorGroup = $groupRepo->findOneByName('Moderator');
+        $moderatorGroup = $groupManager->findGroupByName('Moderator');
         if ($moderatorGroup === null){
-            $moderatorGroup = new $groupClass();
+            $moderatorGroup = $groupManager->createGroup();
             $moderatorGroup->setName('Moderator');
-            $moderatorGroup->setDescription('Moderator');
+            $moderatorGroup->addRole('ROLE_MODERATOR');
+            $groupManager->updateGroup($moderatorGroup);
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
                 $output->writeln(sprintf('Created group <comment>%s</comment>', $moderatorGroup->getName()));
             }
         }
-        $moderatorGroup->addPermission($this->permissions['moderator']);
-        $groupRepo->getObjectManager()->persist($moderatorGroup);
         // Special user
         $output->writeln('Generating special user');
-        $userRepo = $this->container->get('doctrine_user.repository.user');
-        if (null === $userRepo->findOneByUsername($this->container->getParameter('yrch.special_user.username'))){
-            $specialUser = new User();
+        $userManager = $this->container->get('fos_user.user_manager');
+        if (null === $userManager->findUserByUsername($this->container->getParameter('yrch.special_user.username'))){
+            $specialUser = $userManager->createUser();
             $specialUser->setUsername($this->container->getParameter('yrch.special_user.username'));
             $specialUser->setNick($this->container->getParameter('yrch.special_user.nick'));
             $specialUser->setEmail($this->container->getParameter('yrch.special_user.email'));
             $specialUser->setPreferedLocale($this->container->getParameter('session.default_locale'));
             $specialUser->setPassword(md5(uniqid() . rand(100000, 999999)));
-            $specialUser->lock();
-            $specialUser->setIsActive(true);
-            $userRepo->getObjectManager()->persist($specialUser);
+            $specialUser->setEnabled(true);
+            $specialUser->setLocked(true);
+            $userManager->updateUser($specialUser);
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
                 $output->writeln(sprintf('Created user <comment>%s</comment>', $specialUser->getNick()));
             }
-        }*/
+        }
         // Generating root category
         $output->writeln('Generating the root category');
-        $categoryRepo = $this->container->get('doctrine.orm.entity_manager')
-                ->getRepository('Application\\YrchBundle\\Entity\\Category');
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $categoryRepo = $em->getRepository('Application\\YrchBundle\\Entity\\Category');
         $rootnodes = $categoryRepo->children(null, true);
         if (!$rootnodes){
             $category = new Category();
             $category->setName('Yrch!');
             $category->setDescription('');
-            $this->container->get('doctrine.orm.entity_manager')->persist($category);
+            $em->persist($category);
+            $em->flush();
             if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
                 $output->writeln(sprintf('Created category <comment>%s</comment>', $category->getName()));
-            }
-        }
-        $this->container->get('doctrine.orm.entity_manager')->flush();
-    }
-
-    protected function addPermission($name, $description, OutputInterface $output)
-    {
-        if (!isset($this->permissions[$name])){
-            $permissionRepo = $this->container->get('doctrine_user.repository.permission');
-            $permissionClass = $permissionRepo->getObjectClass();
-            $permission = new $permissionClass();
-            $permission->setName($name);
-            $permission->setDescription($description);
-            $permissionRepo->getObjectManager()->persist($permission);
-            $this->permissions[$name] = $permission;
-            if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
-                $output->writeln(sprintf('Created permission <comment>%s</comment>', $permission->getName()));
             }
         }
     }
