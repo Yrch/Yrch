@@ -127,6 +127,7 @@ class User extends BaseUser
         $this->reviewsPerPage = 25;
         $this->siteNotifications = true;
         $this->reviewNotifications = true;
+        $this->preferedLocale = 'en';
     }
 
     /**
