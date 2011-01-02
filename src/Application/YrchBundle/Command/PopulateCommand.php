@@ -17,8 +17,6 @@ use Application\YrchBundle\Entity\Category;
  */
 class PopulateCommand extends Command
 {
-    protected $permissions = array ();
-
     /**
      * @see Command
      */
