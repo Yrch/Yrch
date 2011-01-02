@@ -82,30 +82,31 @@ class SiteRepository extends EntityRepository
     }
 
     /**
-     * @todo This dql query does not work. Must find a new one or use SQL.
      * Update the average score for all sites.
      *
-     * Attention: this function must not be used too often as it uses more
-     * resources. Prefer using updateAverageNote when you just need to update
-     * some sites.
+     * This is only a maintenance function as average scores are updated
+     * automatically by the ScoreListener using the getUpdatedAverageScore()
+     * method.
+     *
+     * Attention: This function must not be used too often as it uses more
+     * resources.
      */
     public function updateAllAverageNotes()
     {
-        $dql = "UPDATE Application\YrchBundle\Entity\Site s
-            SET s.averageScore= (
+        $sql = "UPDATE site s
+            SET s.average_score = (
                 SELECT AVG(r.score)
-                FROM Application\YrchBundle\Entity\Review r
-                WHERE r.site=s.site
+                FROM review r
+                WHERE r.site_id=s.id
                 AND EXISTS (
                     SELECT COUNT(e.id)
-                    FROM Application\YrchBundle\Entity\Review e
-                    WHERE e.site=s.site
-                    AND e.owner=r.owner
+                    FROM review e
+                    WHERE e.site_id=s.id
+                    AND e.owner_id=r.owner_id
                     AND e.status='ok'
-                    HAVING MAX(e.updatedAt)=r.updatedAt
+                    HAVING MAX(e.updated_at)=r.updated_at
                 )
             )";
-        $query = $this->_em->createQuery($dql);
-        $query->execute();
+        $this->_em->getConnection()->executeUpdate($sql);
     }
 }
