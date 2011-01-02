@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Yrch! - {% block title_content %}{% trans "Welcome" %}{% endblock %}{% endblock %}</title>
-        <link rel="shortcut icon" href="{% asset 'bundles/yrch/favicon.ico' %}" />
+        <link rel="shortcut icon" href="{{ asset('bundles/yrch/favicon.ico') }}" />
         {% stylesheets %}
         {% javascripts %}
     </head>
