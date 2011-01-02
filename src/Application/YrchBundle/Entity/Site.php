@@ -65,6 +65,7 @@ class Site extends AbstractSite
      * @var Application\YrchBundle\Entity\User
      * 
      * @orm:ManyToOne(targetEntity="Application\YrchBundle\Entity\User")
+     * @orm:JoinColumn(name="super_owner_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $superOwner;
 
