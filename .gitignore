@@ -3,3 +3,4 @@
 /app/logs/*
 /app/config/user_config.yml
 /app/phpunit.xml
+/web/bundles/
