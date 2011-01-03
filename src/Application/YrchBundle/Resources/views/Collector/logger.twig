@@ -1,0 +1,29 @@
+{% extends 'WebProfilerBundle:Profiler:layout.twig' %}
+
+{% block toolbar %}
+<img style="margin: 0 5px 0 10px; vertical-align: middle; height: 24px" width="24" height="24" alt="Logs" src="{{ asset('bundles/yrch/images/collector.png') }}" />
+<span>{{ collector.count }}</span>
+{% endblock %}
+
+{% block menu %}
+<span class="count">{{ collector.count }}</span>
+<img style="margin: 0 5px 0 0; vertical-align: middle; width: 32px" width="32" height="32" alt="Logs" src="{{ asset('bundles/yrch/images/collector.png') }}" />
+Yrch
+{% endblock %}
+
+{% block panel %}
+    <h2>Yrch</h2>
+
+    {% if collector.logs %}
+        <ul class="alt">
+            {% for i, log in collector.logs %}
+                <li class="{{ i is odd ? 'odd' : 'even' }}{% if 'ERR' == log.priorityName %} error{% endif %}">
+                    {{ log.priorityName }}
+                    {{ log.message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <em>No logs available.</em>
+    {% endif %}
+{% endblock %}

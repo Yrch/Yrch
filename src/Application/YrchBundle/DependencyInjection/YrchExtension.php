@@ -22,6 +22,7 @@ class YrchExtension extends Extension
         $loader->load('translation.xml');
         $loader->load('route.xml');
         $loader->load('logger.xml');
+        $loader->load('collectors.xml');
 
         if (isset($config['special_user'])) {
             $container->setParameter('yrch.special_user.username', $config['special_user']['username']);
