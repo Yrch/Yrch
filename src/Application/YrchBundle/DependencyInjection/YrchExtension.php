@@ -20,6 +20,7 @@ class YrchExtension extends Extension
     {
         $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
         $loader->load('translation.xml');
+        $loader->load('templating.xml');
         $loader->load('route.xml');
         $loader->load('logger.xml');
         $loader->load('collectors.xml');

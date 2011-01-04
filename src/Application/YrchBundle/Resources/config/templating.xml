@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://www.symfony-project.org/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="twig.extension.yrch.class">Application\YrchBundle\Twig\YrchExtension</parameter>
+    </parameters>
+
+    <services>
+        <service id="twig.extension.yrch" class="%twig.extension.yrch.class%">
+            <tag name="twig.extension" />
+            <argument type="service" id="request" />
+            <argument type="service" id="session" />
+            <argument>%yrch.languages%</argument>
+        </service>
+    </services>
+</container>
