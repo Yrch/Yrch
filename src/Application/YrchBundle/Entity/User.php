@@ -115,7 +115,6 @@ class User extends BaseUser
     public function  __construct()
     {
         parent::__construct();
-        $this->algorithm = 'sha1';
         $this->sites = new ArrayCollection();
         $this->favorites = new ArrayCollection();
         $this->reviews = new ArrayCollection();
