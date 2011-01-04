@@ -22,7 +22,7 @@
             <p>
                 {% for cat in path %}
                     {% if not loop.first %} &gt; {% endif %}
-                    <a href="{{ path(_view.locale.route("category_show"), {'id': cat.id }) }}">{{ cat.name }}</a>
+                    <a href="{{ path(yrch_route("category_show"), {'id': cat.id }) }}">{{ cat.name }}</a>
                 {% endfor %}
             </p>
         </div>

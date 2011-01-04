@@ -17,13 +17,13 @@
             </p>
             <p>
                 {% for language in site.languages %}
-                    {{ _view.locale.getLanguageName(language) }}
+                    {{ yrch_languageName(language) }}
                 {% endfor %}
             </p>
             <p>Description: {{ site.description|nl2br }}</p>
             <p>{% trans %}Categories{% endtrans %} :
                 {% for cat in site.categories %}
-                    {% if not loop.first %} {% endif %}<a href="{{ path(_view.locale.route("category_show"), {'id': cat.id }) }}" class="thin">{{ cat.name }}</a>
+                    {% if not loop.first %} {% endif %}<a href="{{ path(yrch_route("category_show"), {'id': cat.id }) }}" class="thin">{{ cat.name }}</a>
                 {% endfor %}
             </p>
         </div>
