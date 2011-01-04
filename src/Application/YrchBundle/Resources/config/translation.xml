@@ -5,18 +5,9 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="templating.helper.locale.class">Application\YrchBundle\Helper\LocaleHelper</parameter>
         <parameter key="yrch.languages" type="collection">
             <parameter key="en">en</parameter>
             <parameter key="fr">fr</parameter>
         </parameter>
     </parameters>
-
-    <services>
-        <service id="templating.helper.locale" class="%templating.helper.locale.class%">
-            <tag name="templating.helper" alias="locale" />
-            <argument type="service" id="session" />
-            <argument>%yrch.languages%</argument>
-        </service>
-    </services>
 </container>
