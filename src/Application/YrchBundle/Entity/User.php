@@ -19,6 +19,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 class User extends BaseUser
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:generatedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
      * @var string
      *
      * @validation:NotBlank(message="Please enter your nick")
