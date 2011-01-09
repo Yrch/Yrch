@@ -20,6 +20,6 @@ class MainController extends Controller
         } catch (\Exception $e) {
             $locale = $this->container->getParameter('session.default_locale');
         }
-        return $this->redirect($this->generateUrl($this->get('templating.helper.locale')->getRoute("localized_homepage", $locale)));
+        return $this->redirect($this->generateUrl($this->get('twig.extension.yrch')->getRoute("localized_homepage", $locale)));
     }
 }
