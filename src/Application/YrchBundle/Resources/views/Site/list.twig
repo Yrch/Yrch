@@ -1,6 +1,8 @@
 <ul id="sites">
 {% for site in sites %}
+{% spaceless %}
     <li>
+{% endspaceless %}
         <div class="site">
             <div class="site_left">
                 <div class="note" style="background-color: {{ "#66BB47" }}{# TODO: add an helper to calculate it #}">{{ site.averageScore }}</div>
@@ -23,7 +25,9 @@
             {% set updatedAt = site.updatedAt|date("d/m/Y") %}
             <p>{% trans %}Added on %createdAt% / Last modified on %updatedAt%{% endtrans %}</p>
         </div>
+{% spaceless %}
     </li>
+{% endspaceless %}
 {% else %}
     <li>{% trans %}No sites found{% endtrans %}</li>
 {% endfor %}
