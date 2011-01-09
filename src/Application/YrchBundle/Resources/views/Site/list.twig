@@ -7,7 +7,7 @@
                 {% if site.isSelectioned %}<div><img src="{{ asset('bundles/yrch/images/selection.gif') }}" alt="{% trans "Selection" %}" title="{% trans "Selection" %}" /></div>{% endif %}
                 {% if site.isLeech %}<div><img src="{{ asset('bundles/yrch/images/leecher.gif') }}" alt="{% trans "Leecher" %}" title="{% trans "Leecher" %}" /></div>{% endif %}
             </div>
-            <h3><a href="{{ path(yrch_route("site_show"), {'id': site.id }) }}">{{ site.name }}</a></h3>
+            <h3><a href="{{ yrch_path("site_show", {'id': site.id }) }}">{{ site.name }}</a></h3>
             <p>
                 {% for language in site.languages %}
                     {{ yrch_languageName(language) }}
@@ -16,7 +16,7 @@
             <p class="description">{{ site.description|nl2br }}</p>
             <p>{% trans %}Categories{% endtrans %} :
                 {% for cat in site.categories %}
-                    <a href="{{ path(yrch_route("category_show"), {'id': cat.id }) }}" class="thin">{{ cat.name }}</a>
+                    <a href="{{ yrch_path("category_show", {'id': cat.id }) }}" class="thin">{{ cat.name }}</a>
                 {% endfor %}
             </p>
             {% set createdAt = site.createdAt|date("d/m/Y") %}

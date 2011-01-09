@@ -17,7 +17,7 @@
                         <span>{{ yrch_languageName(yrch_locale()) }}</span>
                         <ul>
                             {% for language in yrch_availableLanguages %}
-                                <li><a href="{{ path(yrch_route(yrch_currentRoute(), language), yrch_currentRouteParameters()) }}">{{ yrch_languageName(language) }}</a></li>
+                                <li><a href="{{ yrch_path(yrch_currentRoute(), yrch_currentRouteParameters()|merge({"locale": language})) }}">{{ yrch_languageName(language) }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
