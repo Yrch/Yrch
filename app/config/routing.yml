@@ -7,5 +7,4 @@ doctrine_user_user:
 
 doctrine_user_session:
   resource: FOS/UserBundle/Resources/config/routing/security.xml
-  prefix: /session
 
