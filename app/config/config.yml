@@ -6,7 +6,11 @@ app.config:
   charset: UTF-8
   error_handler: null
   csrf_secret: xxxxxxxxxx
-  validation: { enabled: true, annotations: true }
+  validation:
+    enabled: true
+    annotations:
+      namespaces:
+        fosuserbundlevalidation: Bundle\FOS\UserBundle\Validator\
   templating:
     #assets_version: SomeVersionScheme
   session:
