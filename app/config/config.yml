@@ -8,9 +8,7 @@ app.config:
   csrf_secret: xxxxxxxxxx
   validation:
     enabled: true
-    annotations:
-      namespaces:
-        fosuserbundlevalidation: Bundle\FOS\UserBundle\Validator\
+    annotations: true
   templating:
     #assets_version: SomeVersionScheme
   session:
