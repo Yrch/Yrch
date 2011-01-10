@@ -103,6 +103,7 @@ class YrchFixtures implements FixtureInterface
         $user->setEmail('user'.$i.'@example.org');
         $user->setPassword('passwd'.$i);
         $user->setPreferedLocale('fr');
+        $user->setAlgorithm('sha1');
         return $user;
     }
 
