@@ -50,7 +50,7 @@ body {
     list-style: none;
     display: inline-block;
     vertical-align: top;
-    width: 33%;
+    width: 50%;
 }
 
 .site {
@@ -152,4 +152,10 @@ a:hover {
 
 #change_language span {
     padding: 0.6em;
+}
+
+@media screen and (min-width: 1300px) {
+    #sites li {
+        width: 33.3%;
+    }
 }

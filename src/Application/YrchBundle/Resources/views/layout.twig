@@ -7,7 +7,9 @@
         {% block stylesheets %}
             <link type="text/css" rel="stylesheet" href="{{ asset('bundles/yrch/css/main.css') }}" />
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('bundles/yrch/js/css3-mediaqueries.js') }}"></script>
+        {% endblock %}
     </head>
     <body>
         <div id="header">
