@@ -15,16 +15,17 @@ use Symfony\Component\Routing\RouterInterface;
  */
 class YrchExtension extends \Twig_Extension
 {
+    const color1 = '#FF0000';
+    const color2 = '#50C53A';
+
     /**
      * @var Request
      */
     protected $request;
-
     /**
      * @var Session
      */
     protected $session;
-
     /**
      * @var RouterInterface
      */
@@ -48,6 +49,7 @@ class YrchExtension extends \Twig_Extension
             'yrch_url' => new \Twig_Function_Method($this, 'getUrl'),
             'yrch_currentRoute' => new \Twig_Function_Method($this, 'getCurrentRoute'),
             'yrch_currentRouteParameters' => new \Twig_Function_Method($this, 'getCurrentRouteParameters'),
+            'yrch_scoreColor' => new \Twig_Function_Method($this, 'getScoreColor'),
         );
     }
 
@@ -134,6 +136,53 @@ class YrchExtension extends \Twig_Extension
         unset($parameters['_route']);
         unset($parameters['_locale']);
         return $parameters;
+    }
+
+    public function getScoreColor($score)
+    {
+        $scale = (int) (10 * $score);
+
+        if ($scale > 100 || $scale < 0) {
+            throw new \InvalidArgumentException(sprintf('The score "%s" is out of range'), $score);
+        }
+
+        $color1 = $this->colorSplit(self::color1);
+        $color2 = $this->colorSplit(self::color2);
+
+        $red_steps = ($color2[0] - $color1[0]) / 100;
+        $green_steps = ($color2[1] - $color1[1]) / 100;
+        $blue_steps = ($color2[2] - $color1[2]) / 100;
+
+        $col[0] = round($red_steps * $scale);
+        $col[1] = round($green_steps * $scale);
+        $col[2] = round($blue_steps * $scale);
+
+        for ($i = 0; $i < 3; $i++) {
+            $partcolor = $color1[$i] + $col[$i];
+            // If the color is less than 256
+            if ($partcolor < 256) {
+                // Makes sure the color is not less than 0
+                if ($partcolor > -1) {
+                    $newcolor[$i] = $partcolor;
+                } else {
+                    $newcolor[$i] = 0;
+                }
+                // Color was greater than 255
+            } else {
+                $newcolor[$i] = 255;
+            }
+        }
+
+        return "#".sprintf('%02X%02X%02X', $newcolor[0], $newcolor[1], $newcolor[2]);
+    }
+
+    private function colorSplit($color)
+    {
+        $c[] = hexdec(substr($color, 1, 2));
+        $c[] = hexdec(substr($color, 3, 2));
+        $c[] = hexdec(substr($color, 5, 2));
+
+        return $c;
     }
 }
 

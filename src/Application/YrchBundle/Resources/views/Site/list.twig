@@ -5,7 +5,11 @@
 {% endspaceless %}
         <div class="site">
             <div class="site_left">
-                <div class="note" style="background-color: {{ "#66BB47" }}{# TODO: add an helper to calculate it #}">{{ site.averageScore }}</div>
+{% if site.averageScore is empty %}
+                <div class="score">N/A</div>
+{% else %}
+                <div class="score" style="background-color: {{ yrch_scoreColor(site.averageScore) }}">{{ site.averageScore }}</div>
+{% endif %}
                 {% if site.isSelectioned %}<div><img src="{{ asset('bundles/yrch/images/selection.gif') }}" alt="{% trans "Selection" %}" title="{% trans "Selection" %}" /></div>{% endif %}
                 {% if site.isLeech %}<div><img src="{{ asset('bundles/yrch/images/leecher.gif') }}" alt="{% trans "Leecher" %}" title="{% trans "Leecher" %}" /></div>{% endif %}
             </div>
