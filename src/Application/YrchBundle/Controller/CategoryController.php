@@ -25,7 +25,7 @@ class CategoryController extends Controller
         }
         $categories = $categoryRepo->children($category, true);
         $path = $categoryRepo->getPath($category);
-        return $this->render('YrchBundle:Category:menu.twig', array ('categories' => $categories));
+        return $this->render('YrchBundle:Category:menu.twig.html', array ('categories' => $categories));
     }
 
     public function showAction($id = null)
@@ -46,6 +46,6 @@ class CategoryController extends Controller
             $title = $category->getName();
         }
         $id_root = $path[0]->getId();
-        return $this->render('YrchBundle:Category:show.twig', compact('category', 'title', 'sites', 'path', 'id_root'));
+        return $this->render('YrchBundle:Category:show.twig.html', compact('category', 'title', 'sites', 'path', 'id_root'));
     }
 }

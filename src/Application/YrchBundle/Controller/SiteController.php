@@ -20,6 +20,6 @@ class SiteController extends Controller
         $site = $siteRepo->find($id);
         // TODO: uncomment it when the security will be enabled
         $outlink = /*($this->get('security.context')->isAuthenticated())? $this->get('security.context')->getUser()->getOutlink():*/"_blank";
-        return $this->render('YrchBundle:Site:show.twig', compact('site', 'outlink'));
+        return $this->render('YrchBundle:Site:show.twig.html', compact('site', 'outlink'));
     }
 }

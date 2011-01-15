@@ -1,4 +1,4 @@
-{% extends 'YrchBundle::layout.twig' %}
+{% extends 'YrchBundle::layout.twig.html' %}
 
 {% block title_content %}
     {{ site.name }}
@@ -33,7 +33,7 @@
             <h1>{% trans "Reviews" %}</h1>
         </div>
         <div class="last">
-            {% include "YrchBundle:Review:list.twig" with {'reviews': site.reviews} %}
+            {% include "YrchBundle:Review:list.twig.html" with {'reviews': site.reviews} %}
         </div>
     </div>
 {% endblock %}

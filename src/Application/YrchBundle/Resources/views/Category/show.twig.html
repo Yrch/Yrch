@@ -1,15 +1,15 @@
-{% extends 'YrchBundle::layout3Columns.twig' %}
+{% extends 'YrchBundle::layout3Columns.twig.html' %}
 
 {% block title_content %}
     {{ title }}
 {% endblock %}
 
 {% block content %}
-    {% include "YrchBundle:Site:list.twig" with {'sites': sites} %}
+    {% include "YrchBundle:Site:list.twig.html" with {'sites': sites} %}
 {% endblock %}
 
 {% block categories %}
-    {% include "YrchBundle:Category:menu.twig" with {'categories': category.children} %}
+    {% include "YrchBundle:Category:menu.twig.html" with {'categories': category.children} %}
 {% endblock %}
 
 {% block header %}
