@@ -1,5 +1,6 @@
 imports:
   - { resource: config.yml }
+  - { resource: user_config.yml }
 
 app.config:
   profiler: { only_exceptions: false }

@@ -20,10 +20,6 @@ swiftmailer.config:
 
 ## FosUserBundle
 fos_user.config:
-  db_driver: orm
-  class:
-    model:
-      user: Application\YrchBundle\Entity\User
   confirmation_email:
     enabled: true
     from_email: xxxxx@xxxxx.xx

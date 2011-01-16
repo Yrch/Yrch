@@ -1,5 +1,6 @@
 imports:
   - { resource: config_dev.yml }
+  - { resource: user_config.yml }
 
 app.config:
   error_handler: false

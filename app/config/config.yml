@@ -1,6 +1,5 @@
 imports:
   - { resource: security.yml }
-  - { resource: user_config.yml }
 
 app.config:
   charset: UTF-8
@@ -37,3 +36,10 @@ i18n_routing.config:
 ## DoctrineExtensionsBundle
 doctrine_extensions.config:
   default: ~
+
+## FosUserBundle
+fos_user.config:
+  db_driver: orm
+  class:
+    model:
+      user: Application\YrchBundle\Entity\User
