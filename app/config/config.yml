@@ -13,6 +13,7 @@ app.config:
   session:
     auto_start: true
     lifetime: 3600
+    name: Yrch
   translator: { fallback: en }
 
 ## Twig Configuration
