@@ -13,7 +13,7 @@
             <p><a href="{{ site.url }}" target="{{ outlink }}">{{ site.url }}</a></p>
             <p>{% trans "Score" %} : {{ site.averageScore }} / 10</p>
             <p>{% trans "Owners" %} :
-                {% for user in site.owners %}{% if not loop.first %} {% endif %}{% if user.is(site.superOwner) %}<strong>{{ user }}</strong>{% else %}{{ user }}{% endif %}{% endfor %}
+                {% for user in site.owners %}{% if not loop.first %} {% endif %}{% if user.isUser(site.superOwner) %}<strong>{{ user }}</strong>{% else %}{{ user }}{% endif %}{% endfor %}
             </p>
             <p>
                 {% for language in site.languages %}
