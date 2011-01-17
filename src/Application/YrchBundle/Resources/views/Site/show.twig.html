@@ -23,7 +23,7 @@
             <p>Description: {{ site.description|nl2br }}</p>
             <p>{% trans %}Categories{% endtrans %} :
                 {% for cat in site.categories %}
-                    {% if not loop.first %} {% endif %}<a href="{{ yrch_path("category_show", {'id': cat.id }) }}" class="thin">{{ cat.name }}</a>
+                    {% if not loop.first %} {% endif %}<a href="{{ path('category_show', {'id': cat.id }) }}" class="thin">{{ cat.name }}</a>
                 {% endfor %}
             </p>
         </div>

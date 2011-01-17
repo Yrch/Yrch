@@ -4,7 +4,6 @@ namespace Application\YrchBundle\Twig;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session;
-use Symfony\Component\Routing\RouterInterface;
 
 /**
  * LocaleHelper
@@ -26,17 +25,12 @@ class YrchExtension extends \Twig_Extension
      * @var Session
      */
     protected $session;
-    /**
-     * @var RouterInterface
-     */
-    protected $router;
     protected $availableLanguages;
 
-    public function __construct(Request $request, Session $session, RouterInterface $router, array $availableLanguages)
+    public function __construct(Request $request, Session $session, array $availableLanguages)
     {
         $this->request = $request;
         $this->session = $session;
-        $this->router = $router;
         $this->availableLanguages = $availableLanguages;
     }
 
@@ -45,8 +39,6 @@ class YrchExtension extends \Twig_Extension
         return array(
             'yrch_locale' => new \Twig_Function_Method($this, 'getLocale'),
             'yrch_languageName' => new \Twig_Function_Method($this, 'getLanguageName'),
-            'yrch_path' => new \Twig_Function_Method($this, 'getPath'),
-            'yrch_url' => new \Twig_Function_Method($this, 'getUrl'),
             'yrch_currentRoute' => new \Twig_Function_Method($this, 'getCurrentRoute'),
             'yrch_currentRouteParameters' => new \Twig_Function_Method($this, 'getCurrentRouteParameters'),
             'yrch_scoreColor' => new \Twig_Function_Method($this, 'getScoreColor'),
@@ -84,34 +76,6 @@ class YrchExtension extends \Twig_Extension
     public function getLanguageName($language)
     {
         return \Locale::getDisplayLanguage($language, $this->session->getLocale());
-    }
-
-    /**
-     * Get the path for the given route
-     *
-     * @param string $name
-     * @param array $parameters
-     * @return string
-     */
-    public function getPath($name, array $parameters = array())
-    {
-        $parameters = array_merge(array('locale' => $this->getLocale()), $parameters);
-
-        return $this->router->generate($name, $parameters, false);
-    }
-
-    /**
-     * Get the url for the given route
-     *
-     * @param string $name
-     * @param array $parameters
-     * @return string
-     */
-    public function getUrl($name, array $parameters = array())
-    {
-        $parameters = array_merge(array('locale' => $this->getLocale()), $parameters);
-
-        return $this->router->generate($name, $parameters, true);
     }
 
     /**
@@ -176,7 +140,7 @@ class YrchExtension extends \Twig_Extension
         return "#".sprintf('%02X%02X%02X', $newcolor[0], $newcolor[1], $newcolor[2]);
     }
 
-    private function colorSplit($color)
+    protected function colorSplit($color)
     {
         $c[] = hexdec(substr($color, 1, 2));
         $c[] = hexdec(substr($color, 3, 2));

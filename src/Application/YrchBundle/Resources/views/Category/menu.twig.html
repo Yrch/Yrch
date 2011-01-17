@@ -5,7 +5,7 @@
     <div class="last">
         {% for category in categories %}
             <div class="category">
-                <p><a href="{{ yrch_path("category_show", {'id': category.id }) }}">{{ category.name }}</a></p>
+                <p><a href="{{ path('category_show', {'id': category.id }) }}">{{ category.name }}</a></p>
             </div>
         {% else %}
             <p>{% trans %}No subcategories{% endtrans %}</p>
