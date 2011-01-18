@@ -137,14 +137,6 @@ class User extends BaseUser
     }
 
     /**
-     * @codeCoverageIgnore
-     */
-    public function  __toString()
-    {
-        return (string) $this->getNick();
-    }
-
-    /**
      * Set nick
      *
      * @param string $nick
