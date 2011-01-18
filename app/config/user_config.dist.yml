@@ -20,9 +20,10 @@ swiftmailer.config:
 
 ## FosUserBundle
 fos_user.config:
-  confirmation_email:
-    enabled: true
+  email:
     from_email: xxxxx@xxxxx.xx
+    confirmation:
+      enabled: true
 
 ## YrchBundle configuration
 yrch.config:
