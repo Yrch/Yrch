@@ -27,20 +27,21 @@ doctrine.orm:
   auto_generate_proxy_classes: true
   mappings:
     YrchBundle: ~
-    DoctrineExtensionsBundle: ~
-    UserBundle: ~
+    StofDoctrineExtensionsBundle: ~
+    FOSUserBundle: ~
 
 ## I18nRoutingBundle
 i18n_routing.config:
   router: { resource: "%kernel.root_dir%/config/routing.yml" }
 
-## DoctrineExtensionsBundle
-doctrine_extensions.config:
-  default: ~
+## StofDoctrineExtensionsBundle
+stof_doctrine_extensions.config:
+  orm:
+    default: ~
 
-## FosUserBundle
+## FOSUserBundle
 fos_user.config:
   db_driver: orm
   class:
     model:
-      user: Application\YrchBundle\Entity\User
+      user: Yrch\YrchBundle\Entity\User

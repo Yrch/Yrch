@@ -1,0 +1,35 @@
+{% extends 'YrchBundle::layout3Columns.html.twig' %}
+
+{% block title_content %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    {% include "YrchBundle:Site:list.html.twig" with {'sites': sites} %}
+{% endblock %}
+
+{% block categories %}
+    {% include "YrchBundle:Category:menu.html.twig" with {'categories': category.children} %}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+    <div class="box">
+        <div class="box_head">
+            <h1>{{ category.name }}</h1>
+        </div>
+        <div id="path"{% if not category.description %} class="last"{% endif %}>
+            <p>
+                {% for cat in path %}
+                    {% if not loop.first %} &gt; {% endif %}
+                    <a href="{{ path('category_show', {'id': cat.id }) }}">{{ cat.name }}</a>
+                {% endfor %}
+            </p>
+        </div>
+{% if category.description %}
+        <div class="description last">
+            <p>{{ category.description }}</p>
+        </div>
+{% endif %}
+    </div>
+{% endblock %}

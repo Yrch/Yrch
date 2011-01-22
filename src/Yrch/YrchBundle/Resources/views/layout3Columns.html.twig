@@ -1,0 +1,17 @@
+{% extends 'YrchBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/yrch/css/columns.css') }}" />
+{% endblock %}
+{% block container %}
+    <div id="content" class="column">
+        {% block content %}{% endblock %}
+    </div>
+    <div id="categories" class="column">
+        {% block categories %}{% endblock %}
+    </div>
+    <div id="right_bar" class="column">
+        {% block right_bar %}{% endblock %}
+    </div>
+{% endblock %}

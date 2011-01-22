@@ -24,10 +24,10 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
 
             // register your bundles
-            new Bundle\FOS\UserBundle\FOSUserBundle(),
-            new Bundle\DoctrineExtensionsBundle\DoctrineExtensionsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Bundle\I18nRoutingBundle\I18nRoutingBundle(),
-            new Application\YrchBundle\YrchBundle(),
+            new Yrch\YrchBundle\YrchBundle(),
         );
 
         if ($this->isDebug()) {
@@ -35,15 +35,6 @@ class AppKernel extends Kernel
         }
 
         return $bundles;
-    }
-
-    public function registerBundleDirs()
-    {
-        return array(
-            'Application'     => __DIR__.'/../src/Application',
-            'Bundle'          => __DIR__.'/../src/Bundle',
-            'Symfony\\Bundle' => __DIR__.'/../src/vendor/symfony/src/Symfony/Bundle',
-        );
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\UniversalClassLoader;
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
     'Symfony'                        => $vendorDir.'/symfony/src',
-    'Application'                    => __DIR__,
+    'Yrch'                           => __DIR__,
+    'FOS'                            => __DIR__,
+    'Stof'                           => __DIR__,
     'Bundle'                         => __DIR__,
     'Gedmo'                          => $vendorDir.'/doctrine-extensions/lib',
     'Doctrine\\Common\\DataFixtures' => $vendorDir.'/doctrine-data-fixtures/lib',
