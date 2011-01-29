@@ -37,8 +37,6 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
-        $listenerManager = $this->container->get('doctrine_extensions.listener_manager');
-        $listenerManager->addAllListeners($em);
         $siteRepo = $em->getRepository('Yrch\YrchBundle\Entity\Site');
         $siteRepo->updateAllAverageNotes();
         $output->write('The scores have been updated');

@@ -2,7 +2,7 @@
 
 namespace Yrch\YrchBundle\Entity;
 
-use Bundle\DoctrineExtensionsBundle\Entity\AbstractTranslation;
+use Stof\DoctrineExtensionsBundle\Entity\AbstractTranslation;
 
 /**
  * SiteTranslation
@@ -14,13 +14,13 @@ use Bundle\DoctrineExtensionsBundle\Entity\AbstractTranslation;
  * @orm:Table(
  *          name="site_translations",
  *          indexes={@orm:index(name="site_translations_lookup_idx", columns={
- *             "locale", "entity", "foreign_key"
+ *             "locale", "object_class", "foreign_key"
  *         })},
  *         uniqueConstraints={@orm:UniqueConstraint(name="site_lookup_unique_idx", columns={
- *             "locale", "entity", "foreign_key", "field"
+ *             "locale", "object_class", "foreign_key", "field"
  *         })}
  * )
- * @orm:Entity(repositoryClass="Gedmo\Translatable\Repository\TranslationRepository")
+ * @orm:Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")
  */
 class SiteTranslation extends AbstractTranslation
 {

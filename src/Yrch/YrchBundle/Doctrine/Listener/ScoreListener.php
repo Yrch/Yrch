@@ -55,7 +55,7 @@ class ScoreListener implements EventSubscriber
         $entity = $args->getEntity();
         $uow = $em->getUnitOfWork();
         $entityClass = get_class($entity);
-        if ($entityClass == 'Application\\YrchBundle\\Entity\\Review' && $entity->getStatus() == 'ok') {
+        if ($entityClass == 'Yrch\\YrchBundle\\Entity\\Review' && $entity->getStatus() == 'ok') {
             $oid = spl_object_hash($entity->getSite());
             if (!array_key_exists($oid, $this->_pendingSiteUpdates)) {
                 $this->_pendingSiteUpdates[$oid] = $entity->getSite();
@@ -87,7 +87,7 @@ class ScoreListener implements EventSubscriber
         $entity = $args->getEntity();
         $uow = $em->getUnitOfWork();
         $entityClass = get_class($entity);
-        if ($entityClass == 'Application\\YrchBundle\\Entity\\Review' && $this->needsUpdate($args)) {
+        if ($entityClass == 'Yrch\\YrchBundle\\Entity\\Review' && $this->needsUpdate($args)) {
             $oid = spl_object_hash($entity->getSite());
             if (!array_key_exists($oid, $this->_pendingSiteUpdates)) {
                 $this->_pendingSiteUpdates[$oid] = $entity->getSite();
@@ -125,7 +125,7 @@ class ScoreListener implements EventSubscriber
 
         if (!$uow->getScheduledEntityInsertions() && !$uow->getScheduledEntityUpdates()) {
             // run pending updates
-            $siteRepo = $em->getRepository('Application\\YrchBundle\\Entity\\Site');
+            $siteRepo = $em->getRepository('Yrch\\YrchBundle\\Entity\\Site');
             foreach ($this->_pendingSiteUpdates as $oid => $site) {
                 if (!$this->_treatedSiteUpdates[$oid]){
                     $score = $siteRepo->getUpdatedAverageScore($site);

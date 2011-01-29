@@ -20,7 +20,7 @@ class YrchFixtures implements FixtureInterface
 {
     public function load($manager)
     {
-        $categoryRepo = $manager->getRepository('Application\\YrchBundle\\Entity\\Category');
+        $categoryRepo = $manager->getRepository('Yrch\\YrchBundle\\Entity\\Category');
         $rootNodes = $categoryRepo->children(null, true);
         $rootCategory = $rootNodes[0];
         $categories = array();
@@ -99,8 +99,10 @@ class YrchFixtures implements FixtureInterface
     {
         $user = new User();
         $user->setUsername('user_'.$i);
+        $user->setUsernameCanonical(mb_convert_case($user->getUsername(), MB_CASE_LOWER, mb_detect_encoding($user->getUsername())));
         $user->setNick('User '.$i);
         $user->setEmail('user'.$i.'@example.org');
+        $user->setEmailCanonical(mb_convert_case($user->getEmail(), MB_CASE_LOWER, mb_detect_encoding($user->getEmail())));
         $user->setPassword('passwd'.$i);
         $user->setPreferedLocale('fr');
         $user->setAlgorithm('sha1');

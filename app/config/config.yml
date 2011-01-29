@@ -9,7 +9,7 @@ app.config:
     enabled: true
     annotations: true
   templating:
-    #assets_version: SomeVersionScheme
+    engines: [twig]
   session:
     auto_start: true
     lifetime: 3600

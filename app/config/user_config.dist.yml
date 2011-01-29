@@ -8,6 +8,7 @@ doctrine.dbal:
   user: xxxxxxxx
   password: ~
   host: ~
+  logging: %kernel.debug%
 
 ## Swiftmailer Configuration
 swiftmailer.config:

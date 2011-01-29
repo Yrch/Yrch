@@ -42,8 +42,6 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $listenerManager = $this->container->get('doctrine_extensions.listener_manager');
-        $listenerManager->addAllListeners($this->container->get('doctrine.orm.entity_manager'));
         // Generating groups
         $output->writeln('Generating groups');
         $groupManager = $this->container->get('fos_user.group_manager');
@@ -87,7 +85,7 @@ EOT
         // Generating root category
         $output->writeln('Generating the root category');
         $em = $this->container->get('doctrine.orm.entity_manager');
-        $categoryRepo = $em->getRepository('Application\\YrchBundle\\Entity\\Category');
+        $categoryRepo = $em->getRepository('Yrch\\YrchBundle\\Entity\\Category');
         $rootnodes = $categoryRepo->children(null, true);
         if (!$rootnodes){
             $category = new Category();
