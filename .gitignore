@@ -1,4 +1,4 @@
-/src/vendor/
+/vendor/*
 /app/cache/*
 /app/logs/*
 /app/config/user_config.yml
