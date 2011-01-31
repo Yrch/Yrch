@@ -9,20 +9,20 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="../src/autoload.php"
+         bootstrap="bootstrap.php"
 >
   <testsuites>
       <testsuite name="Yrch! Test Suite">
-          <directory>../src/Application/*/Tests</directory>
+          <directory>../src/Yrch/*/Tests</directory>
       </testsuite>
   </testsuites>
 
   <filter>
       <whitelist>
-          <directory>../src/Application</directory>
+          <directory>../src/Yrch</directory>
           <exclude>
-              <directory>../src/Application/*/Resources</directory>
-              <directory>../src/Application/*/Tests</directory>
+              <directory>../src/Yrch/*/Resources</directory>
+              <directory>../src/Yrch/*/Tests</directory>
           </exclude>
       </whitelist>
   </filter>

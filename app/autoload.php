@@ -1,6 +1,7 @@
 <?php
 
-$vendorDir = __DIR__.'/vendor';
+$vendorDir = __DIR__.'/../src/vendor';
+$srcDir = __DIR__.'/../src';
 
 require_once $vendorDir.'/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
@@ -9,10 +10,10 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
     'Symfony'                        => $vendorDir.'/symfony/src',
-    'Yrch'                           => __DIR__,
-    'FOS'                            => __DIR__,
-    'Stof'                           => __DIR__,
-    'Bundle'                         => __DIR__,
+    'Yrch'                           => $srcDir,
+    'FOS'                            => $srcDir,
+    'Stof'                           => $srcDir,
+    'Bundle'                         => $srcDir,
     'Gedmo'                          => $vendorDir.'/doctrine-extensions/lib',
     'Doctrine\\Common\\DataFixtures' => $vendorDir.'/doctrine-data-fixtures/lib',
     'Doctrine\\Common'               => $vendorDir.'/doctrine-common/lib',
@@ -24,8 +25,8 @@ $loader->registerNamespaces(array(
     
 ));
 $loader->registerPrefixes(array(
-    'Swift_' => $vendorDir.'/swiftmailer/lib/classes',
+    'Swift_'           => $vendorDir.'/swiftmailer/lib/classes',
     'Twig_Extensions_' => $vendorDir.'/twig-extensions/lib',
-    'Twig_'  => $vendorDir.'/twig/lib',
+    'Twig_'            => $vendorDir.'/twig/lib',
 ));
 $loader->register();
