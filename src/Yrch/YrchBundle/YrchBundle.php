@@ -3,7 +3,6 @@
 namespace Yrch\YrchBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Yrch\YrchBundle\Doctrine\Listener\ScoreListener;
 
 /**
  * Yrchbundle
@@ -14,29 +13,4 @@ use Yrch\YrchBundle\Doctrine\Listener\ScoreListener;
  */
 class YrchBundle extends Bundle
 {
-    public function boot()
-    {
-        try {
-            $em = $this->container->get('doctrine.orm.entity_manager');
-        } catch (\InvalidArgumentException $e){
-            throw new \InvalidArgumentException('You must provide a Doctrine ORM Entity Manager');
-        }
-        $em->getEventManager()->addEventSubscriber(new ScoreListener());
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getNamespace()
-    {
-        return __NAMESPACE__;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPath()
-    {
-        return strtr(__DIR__, '\\', '/');
-    }
 }

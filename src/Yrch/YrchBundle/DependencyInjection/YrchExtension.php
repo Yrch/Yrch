@@ -23,6 +23,7 @@ class YrchExtension extends Extension
         $loader->load('twig.xml');
         $loader->load('logger.xml');
         $loader->load('collectors.xml');
+        $loader->load('orm.xml');
 
         foreach ($configs as $config) {
             if (isset($config['special_user'])) {
