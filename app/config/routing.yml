@@ -1,10 +1,10 @@
 yrch:
   resource: "@YrchBundle/Resources/config/routing/routing.yml"
 
-doctrine_user_user:
+fos_user_user:
   resource: "@FOSUserBundle/Resources/config/routing/user.xml"
   prefix: /user
 
-doctrine_user_session:
+fos_user_security:
   resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

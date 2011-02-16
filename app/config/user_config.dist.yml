@@ -1,17 +1,18 @@
-app.config:
+framework:
   session:
     default_locale: en
 
 ## Doctrine Configuration
-doctrine.dbal:
-  dbname: xxxxxxxx
-  user: xxxxxxxx
-  password: ~
-  host: ~
-  logging: %kernel.debug%
+doctrine:
+  dbal:
+    dbname: xxxxxxxx
+    user: xxxxxxxx
+    password: ~
+    host: ~
+    logging: %kernel.debug%
 
 ## Swiftmailer Configuration
-swiftmailer.config:
+swiftmailer:
   transport: smtp
   encryption: ssl
   auth_mode: login
@@ -20,14 +21,14 @@ swiftmailer.config:
   password: xxxxxxxx
 
 ## FosUserBundle
-fos_user.config:
+fos_user:
   email:
-    from_email: xxxxx@xxxxx.xx
+    from_email: { xxxxx@xxxxx.xx: XXXX }
     confirmation:
       enabled: true
 
 ## YrchBundle configuration
-yrch.config:
+yrch:
   special_user:
     username: xxxxxx
     nick: xxxxxx

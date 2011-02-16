@@ -2,21 +2,21 @@ imports:
   - { resource: config.yml }
   - { resource: user_config.yml }
 
-app.config:
+framework:
   profiler: { only_exceptions: false }
 
-webprofiler.config:
+web_profiler:
   toolbar: true
   intercept_redirects: true
 
-zend.config:
+zend:
   logger:
     priority: info
     path: %kernel.logs_dir%/%kernel.environment%.log
 
-twig.config:
+twig:
   auto_reload: true
 
 ## I18nRoutingBundle
-i18n_routing.config:
+i18n_routing:
   router: { resource: "%kernel.root_dir%/config/routing_dev.yml" }

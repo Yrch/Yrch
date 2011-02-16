@@ -1,10 +1,12 @@
 imports:
   - { resource: security.yml }
 
-app.config:
+framework:
   charset: UTF-8
   error_handler: null
-  csrf_secret: xxxxxxxxxx
+  csrf_protection:
+    enabled: true
+    secret: xxxxxxxxxx
   validation:
     enabled: true
     annotations: true
@@ -17,31 +19,34 @@ app.config:
   translator: { fallback: en }
 
 ## Twig Configuration
-twig.config:
+twig:
   debug: %kernel.debug%
   strict_variables: %kernel.debug%
   extensions: [twig.extension.text, twig.extension.debug]
 
 ## Doctrine Configuration
-doctrine.orm:
-  auto_generate_proxy_classes: true
-  mappings:
-    YrchBundle: ~
-    StofDoctrineExtensionsBundle: ~
-    FOSUserBundle: ~
+doctrine:
+  orm:
+    auto_generate_proxy_classes: true
+    mappings:
+      YrchBundle: ~
+      StofDoctrineExtensionsBundle: ~
+      FOSUserBundle: ~
 
 ## I18nRoutingBundle
-i18n_routing.config:
+i18n_routing:
   router: { resource: "%kernel.root_dir%/config/routing.yml" }
 
 ## StofDoctrineExtensionsBundle
-stof_doctrine_extensions.config:
+stof_doctrine_extensions:
   orm:
     default: ~
 
 ## FOSUserBundle
-fos_user.config:
+fos_user:
   db_driver: orm
+  provider_key: fos_user
   class:
     model:
       user: Yrch\YrchBundle\Entity\User
+      group: FOS\UserBundle\Entity\DefaultGroup

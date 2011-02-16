@@ -95,14 +95,14 @@ class User extends BaseUser
     protected $reviewNotifications;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      *
      * @orm:ManyToMany(targetEntity="Yrch\YrchBundle\Entity\Site", mappedBy="owners")
      */
     protected $sites;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      *
      * @orm:ManyToMany(targetEntity="Yrch\YrchBundle\Entity\Site")
      * @orm:JoinTable(name="user_favorites",
@@ -113,11 +113,22 @@ class User extends BaseUser
     protected $favorites;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      *
      * @orm:OneToMany(targetEntity="Yrch\YrchBundle\Entity\Review", mappedBy="owner")
      */
     protected $reviews;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @orm:ManyToMany(targetEntity="FOS\UserBundle\Entity\DefaultGroup")
+     * @orm:JoinTable(name="fos_user_user_group",
+     *      joinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@orm:JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
 
     public function  __construct()
     {

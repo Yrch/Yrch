@@ -1,4 +1,4 @@
-security.config:
+security:
   providers:
     fos_user:
       id: fos_user.user_manager

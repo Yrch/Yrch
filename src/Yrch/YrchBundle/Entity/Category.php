@@ -11,8 +11,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  *
- * @orm:Entity(repositoryClass="Gedmo\Tree\Repository\TreeNodeRepository")
+ * @orm:Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
  * @orm:Table(name="category")
+ * @gedmo:Tree(type="nested")
  */
 class Category
 {
