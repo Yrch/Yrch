@@ -14,26 +14,28 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class YrchExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    public function testconfigLoad()
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidConfig()
     {
         $container = new ContainerBuilder();
         $loader = new YrchExtension();
-        try {
-            $loader->configLoad(array (), $container);
-        } catch (\Exception $e){
-            $this->assertInstanceOf('\InvalidArgumentException', $e, 'The special_user configuration is mandatory');
-        }
+        $loader->load(array (), $container);
+    }
 
+    public function testValidConfig()
+    {
         $container = new ContainerBuilder();
         $loader = new YrchExtension();
-        $config = array (
+        $config = array (array (
             'special_user' => array (
                 'username' => 'test',
                 'nick' => 'Test',
                 'email' => 'test@example.org'
             )
-        );
-        $loader->configLoad($config, $container);
+        ));
+        $loader->load($config, $container);
         $this->assertEquals('test', $container->getParameter('yrch.special_user.username'));
         $this->assertEquals('Test', $container->getParameter('yrch.special_user.nick'));
         $this->assertEquals('test@example.org', $container->getParameter('yrch.special_user.email'));
