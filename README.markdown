@@ -1,12 +1,12 @@
 **Attention: Yrch! 2.0 is still at the very beginning of its development and
 will not be released until Symfony2 stable release is available. If you want
-to set up your site now please use Yrch! 1.0 available on 
+to set up your site now please use Yrch! 1.0 available on
 [SourceForge](http://sourceforge.net/projects/yrch/) and migrate to v2.0 when it
 will be released.**
 
-Yrch! is a project of yahoo-like hierachised websites categories written in PHP. 
-Yrch! is willing to be an international community portal that allow site(s) 
-owners to inform that community of news and changes on their own web site. 
+Yrch! is a project of yahoo-like hierachised websites categories written in PHP.
+Yrch! is willing to be an international community portal that allow site(s)
+owners to inform that community of news and changes on their own web site.
 Yrch! is a project of the french society [Tolkiendil](http://www.tolkiendil.com).
 
 ## Credits and acknowledgment
@@ -38,13 +38,7 @@ LICENSE in the YRCH! distribution.
 
 ### Get vendors libraries
 
-    cd src/
-    ./install_vendors.sh
-
-Note that this will retrieve the development versions from Github. You can then
-update your vendors by running :
-    cd src/
-    ./update_vendors.sh
+    git submodule update --init
 
 ### Configure Yrch!
 
