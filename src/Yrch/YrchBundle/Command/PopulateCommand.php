@@ -42,29 +42,6 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // Generating groups
-        $output->writeln('Generating groups');
-        $groupManager = $this->container->get('fos_user.group_manager');
-        // Admin
-        $adminGroup = $groupManager->findGroupByName('Admin');
-        if ($adminGroup === null){
-            $adminGroup = $groupManager->createGroup('Admin');
-            $adminGroup->addRole('ROLE_ADMIN');
-            $groupManager->updateGroup($adminGroup);
-            if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
-                $output->writeln(sprintf('Created group <comment>%s</comment>', $adminGroup->getName()));
-            }
-        }
-        // Moderator
-        $moderatorGroup = $groupManager->findGroupByName('Moderator');
-        if ($moderatorGroup === null){
-            $moderatorGroup = $groupManager->createGroup('Moderator');
-            $moderatorGroup->addRole('ROLE_MODERATOR');
-            $groupManager->updateGroup($moderatorGroup);
-            if ($output->getVerbosity() == Output::VERBOSITY_VERBOSE){
-                $output->writeln(sprintf('Created group <comment>%s</comment>', $moderatorGroup->getName()));
-            }
-        }
         // Special user
         $output->writeln('Generating special user');
         $userManager = $this->container->get('fos_user.user_manager');
@@ -73,8 +50,8 @@ EOT
             $specialUser->setUsername($this->container->getParameter('yrch.special_user.username'));
             $specialUser->setNick($this->container->getParameter('yrch.special_user.nick'));
             $specialUser->setEmail($this->container->getParameter('yrch.special_user.email'));
-            $specialUser->setPreferedLocale($this->container->getParameter('session.default_locale'));
-            $specialUser->setPassword(md5(uniqid() . rand(100000, 999999)));
+            $specialUser->setPreferedLocale($this->container->getParameter('stof_doctrine_extensions.default_locale'));
+            $specialUser->setPassword(md5(uniqid().rand(100000, 999999)));
             $specialUser->setEnabled(true);
             $specialUser->setLocked(true);
             $userManager->updateUser($specialUser);

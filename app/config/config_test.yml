@@ -10,13 +10,11 @@ web_profiler:
   toolbar: false
   intercept_redirects: false
 
-zend:
-  logger:
-    priority: debug
-
 doctrine:
   dbal:
-    dbname: yrch_test
+    connections:
+      default:
+        dbname: yrch_test
 
 swiftmailer:
   disable_delivery: true

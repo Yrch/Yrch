@@ -5,11 +5,12 @@ framework:
 ## Doctrine Configuration
 doctrine:
   dbal:
-    dbname: xxxxxxxx
-    user: xxxxxxxx
-    password: ~
-    host: ~
-    logging: %kernel.debug%
+    connections:
+      default:
+        dbname: xxxxxxxx
+        user: xxxxxxxx
+        password: ~
+        host: ~
 
 ## Swiftmailer Configuration
 swiftmailer:

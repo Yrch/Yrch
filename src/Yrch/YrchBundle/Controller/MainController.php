@@ -18,7 +18,7 @@ class MainController extends Controller
         try {
             $locale = $this->get('request')->getPreferredLanguage($this->container->getParameter('yrch.languages'));
         } catch (\Exception $e) {
-            $locale = $this->container->getParameter('session.default_locale');
+            $locale = $this->container->get('session')->getLocale();
         }
         return $this->redirect($this->generateUrl("localized_homepage", compact('locale')));
     }

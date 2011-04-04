@@ -4,6 +4,7 @@ imports:
 framework:
   charset: UTF-8
   error_handler: null
+  router: { resource: "%kernel.root_dir%/config/routing.yml" }
   csrf_protection:
     enabled: true
     secret: xxxxxxxxxx
@@ -28,14 +29,15 @@ twig:
 doctrine:
   orm:
     auto_generate_proxy_classes: true
-    mappings:
-      YrchBundle: ~
-      StofDoctrineExtensionsBundle: ~
-      FOSUserBundle: ~
+    entity_managers:
+      default:
+        mappings:
+          YrchBundle: ~
+          StofDoctrineExtensionsBundle: ~
+          FOSUserBundle: ~
 
 ## I18nRoutingBundle
-i18n_routing:
-  router: { resource: "%kernel.root_dir%/config/routing.yml" }
+be_simple_i18n_routing: ~
 
 ## StofDoctrineExtensionsBundle
 stof_doctrine_extensions:
@@ -45,8 +47,7 @@ stof_doctrine_extensions:
 ## FOSUserBundle
 fos_user:
   db_driver: orm
-  provider_key: fos_user
+  firewall_name: main
   class:
     model:
       user: Yrch\YrchBundle\Entity\User
-      group: FOS\UserBundle\Entity\DefaultGroup

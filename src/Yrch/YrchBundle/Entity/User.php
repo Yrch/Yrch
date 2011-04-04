@@ -119,17 +119,6 @@ class User extends BaseUser
      */
     protected $reviews;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @orm:ManyToMany(targetEntity="FOS\UserBundle\Entity\DefaultGroup")
-     * @orm:JoinTable(name="fos_user_user_group",
-     *      joinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@orm:JoinColumn(name="group_id", referencedColumnName="id")}
-     * )
-     */
-    protected $groups;
-
     public function  __construct()
     {
         parent::__construct();

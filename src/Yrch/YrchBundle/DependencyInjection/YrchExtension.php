@@ -21,8 +21,6 @@ class YrchExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('translation.xml');
         $loader->load('twig.xml');
-        $loader->load('logger.xml');
-        $loader->load('collectors.xml');
         $loader->load('orm.xml');
 
         foreach ($configs as $config) {
@@ -42,10 +40,5 @@ class YrchExtension extends Extension
         if (!$container->hasParameter('yrch.special_user.username') || !$container->hasParameter('yrch.special_user.nick') || !$container->hasParameter('yrch.special_user.email')) {
             throw new \InvalidArgumentException('You must provide the yrch.special_user configuration');
         }
-    }
-
-    public function getAlias()
-    {
-        return 'yrch';
     }
 }
