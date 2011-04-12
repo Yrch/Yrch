@@ -18,18 +18,13 @@ class YrchExtension extends \Twig_Extension
     const color2 = '#50C53A';
 
     /**
-     * @var Request
-     */
-    protected $request;
-    /**
      * @var Session
      */
     protected $session;
     protected $availableLanguages;
 
-    public function __construct(Request $request, Session $session, array $availableLanguages)
+    public function __construct(Session $session, array $availableLanguages)
     {
-        $this->request = $request;
         $this->session = $session;
         $this->availableLanguages = $availableLanguages;
     }
@@ -37,11 +32,15 @@ class YrchExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'yrch_locale' => new \Twig_Function_Method($this, 'getLocale'),
             'yrch_languageName' => new \Twig_Function_Method($this, 'getLanguageName'),
-            'yrch_currentRoute' => new \Twig_Function_Method($this, 'getCurrentRoute'),
-            'yrch_currentRouteParameters' => new \Twig_Function_Method($this, 'getCurrentRouteParameters'),
             'yrch_scoreColor' => new \Twig_Function_Method($this, 'getScoreColor'),
+        );
+    }
+
+    public function getFilters()
+    {
+        return array(
+            'yrch_cleanRouteParameters' => new \Twig_Filter_Method($this, 'cleanRouteParameters'),
         );
     }
 
@@ -58,16 +57,6 @@ class YrchExtension extends \Twig_Extension
     }
 
     /**
-     * Get the current locale
-     *
-     * @return string
-     */
-    public function getLocale()
-    {
-        return $this->session->getLocale();
-    }
-
-    /**
      * Get the language name in the used locale
      *
      * @param string $language the iso code of the language
@@ -79,23 +68,12 @@ class YrchExtension extends \Twig_Extension
     }
 
     /**
-     * Get the current route
-     *
-     * @return string
-     */
-    public function getCurrentRoute()
-    {
-        return $this->request->attributes->get('_route');
-    }
-
-    /**
      * Get the current route parameters
      *
      * @return string
      */
-    public function getCurrentRouteParameters()
+    public function cleanRouteParameters($parameters)
     {
-        $parameters = $this->request->attributes->all();
         unset($parameters['_controller']);
         unset($parameters['_route']);
         unset($parameters['_locale']);
