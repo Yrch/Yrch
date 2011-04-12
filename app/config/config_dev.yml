@@ -8,6 +8,7 @@ framework:
 
 web_profiler:
   toolbar: true
+  verbose: false
   intercept_redirects: true
 
 monolog:
