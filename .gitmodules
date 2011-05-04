@@ -46,3 +46,6 @@
 [submodule "vendor/bundles/BeSimple/I18nRoutingBundle"]
 	path = vendor/bundles/BeSimple/I18nRoutingBundle
 	url = git://github.com/BeSimple/I18nRoutingBundle.git
+[submodule "vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle"]
+	path = vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle
+	url = git://github.com/symfony/DoctrineFixturesBundle.git

@@ -6,7 +6,7 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
-    'Symfony'                        => $vendorDir.'/symfony/src',
+    'Symfony'                        => array($vendorDir.'/symfony/src', $vendorDir.'/bundles'),
     'Yrch'                           => __DIR__.'/../src',
     'FOS'                            => $vendorDir.'/bundles',
     'Stof'                           => $vendorDir.'/bundles',
