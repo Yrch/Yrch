@@ -10,8 +10,8 @@
 {% else %}
                 <div class="score" style="background-color: {{ yrch_scoreColor(site.averageScore) }}">{{ site.averageScore }}</div>
 {% endif %}
-                {% if site.isSelectioned %}<div><img src="{{ asset('bundles/yrch/images/selection.gif') }}" alt="{% trans 'Selection' %}" title="{% trans 'Selection' %}" /></div>{% endif %}
-                {% if site.isLeech %}<div><img src="{{ asset('bundles/yrch/images/leecher.gif') }}" alt="{% trans 'Leecher' %}" title="{% trans 'Leecher' %}" /></div>{% endif %}
+                {% if site.isSelectioned %}<div><img src="{{ asset('bundles/yrch/images/selection.gif') }}" alt="{{ 'Selection'|trans }}" title="{{ 'Selection'|trans }}" /></div>{% endif %}
+                {% if site.isLeech %}<div><img src="{{ asset('bundles/yrch/images/leecher.gif') }}" alt="{{ 'Leecher'|trans }}" title="{{ 'Leecher'|trans }}" /></div>{% endif %}
             </div>
             <h3><a href="{{ path('site_show', {'id': site.id }) }}">{{ site.name }}</a></h3>
             <p>

@@ -11,8 +11,8 @@
         </div>
         <div class="last">
             <p><a href="{{ site.url }}" target="{{ outlink }}">{{ site.url }}</a></p>
-            <p>{% trans "Score" %} : {{ site.averageScore }} / 10</p>
-            <p>{% trans "Owners" %} :
+            <p>{{ "Score"|trans }} : {{ site.averageScore }} / 10</p>
+            <p>{{ "Owners"|trans }} :
                 {% for user in site.owners %}{% if not loop.first %} {% endif %}{% if user.isUser(site.superOwner) %}<strong>{{ user }}</strong>{% else %}{{ user }}{% endif %}{% endfor %}
             </p>
             <p>
@@ -30,7 +30,7 @@
     </div>
     <div class="box">
         <div class="box_head">
-            <h1>{% trans "Reviews" %}</h1>
+            <h1>{{ "Reviews"|trans }}</h1>
         </div>
         <div class="last">
             {% include "YrchBundle:Review:list.html.twig" with {'reviews': site.reviews} %}
