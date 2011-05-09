@@ -3,7 +3,6 @@ imports:
   - { resource: user_config.yml }
 
 framework:
-  error_handler: false
   test: ~
 
 web_profiler:

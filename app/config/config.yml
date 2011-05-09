@@ -3,7 +3,6 @@ imports:
 
 framework:
   charset: UTF-8
-  error_handler: null
   router: { resource: "%kernel.root_dir%/config/routing.yml" }
   csrf_protection:
     enabled: true

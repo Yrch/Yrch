@@ -74,12 +74,9 @@ abstract class Kernel implements KernelInterface
         $this->name = preg_replace('/[^a-zA-Z0-9_]+/', '', basename($this->rootDir));
         $this->classes = array();
         if ($this->debug) {
-            ini_set('display_errors', 1);
-            error_reporting(-1);
             $this->startTime = microtime(true);
-        } else {
-            ini_set('display_errors', 0);
         }
+        $this->init();
     }
     public function __clone()
     {
@@ -88,6 +85,9 @@ abstract class Kernel implements KernelInterface
         }
         $this->booted = false;
         $this->container = null;
+    }
+    public function init()
+    {
     }
     public function boot()
     {
@@ -1655,7 +1655,7 @@ class Request
     }
     public function getPort()
     {
-        return $this->server->get('SERVER_PORT');
+        return $this->headers->get('X-Forwarded-Port') ?: $this->server->get('SERVER_PORT');
     }
     public function getHttpHost()
     {

@@ -362,13 +362,16 @@ class ErrorHandler
         E_RECOVERABLE_ERROR => 'Catchable Fatal Error',
     );
     private $level;
-    public function __construct($level = null)
+    static public function register($level = null)
+    {
+        $handler = new static();
+        $handler->setLevel($level);
+        set_error_handler(array($handler, 'handle'));
+        return $handler;
+    }
+    public function setLevel($level)
     {
         $this->level = null === $level ? error_reporting() : $level;
-    }
-    public function register()
-    {
-        set_error_handler(array($this, 'handle'));
     }
     public function handle($level, $message, $file, $line, $context)
     {
@@ -568,12 +571,9 @@ abstract class Kernel implements KernelInterface
         $this->name = preg_replace('/[^a-zA-Z0-9_]+/', '', basename($this->rootDir));
         $this->classes = array();
         if ($this->debug) {
-            ini_set('display_errors', 1);
-            error_reporting(-1);
             $this->startTime = microtime(true);
-        } else {
-            ini_set('display_errors', 0);
         }
+        $this->init();
     }
     public function __clone()
     {
@@ -582,6 +582,9 @@ abstract class Kernel implements KernelInterface
         }
         $this->booted = false;
         $this->container = null;
+    }
+    public function init()
+    {
     }
     public function boot()
     {
@@ -1477,7 +1480,7 @@ class Request
     }
     public function getPort()
     {
-        return $this->server->get('SERVER_PORT');
+        return $this->headers->get('X-Forwarded-Port') ?: $this->server->get('SERVER_PORT');
     }
     public function getHttpHost()
     {
