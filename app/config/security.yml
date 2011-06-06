@@ -3,6 +3,9 @@ security:
     fos_user:
       id: fos_user.user_manager
   firewalls:
+    unsecure:
+      pattern: ^/(_wdt|_profiler)/
+      security: false
     main:
       pattern:      .*
       form-login:

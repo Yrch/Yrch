@@ -10,7 +10,7 @@
 
     <services>
         <service id="yrch.doctrine.score_listener" class="%yrch.doctrine.score_listener.class%" public="false">
-            <tag name="doctrine.common.event_subscriber" />
+            <tag name="doctrine.event_subscriber" />
         </service>
     </services>
 </container>

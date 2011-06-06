@@ -2,6 +2,9 @@
 
 namespace Yrch\YrchBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -11,11 +14,11 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  *
- * @orm:Table(name="review", indexes={
- *      @orm:index(name="review_relations_idx", columns={"site_id", "owner_id", "status"})
+ * @ORM\Table(name="review", indexes={
+ *      @ORM\index(name="review_relations_idx", columns={"site_id", "owner_id", "status"})
  * })
- * @orm:Entity()
- * @gedmo:TranslationEntity(class="Yrch\YrchBundle\Entity\ReviewTranslation")
+ * @ORM\Entity()
+ * @Gedmo\TranslationEntity(class="Yrch\YrchBundle\Entity\ReviewTranslation")
  */
 class Review
 {
@@ -23,70 +26,70 @@ class Review
     /**
      * @var integer $id
      *
-     * @orm:Column(name="id", type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var integer $score
      *
-     * @validation:Max(10)
-     * @orm:Column(name="score", type="integer", nullable="true")
+     * @Assert\Max(10)
+     * @ORM\Column(name="score", type="integer", nullable="true")
      */
     protected $score;
 
     /**
      * @var string $locale
      *
-     * @gedmo:Locale
+     * @Gedmo\Locale
      */
     protected $locale;
 
     /**
      * @var string $text
      *
-     * @validation:NotBlank(message="Please enter the text of the review")
-     * @orm:Column(name="text", type="text")
-     * @gedmo:Translatable
+     * @Assert\NotBlank(message="Please enter the text of the review")
+     * @ORM\Column(name="text", type="text")
+     * @Gedmo\Translatable
      */
     protected $text;
 
     /**
      * @var datetime $createdAt
      *
-     * @orm:Column(name="created_at", type="datetime")
-     * @gedmo:Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     protected $createdAt;
 
     /**
      * @var datetime $updatedAt
      *
-     * @orm:Column(name="updated_at", type="datetime")
-     * @gedmo:Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     protected $updatedAt;
 
     /**
      * @var string $status
      *
-     * @orm:Column(name="status", type="string", length=100)
+     * @ORM\Column(name="status", type="string", length=100)
      */
     protected $status;
 
     /**
      * @var User $owner
      *
-     * @orm:ManyToOne(targetEntity="Yrch\YrchBundle\Entity\User", inversedBy="reviews")
+     * @ORM\ManyToOne(targetEntity="Yrch\YrchBundle\Entity\User", inversedBy="reviews")
      */
     protected $owner;
 
     /**
      * @var Site $site
      *
-     * @orm:ManyToOne(targetEntity="Yrch\YrchBundle\Entity\Site", inversedBy="reviews")
+     * @ORM\ManyToOne(targetEntity="Yrch\YrchBundle\Entity\Site", inversedBy="reviews")
      */
     protected $site;
 
@@ -99,7 +102,6 @@ class Review
      * Get id
      *
      * @return integer $id
-     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -149,8 +151,7 @@ class Review
     /**
      * Get createdAt
      *
-     * @return datetime $createdAt
-     * @codeCoverageIgnore
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -160,8 +161,7 @@ class Review
     /**
      * Get updatedAt
      *
-     * @return datetime $updatedAt
-     * @codeCoverageIgnore
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -181,7 +181,7 @@ class Review
     /**
      * Get status
      *
-     * @return string $status
+     * @return string
      */
     public function getStatus()
     {
@@ -227,7 +227,7 @@ class Review
     {
         return $this->site;
     }
-    
+
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;

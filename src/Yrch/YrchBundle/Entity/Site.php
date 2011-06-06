@@ -3,6 +3,9 @@
 namespace Yrch\YrchBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Yrch\YrchBundle\Entity\Site
@@ -11,71 +14,71 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  *
- * @orm:Table(name="site")
- * @orm:Entity(repositoryClass="Yrch\YrchBundle\Repository\SiteRepository")
- * @gedmo:TranslationEntity(class="Yrch\YrchBundle\Entity\SiteTranslation")
+ * @ORM\Table(name="site")
+ * @ORM\Entity(repositoryClass="Yrch\YrchBundle\Repository\SiteRepository")
+ * @Gedmo\TranslationEntity(class="Yrch\YrchBundle\Entity\SiteTranslation")
  */
 class Site extends AbstractSite
 {
     /**
      * @var integer
      *
-     * @orm:Column(name="average_score", type="decimal", precision=3, scale=1, nullable="true")
+     * @ORM\Column(name="average_score", type="decimal", precision=3, scale=1, nullable="true")
      */
     protected $averageScore;
 
     /**
      * @var string $selection
      *
-     * @validation:AssertType(type="boolean")
-     * @orm:Column(name="selection", type="boolean")
+     * @Assert\Type(type="boolean")
+     * @ORM\Column(name="selection", type="boolean")
      */
     protected $selection;
 
     /**
      * @var string $leech
      *
-     * @validation:AssertType(type="boolean")
-     * @orm:Column(name="leech", type="boolean")
+     * @Assert\Type(type="boolean")
+     * @ORM\Column(name="leech", type="boolean")
      */
     protected $leech;
 
     /**
      * @var string $status
      *
-     * @orm:Column(name="status", type="string", length=100)
+     * @ORM\Column(name="status", type="string", length=100)
      */
     protected $status;
 
     /**
      * @var string $notes
      *
-     * @orm:Column(name="notes", type="text")
+     * @ORM\Column(name="notes", type="text")
      */
     protected $notes;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @orm:OneToMany(targetEntity="Yrch\YrchBundle\Entity\Review", mappedBy="site")
+     * @ORM\OneToMany(targetEntity="Yrch\YrchBundle\Entity\Review", mappedBy="site")
      */
     protected $reviews;
 
     /**
      * @var Yrch\YrchBundle\Entity\User
-     * 
-     * @orm:ManyToOne(targetEntity="Yrch\YrchBundle\Entity\User")
-     * @orm:JoinColumn(name="super_owner_id", referencedColumnName="id", onDelete="cascade")
+     *
+     * @ORM\ManyToOne(targetEntity="Yrch\YrchBundle\Entity\User")
+     * @ORM\JoinColumn(name="super_owner_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $superOwner;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection $owners
      *
-     * @orm:ManyToMany(targetEntity="Yrch\YrchBundle\Entity\User", inversedBy="sites")
-     * @orm:JoinTable(name="user_site",
-     *      joinColumns={@orm:JoinColumn(name="site_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="Yrch\YrchBundle\Entity\User", inversedBy="sites")
+     * @ORM\JoinTable(name="user_site",
+     *      joinColumns={@ORM\JoinColumn(name="site_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      *      )
      */
     protected $owners;
@@ -83,8 +86,8 @@ class Site extends AbstractSite
     /**
      * @var Yrch\YrchBundle\Entity\SiteTemp $siteTemp
      *
-     * @orm:OneToOne(targetEntity="Yrch\YrchBundle\Entity\SiteTemp")
-     * @orm:JoinColumn(name="site_temp_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Yrch\YrchBundle\Entity\SiteTemp")
+     * @ORM\JoinColumn(name="site_temp_id", referencedColumnName="id")
      */
     protected $siteTemp;
 
@@ -160,7 +163,7 @@ class Site extends AbstractSite
     /**
      * is leech ?
      *
-     * @return boolean 
+     * @return boolean
      */
     public function isLeech()
     {
@@ -296,7 +299,7 @@ class Site extends AbstractSite
      * Return true if the given user is an owner
      *
      * @param User $user
-     * @return boolean 
+     * @return boolean
      */
     public function isOwner(User $user)
     {

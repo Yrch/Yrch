@@ -2,6 +2,9 @@
 
 namespace Yrch\YrchBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -11,81 +14,80 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  *
- * @orm:Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
- * @orm:Table(name="category")
- * @gedmo:Tree(type="nested")
+ * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
+ * @ORM\Table(name="category")
+ * @Gedmo\Tree(type="nested")
  */
 class Category
 {
     /**
      * @var integer
      *
-     * @orm:Column(name="id", type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
      */
     protected $id;
 
     /**
      * @var string
      *
-     * @validation:NotBlank(message="Please enter the name")
-     * @orm:Column(name="name", type="string", length=255)
-     * @gedmo:Translatable
+     * @Assert\NotBlank(message="Please enter the name")
+     * @ORM\Column(name="name", type="string", length=255)
+     * @Gedmo\Translatable
      */
     protected $name;
 
     /**
      * @var string
      *
-     * @gedmo:Locale
+     * @Gedmo\Locale
      */
     protected $locale;
 
     /**
      * @var string $description
      *
-     * @orm:Column(name="description", type="text")
-     * @gedmo:Translatable
+     * @ORM\Column(name="description", type="text")
+     * @Gedmo\Translatable
      */
     protected $description;
 
     /**
      * @var integer
      *
-     * @orm:Column(name="lft", type="integer")
-     * @gedmo:TreeLeft
+     * @ORM\Column(name="lft", type="integer")
+     * @Gedmo\TreeLeft
      */
     protected $lft;
 
     /**
      * @var integer
      *
-     * @orm:Column(name="rgt", type="integer")
-     * @gedmo:TreeRight
+     * @ORM\Column(name="rgt", type="integer")
+     * @Gedmo\TreeRight
      */
     protected $rgt;
 
     /**
      * @var Category
      *
-     * @orm:ManyToOne(targetEntity="Yrch\YrchBundle\Entity\Category", inversedBy="children")
-     * @orm:JoinColumn(name="parent_id", referencedColumnName="id", onDelete="cascade")
-     * @gedmo:TreeParent
+     * @ORM\ManyToOne(targetEntity="Yrch\YrchBundle\Entity\Category", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="cascade")
+     * @Gedmo\TreeParent
      */
     protected $parent;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @orm:OneToMany(targetEntity="Yrch\YrchBundle\Entity\Category", mappedBy="parent")
-     * @orm:OrderBy({"lft" = "ASC"})
+     * @ORM\OneToMany(targetEntity="Yrch\YrchBundle\Entity\Category", mappedBy="parent")
+     * @ORM\OrderBy({"lft" = "ASC"})
      */
     protected $children;
 
     /**
      * @return integer
-     * @codeCoverageIgnore
      */
     public function getId()
     {

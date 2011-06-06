@@ -24,8 +24,8 @@ swiftmailer:
 
 ## FosUserBundle
 fos_user:
-  email:
-    from_email: { xxxxx@xxxxx.xx: XXXX }
+  from_email: { xxxxx@xxxxx.xx: XXXX }
+  registration:
     confirmation:
       enabled: true
 

@@ -2,6 +2,9 @@
 
 namespace Yrch\YrchBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -11,74 +14,72 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  *
- * @orm:MappedSuperclass
- * @orm:HasLifecycleCallbacks
+ * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks
  */
 abstract class AbstractSite
 {
     /**
      * @var integer $id
      *
-     * @orm:Column(name="id", type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string $url
      *
-     * @validation:Validation({
-     *      @validation:NotBlank(message="Please enter the url"),
-     *      @validation:Url(message="This is not a valid url")
-     * })
-     * @orm:Column(name="url", type="string", length=255, unique="true")
+     * @Assert\NotBlank(message="Please enter the url")
+     * @Assert\Url(message="This is not a valid url")
+     * @ORM\Column(name="url", type="string", length=255, unique="true")
      */
     protected $url;
 
     /**
      * @var string $title
      *
-     * @validation:NotBlank(message="Please enter the name")
-     * @orm:Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message="Please enter the name")
+     * @ORM\Column(name="name", type="string", length=255)
      */
     protected $name;
 
     /**
      * @var string $locale
      *
-     * @gedmo:Locale
+     * @Gedmo\Locale
      */
     protected $locale;
 
     /**
      * @var string $description
      *
-     * @orm:Column(name="description", type="text")
-     * @gedmo:Translatable
+     * @ORM\Column(name="description", type="text")
+     * @Gedmo\Translatable
      */
     protected $description;
 
     /**
      * @var \DateTime $createdAt
      *
-     * @orm:Column(name="created_at", type="datetime")
-     * @gedmo:Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     protected $createdAt;
 
     /**
      * @var \DateTime $updatedAt
      *
-     * @orm:Column(name="updated_at", type="datetime")
-     * @gedmo:Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     protected $updatedAt;
 
     /**
      * @var string
      *
-     * @orm:Column(name="languages", type="string", length=255)
+     * @ORM\Column(name="languages", type="string", length=255)
      */
     protected $stored_languages;
 
@@ -90,7 +91,7 @@ abstract class AbstractSite
     /**
      * @var string
      *
-     * @orm:Column(name="countries", type="string", length=255)
+     * @ORM\Column(name="countries", type="string", length=255)
      */
     protected $stored_countries;
 
@@ -102,12 +103,12 @@ abstract class AbstractSite
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection $categories
      *
-     * @orm:ManyToMany(targetEntity="Yrch\YrchBundle\Entity\Category")
-     * @orm:JoinTable(
-     *      joinColumns={@orm:JoinColumn(name="site_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@orm:JoinColumn(name="category_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="Yrch\YrchBundle\Entity\Category")
+     * @ORM\JoinTable(
+     *      joinColumns={@ORM\JoinColumn(name="site_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
      *      )
-     * @orm:OrderBy({"lft" = "ASC"})
+     * @ORM\OrderBy({"lft" = "ASC"})
      */
     protected $categories;
 
@@ -120,7 +121,6 @@ abstract class AbstractSite
      * Get id
      *
      * @return integer $id
-     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -313,7 +313,7 @@ abstract class AbstractSite
     }
 
     /**
-     * @orm:PostLoad
+     * @ORM\PostLoad
      */
     public function populateArrays()
     {
@@ -322,7 +322,7 @@ abstract class AbstractSite
     }
 
     /**
-     * @orm:PrePersist
+     * @ORM\PrePersist
      */
     public function populateStrings()
     {

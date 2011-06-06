@@ -15,7 +15,6 @@ $loader->registerNamespaces(array(
     'Doctrine\\Common\\DataFixtures' => $vendorDir.'/doctrine-data-fixtures/lib',
     'Doctrine\\Common'               => $vendorDir.'/doctrine-common/lib',
     'Doctrine\\DBAL\\Migrations'     => $vendorDir.'/doctrine-migrations/lib',
-    'Doctrine\\ODM\\MongoDB'         => $vendorDir.'/doctrine-mongodb/lib',
     'Doctrine\\DBAL'                 => $vendorDir.'/doctrine-dbal/lib',
     'Doctrine'                       => $vendorDir.'/doctrine/lib',
     'Zend'                           => $vendorDir.'/zend/library',
@@ -23,8 +22,10 @@ $loader->registerNamespaces(array(
     'Assetic'                        => $vendorDir.'/assetic/src',
 ));
 $loader->registerPrefixes(array(
-    'Swift_'           => $vendorDir.'/swiftmailer/lib/classes',
     'Twig_Extensions_' => $vendorDir.'/twig-extensions/lib',
     'Twig_'            => $vendorDir.'/twig/lib',
 ));
 $loader->register();
+
+require_once __DIR__.'/../vendor/swiftmailer/lib/classes/Swift.php';
+Swift::registerAutoload(__DIR__.'/../vendor/swiftmailer/lib/swift_init.php');

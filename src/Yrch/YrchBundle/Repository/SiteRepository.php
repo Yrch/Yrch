@@ -32,8 +32,9 @@ class SiteRepository extends EntityRepository
             AND :category MEMBER OF s.categories
             ORDER BY s.selection DESC, s.leech ASC, s.averageScore DESC, s.name ASC
             ";
-        $query = $this->_em->createQuery($dql);
+        $query = $this->getEntityManager()->createQuery($dql);
         $query->setParameters(array ('status' => 'ok', 'category' => $category));
+
         return $query->getResult();
     }
 
@@ -51,8 +52,9 @@ class SiteRepository extends EntityRepository
             AND s.selection = :selection
             ORDER BY s.selection DESC, s.leech ASC, s.averageScore DESC, s.name ASC
             ";
-        $query = $this->_em->createQuery($dql);
+        $query = $this->getEntityManager()->createQuery($dql);
         $query->setParameters(array ('status' => 'ok', 'selection' => true));
+
         return $query->getResult();
     }
 
@@ -75,9 +77,10 @@ class SiteRepository extends EntityRepository
                 AND e.status='ok'
                 HAVING MAX(e.updatedAt)=r.updatedAt
             )";
-        $query = $this->_em->createQuery($dql);
+        $query = $this->getEntityManager()->createQuery($dql);
         $query->setParameters(array (1 => $site, 2 => $site));
         $average_score = $query->getResult(Query::HYDRATE_SINGLE_SCALAR);
+
         return $average_score;
     }
 
@@ -107,6 +110,6 @@ class SiteRepository extends EntityRepository
                     HAVING MAX(e.updated_at)=r.updated_at
                 )
             )";
-        $this->_em->getConnection()->executeUpdate($sql);
+        $this->getEntityManager()->getConnection()->executeUpdate($sql);
     }
 }

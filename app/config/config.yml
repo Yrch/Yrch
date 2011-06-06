@@ -7,14 +7,14 @@ framework:
   csrf_protection:
     enabled: true
   secret: xxxxxxxxxx
+  form: true
   validation:
     enabled: true
-    annotations: true
+    enable_annotations: true
   templating:
     engines: [twig]
   session:
     auto_start: true
-    lifetime: 3600
     name: Yrch
   translator: { fallback: en }
 
@@ -40,6 +40,7 @@ be_simple_i18n_routing: ~
 
 ## StofDoctrineExtensionsBundle
 stof_doctrine_extensions:
+  translation_fallback: true
   orm:
     default: ~
 
@@ -47,6 +48,4 @@ stof_doctrine_extensions:
 fos_user:
   db_driver: orm
   firewall_name: main
-  class:
-    model:
-      user: Yrch\YrchBundle\Entity\User
+  user_class: Yrch\YrchBundle\Entity\User

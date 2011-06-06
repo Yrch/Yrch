@@ -3,6 +3,8 @@
 namespace Yrch\YrchBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -13,101 +15,101 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  *
- * @orm:Entity
- * @orm:Table(name="user")
+ * @ORM\Entity
+ * @ORM\Table(name="user")
  */
 class User extends BaseUser
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:generatedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\generatedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string
      *
-     * @validation:NotBlank(message="Please enter your nick")
-     * @orm:Column(name="nick", type="string", length=255)
+     * @Assert\NotBlank(message="Please enter your nick")
+     * @ORM\Column(name="nick", type="string", length=255)
      */
     protected $nick;
 
     /**
      * @var string
      *
-     * @orm:Column(name="prefered_locale", type="string", length=10)
+     * @ORM\Column(name="prefered_locale", type="string", length=10)
      */
     protected $preferedLocale;
 
     /**
      * @var string
      *
-     * @validation:NotBlank()
-     * @orm:Column(name="theme", type="string", length=255)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="theme", type="string", length=255)
      */
     protected $theme;
 
     /**
      * @var string
      *
-     * @validation:NotBlank()
-     * @orm:Column(name="outlink", type="string", length=255)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="outlink", type="string", length=255)
      */
     protected $outlink;
 
     /**
      * @var boolean
      *
-     * @validation:AssertType(type="boolean")
-     * @orm:Column(name="contact_allowed", type="boolean")
+     * @Assert\Type(type="boolean")
+     * @ORM\Column(name="contact_allowed", type="boolean")
      */
     protected $contactAllowed;
 
     /**
      * @var integer
      *
-     * @orm:Column(name="sites_per_page", type="integer")
+     * @ORM\Column(name="sites_per_page", type="integer")
      */
     protected $sitesPerPage;
 
     /**
      * @var integer
      *
-     * @orm:Column(name="reviews_per_page", type="integer")
+     * @ORM\Column(name="reviews_per_page", type="integer")
      */
     protected $reviewsPerPage;
 
     /**
      * @var boolean
      *
-     * @validation:AssertType(type="boolean")
-     * @orm:Column(name="site_notifications", type="boolean")
+     * @Assert\Type(type="boolean")
+     * @ORM\Column(name="site_notifications", type="boolean")
      */
     protected $siteNotifications;
 
     /**
      * @var boolean
      *
-     * @validation:AssertType(type="boolean")
-     * @orm:Column(name="review_notifications", type="boolean")
+     * @Assert\Type(type="boolean")
+     * @ORM\Column(name="review_notifications", type="boolean")
      */
     protected $reviewNotifications;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @orm:ManyToMany(targetEntity="Yrch\YrchBundle\Entity\Site", mappedBy="owners")
+     * @ORM\ManyToMany(targetEntity="Yrch\YrchBundle\Entity\Site", mappedBy="owners")
      */
     protected $sites;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @orm:ManyToMany(targetEntity="Yrch\YrchBundle\Entity\Site")
-     * @orm:JoinTable(name="user_favorites",
-     *      joinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@orm:JoinColumn(name="site_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="Yrch\YrchBundle\Entity\Site")
+     * @ORM\JoinTable(name="user_favorites",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="site_id", referencedColumnName="id")}
      *      )
      */
     protected $favorites;
@@ -115,7 +117,7 @@ class User extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @orm:OneToMany(targetEntity="Yrch\YrchBundle\Entity\Review", mappedBy="owner")
+     * @ORM\OneToMany(targetEntity="Yrch\YrchBundle\Entity\Review", mappedBy="owner")
      */
     protected $reviews;
 

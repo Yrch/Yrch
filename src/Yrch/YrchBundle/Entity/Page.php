@@ -2,6 +2,9 @@
 
 namespace Yrch\YrchBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -11,70 +14,69 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  *
- * @orm:Entity()
- * @orm:Table(name="page")
+ * @ORM\Entity()
+ * @ORM\Table(name="page")
  */
 class Page
 {
     /**
      * @var integer
      *
-     * @orm:Column(name="id", type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
      */
     protected $id;
 
     /**
      * @var string
      *
-     * @validation:NotBlank(message="Please enter the name")
-     * @orm:Column(name="name", type="string", length=255, unique="true")
-     * @gedmo:Translatable
+     * @Assert\NotBlank(message="Please enter the name")
+     * @ORM\Column(name="name", type="string", length=255, unique="true")
+     * @Gedmo\Translatable
      */
     protected $name;
 
     /**
      * @var string
      *
-     * @gedmo:Locale
+     * @Gedmo\Locale
      */
     protected $locale;
 
     /**
      * @var string
      *
-     * @orm:Column(name="content", type="text")
-     * @gedmo:Translatable
+     * @ORM\Column(name="content", type="text")
+     * @Gedmo\Translatable
      */
     protected $content;
 
     /**
      * @var \DateTime $createdAt
      *
-     * @orm:Column(name="created_at", type="datetime")
-     * @gedmo:Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     protected $createdAt;
 
     /**
      * @var \DateTime $updatedAt
      *
-     * @orm:Column(name="updated_at", type="datetime")
-     * @gedmo:Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     protected $updatedAt;
 
     /**
      * @var User
      *
-     * @orm:ManyToOne(targetEntity="Yrch\YrchBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Yrch\YrchBundle\Entity\User")
      */
     protected $modifier;
 
     /**
      * @return integer
-     * @codeCoverageIgnore
      */
     public function getId()
     {

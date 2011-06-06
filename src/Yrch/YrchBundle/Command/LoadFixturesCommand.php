@@ -46,11 +46,11 @@ EOT
         $purger->purge();
 
         $string_input = new StringInput('yrch:populate');
-        $application = new Application($this->application->getKernel());
+        $application = new Application($this->getApplication()->getKernel());
         $application->setAutoExit(false);
         $application->run($string_input, $output);
 
-        $string_input = new StringInput('doctrine:data:load --append=true');
+        $string_input = new StringInput('doctrine:fixtures:load --append=true');
         $application->run($string_input, $output);
     }
 }
