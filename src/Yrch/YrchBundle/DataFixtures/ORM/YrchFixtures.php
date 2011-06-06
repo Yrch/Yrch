@@ -4,6 +4,8 @@ namespace Yrch\YrchBundle\DataFixtures\ORM;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Yrch\YrchBundle\Entity\Category;
 use Yrch\YrchBundle\Entity\Site;
 use Yrch\YrchBundle\Entity\User;
@@ -16,8 +18,18 @@ use Yrch\YrchBundle\Entity\Review;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  */
-class YrchFixtures implements FixtureInterface
+class YrchFixtures implements FixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     public function load($manager)
     {
         $categoryRepo = $manager->getRepository('Yrch\\YrchBundle\\Entity\\Category');
@@ -97,15 +109,17 @@ class YrchFixtures implements FixtureInterface
      */
     protected function createUser($i)
     {
-        $user = new User();
+        $userManager = $this->container->get('fos_user.user_manager');
+        /* @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
+        $user = $userManager->createUser();
         $user->setUsername('user_'.$i);
-        $user->setUsernameCanonical(mb_convert_case($user->getUsername(), MB_CASE_LOWER, mb_detect_encoding($user->getUsername())));
         $user->setNick('User '.$i);
         $user->setEmail('user'.$i.'@example.org');
-        $user->setEmailCanonical(mb_convert_case($user->getEmail(), MB_CASE_LOWER, mb_detect_encoding($user->getEmail())));
         $user->setPassword('passwd'.$i);
         $user->setPreferedLocale('fr');
-        $user->setAlgorithm('sha1');
+        $userManager->updateCanonicalFields($user);
+        $userManager->updatePassword($user);
+
         return $user;
     }
 
@@ -129,6 +143,7 @@ class YrchFixtures implements FixtureInterface
             $site->addToSelection();
         }
         $site->setSuperOwner($superOwner);
+
         return $site;
     }
 
@@ -149,6 +164,7 @@ class YrchFixtures implements FixtureInterface
         $review->setTranslatableLocale('fr');
         $review->setText('test review number '.$i);
         $review->setScore(rand(1, 10));
+
         return $review;
     }
 }
