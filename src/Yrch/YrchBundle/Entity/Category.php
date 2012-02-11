@@ -79,7 +79,7 @@ class Category
     protected $parent;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(targetEntity="Yrch\YrchBundle\Entity\Category", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
@@ -157,7 +157,7 @@ class Category
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {

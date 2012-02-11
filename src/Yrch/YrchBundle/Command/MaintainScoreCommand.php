@@ -2,7 +2,7 @@
 
 namespace Yrch\YrchBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  */
-class MaintainScoreCommand extends Command
+class MaintainScoreCommand extends ContainerAwareCommand
 {
     /**
      * @see Command
@@ -36,7 +36,7 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->container->get('doctrine.orm.entity_manager');
+        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         $siteRepo = $em->getRepository('Yrch\YrchBundle\Entity\Site');
         $siteRepo->updateAllAverageNotes();
         $output->write('The scores have been updated');

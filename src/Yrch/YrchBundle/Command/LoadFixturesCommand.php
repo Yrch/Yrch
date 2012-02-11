@@ -2,7 +2,7 @@
 
 namespace Yrch\YrchBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -16,7 +16,7 @@ use Doctrine\Common\DataFixtures\Purger\ORMPurger;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  */
-class LoadFixturesCommand extends Command
+class LoadFixturesCommand extends ContainerAwareCommand
 {
     /**
      * @see Command
@@ -42,7 +42,7 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $purger = new ORMPurger($this->container->get('doctrine.orm.entity_manager'));
+        $purger = new ORMPurger($this->getContainer()->get('doctrine.orm.entity_manager'));
         $purger->purge();
 
         $string_input = new StringInput('yrch:populate');

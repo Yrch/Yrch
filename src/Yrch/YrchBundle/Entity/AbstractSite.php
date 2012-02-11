@@ -33,7 +33,7 @@ abstract class AbstractSite
      *
      * @Assert\NotBlank(message="Please enter the url")
      * @Assert\Url(message="This is not a valid url")
-     * @ORM\Column(name="url", type="string", length=255, unique="true")
+     * @ORM\Column(name="url", type="string", length=255, unique=true)
      */
     protected $url;
 
@@ -230,7 +230,7 @@ abstract class AbstractSite
     /**
      * Set coutries
      *
-     * @param array $coutries
+     * @param array $countries
      */
     public function setCountries(array $countries)
     {
@@ -272,7 +272,7 @@ abstract class AbstractSite
     /**
      * Get categories
      *
-     * @return Collection $categories
+     * @return \Doctrine\Common\Collections\Collection $categories
      */
     public function getCategories()
     {

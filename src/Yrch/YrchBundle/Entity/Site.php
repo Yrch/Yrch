@@ -23,7 +23,7 @@ class Site extends AbstractSite
     /**
      * @var integer
      *
-     * @ORM\Column(name="average_score", type="decimal", precision=3, scale=1, nullable="true")
+     * @ORM\Column(name="average_score", type="decimal", precision=3, scale=1, nullable=true)
      */
     protected $averageScore;
 
@@ -65,7 +65,7 @@ class Site extends AbstractSite
     protected $reviews;
 
     /**
-     * @var Yrch\YrchBundle\Entity\User
+     * @var \Yrch\YrchBundle\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="Yrch\YrchBundle\Entity\User")
      * @ORM\JoinColumn(name="super_owner_id", referencedColumnName="id", onDelete="cascade")
@@ -73,7 +73,7 @@ class Site extends AbstractSite
     protected $superOwner;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection $owners
+     * @var \Doctrine\Common\Collections\Collection $owners
      *
      * @ORM\ManyToMany(targetEntity="Yrch\YrchBundle\Entity\User", inversedBy="sites")
      * @ORM\JoinTable(name="user_site",
@@ -84,7 +84,7 @@ class Site extends AbstractSite
     protected $owners;
 
     /**
-     * @var Yrch\YrchBundle\Entity\SiteTemp $siteTemp
+     * @var \Yrch\YrchBundle\Entity\SiteTemp $siteTemp
      *
      * @ORM\OneToOne(targetEntity="Yrch\YrchBundle\Entity\SiteTemp")
      * @ORM\JoinColumn(name="site_temp_id", referencedColumnName="id")
@@ -226,7 +226,7 @@ class Site extends AbstractSite
     /**
      * Get reviews
      *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getReviews()
     {
@@ -288,7 +288,7 @@ class Site extends AbstractSite
     /**
      * Get owners
      *
-     * @return ArrayCollection $owners
+     * @return \Doctrine\Common\Collections\Collection $owners
      */
     public function getOwners()
     {
@@ -309,11 +309,11 @@ class Site extends AbstractSite
     /**
      * Set temporary site
      *
-     * @param SiteTemp site_temp
+     * @param SiteTemp $siteTemp
      */
-    public function setSiteTemp(SiteTemp $site_temp)
+    public function setSiteTemp(SiteTemp $siteTemp)
     {
-        $this->siteTemp = $site_temp;
+        $this->siteTemp = $siteTemp;
     }
 
     /**

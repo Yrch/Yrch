@@ -2,6 +2,7 @@
 
 namespace Yrch\YrchBundle\DataFixtures\ORM;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -30,7 +31,7 @@ class YrchFixtures implements FixtureInterface, ContainerAwareInterface
         $this->container = $container;
     }
 
-    public function load($manager)
+    public function load(ObjectManager $manager)
     {
         $categoryRepo = $manager->getRepository('Yrch\\YrchBundle\\Entity\\Category');
         $rootNodes = $categoryRepo->children(null, true);

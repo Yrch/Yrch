@@ -2,6 +2,8 @@ security:
   providers:
     fos_user:
       id: fos_user.user_manager
+  encoders:
+    Yrch\YrchBundle\Entity\User: sha512
   firewalls:
     unsecure:
       pattern: ^/(_wdt|_profiler)/
@@ -9,11 +11,12 @@ security:
     main:
       pattern:      .*
       form-login:
-        login_path:     /login
+        login_path:     fos_user_security_login
         use_forward:    false
-        check_path:     /login_check
+        check_path:     fos_user_security_check
         failure_path:   null
-      logout:       true
+      logout:
+        path: fos_user_security_logout
       anonymous:    true
       switch_user:  true
   access_control:

@@ -36,7 +36,7 @@ class Review
      * @var integer $score
      *
      * @Assert\Max(10)
-     * @ORM\Column(name="score", type="integer", nullable="true")
+     * @ORM\Column(name="score", type="integer", nullable=true)
      */
     protected $score;
 

@@ -32,7 +32,7 @@ class Page
      * @var string
      *
      * @Assert\NotBlank(message="Please enter the name")
-     * @ORM\Column(name="name", type="string", length=255, unique="true")
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      * @Gedmo\Translatable
      */
     protected $name;

@@ -14,5 +14,8 @@
             <argument type="service" id="session" />
             <argument>%yrch.languages%</argument>
         </service>
+        <service id="twig.extension.text" class="Twig_Extensions_Extension_Text">
+            <tag name="twig.extension" />
+        </service>
     </services>
 </container>

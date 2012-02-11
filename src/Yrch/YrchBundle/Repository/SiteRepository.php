@@ -20,8 +20,8 @@ class SiteRepository extends EntityRepository
      * Find the site in the given category with selectioned one first and leechers
      * last and ordered by average score
      *
-     * @param Category $category
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @param \Yrch\YrchBundle\Entity\Category $category
+     * @return array
      */
     public function findByCategory(Category $category)
     {
@@ -41,7 +41,7 @@ class SiteRepository extends EntityRepository
     /**
      * Find all selectioned sites
      *
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return array
      */
     public function findSelectioned()
     {
@@ -61,8 +61,8 @@ class SiteRepository extends EntityRepository
     /**
      * Get the updated average score of the given site
      *
-     * @param Site $site
-     * @return double
+     * @param \Yrch\YrchBundle\Entity\Site $site
+     * @return float
      */
     public function getUpdatedAverageScore(Site $site)
     {
@@ -79,9 +79,9 @@ class SiteRepository extends EntityRepository
             )";
         $query = $this->getEntityManager()->createQuery($dql);
         $query->setParameters(array (1 => $site, 2 => $site));
-        $average_score = $query->getResult(Query::HYDRATE_SINGLE_SCALAR);
+        $averageScore = $query->getResult(Query::HYDRATE_SINGLE_SCALAR);
 
-        return $average_score;
+        return $averageScore;
     }
 
     /**

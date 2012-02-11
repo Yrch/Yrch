@@ -22,7 +22,6 @@ framework:
 twig:
   debug: %kernel.debug%
   strict_variables: %kernel.debug%
-  extensions: [twig.extension.text, twig.extension.debug]
 
 ## Doctrine Configuration
 doctrine:
@@ -35,14 +34,14 @@ doctrine:
           StofDoctrineExtensionsBundle: ~
           FOSUserBundle: ~
 
-## I18nRoutingBundle
-be_simple_i18n_routing: ~
-
 ## StofDoctrineExtensionsBundle
 stof_doctrine_extensions:
   translation_fallback: true
   orm:
-    default: ~
+    default:
+        translatable: true
+        timestampable: true
+        tree: true
 
 ## FOSUserBundle
 fos_user:

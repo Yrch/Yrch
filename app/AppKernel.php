@@ -35,22 +35,6 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
-    public function init()
-    {
-        if ($this->debug) {
-            ini_set('display_errors', 1);
-            error_reporting(-1);
-
-            DebugUniversalClassLoader::enable();
-            ErrorHandler::register();
-            if ('cli' !== php_sapi_name()) {
-                ExceptionHandler::register();
-            }
-        } else {
-            ini_set('display_errors', 0);
-        }
-    }
-
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');

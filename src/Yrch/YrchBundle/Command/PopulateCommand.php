@@ -2,7 +2,7 @@
 
 namespace Yrch\YrchBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\Output;
@@ -15,7 +15,7 @@ use Yrch\YrchBundle\Entity\Category;
  * @copyright (c) 2010, Tolkiendil, Association loi 1901
  * @license GPLv2 (http://www.opensource.org/licenses/gpl-2.0.php)
  */
-class PopulateCommand extends Command
+class PopulateCommand extends ContainerAwareCommand
 {
     /**
      * @see Command
@@ -44,13 +44,13 @@ EOT
     {
         // Special user
         $output->writeln('Generating special user');
-        $userManager = $this->container->get('fos_user.user_manager');
-        if (null === $userManager->findUserByUsername($this->container->getParameter('yrch.special_user.username'))){
+        $userManager = $this->getContainer()->get('fos_user.user_manager');
+        if (null === $userManager->findUserByUsername($this->getContainer()->getParameter('yrch.special_user.username'))){
             $specialUser = $userManager->createUser();
-            $specialUser->setUsername($this->container->getParameter('yrch.special_user.username'));
-            $specialUser->setNick($this->container->getParameter('yrch.special_user.nick'));
-            $specialUser->setEmail($this->container->getParameter('yrch.special_user.email'));
-            $specialUser->setPreferedLocale($this->container->getParameter('stof_doctrine_extensions.default_locale'));
+            $specialUser->setUsername($this->getContainer()->getParameter('yrch.special_user.username'));
+            $specialUser->setNick($this->getContainer()->getParameter('yrch.special_user.nick'));
+            $specialUser->setEmail($this->getContainer()->getParameter('yrch.special_user.email'));
+            $specialUser->setPreferedLocale($this->getContainer()->getParameter('stof_doctrine_extensions.default_locale'));
             $specialUser->setPassword(md5(uniqid().rand(100000, 999999)));
             $specialUser->setEnabled(true);
             $specialUser->setLocked(true);
@@ -61,7 +61,7 @@ EOT
         }
         // Generating root category
         $output->writeln('Generating the root category');
-        $em = $this->container->get('doctrine.orm.entity_manager');
+        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         $categoryRepo = $em->getRepository('Yrch\\YrchBundle\\Entity\\Category');
         $rootnodes = $categoryRepo->children(null, true);
         if (!$rootnodes){

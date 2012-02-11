@@ -39,13 +39,13 @@
 	url = git://github.com/kriswallsmith/assetic.git
 [submodule "vendor/bundles/Stof/DoctrineExtensionsBundle"]
 	path = vendor/bundles/Stof/DoctrineExtensionsBundle
-	url = git://github.com/stof/DoctrineExtensionsBundle.git
+	url = git://github.com/stof/StofDoctrineExtensionsBundle.git
 [submodule "vendor/bundles/FOS/UserBundle"]
 	path = vendor/bundles/FOS/UserBundle
-	url = git://github.com/FriendsOfSymfony/UserBundle.git
+	url = git://github.com/FriendsOfSymfony/FOSUserBundle.git
 [submodule "vendor/bundles/BeSimple/I18nRoutingBundle"]
 	path = vendor/bundles/BeSimple/I18nRoutingBundle
-	url = git://github.com/BeSimple/I18nRoutingBundle.git
+	url = git://github.com/BeSimple/BeSimpleI18nRoutingBundle.git
 [submodule "vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle"]
 	path = vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle
 	url = git://github.com/symfony/DoctrineFixturesBundle.git
